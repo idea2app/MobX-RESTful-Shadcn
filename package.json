@@ -1,13 +1,13 @@
 {
-  "name": "registry",
-  "version": "0.1.0",
+  "name": "mobx-restful-shadcn",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
     "postinstall": "shadcn-helper install",
+    "registry:build": "shadcn build",
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "start": "next start",
-    "registry:build": "shadcn build"
+    "build": "npm run registry:build  &&  next build --webpack",
+    "start": "next start"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

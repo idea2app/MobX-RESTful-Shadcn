@@ -1,4 +1,6 @@
-# registry-template
+# MobX RESTful Shadcn
+
+A **Pagination Table** & **Scroll List** component suite for [CRUD operation][1], which is based on [MobX RESTful][2] & [React][3].
 
 You can use the `shadcn` CLI to run your own component registry. Running your own
 component registry allows you to distribute your custom components, hooks, pages, and
@@ -21,3 +23,7 @@ This is a template for creating a custom registry using Next.js.
 ## Documentation
 
 Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
+
+[1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+[2]: https://github.com/idea2app/MobX-RESTful
+[3]: https://reactjs.org/
