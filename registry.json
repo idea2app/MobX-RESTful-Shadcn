@@ -82,7 +82,7 @@
       "title": "Badge Bar",
       "description": "A component for displaying a list of badges with optional click and delete handlers.",
       "registryDependencies": ["badge"],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["lucide-react", "web-utility"],
       "files": [
         {
           "path": "registry/new-york/blocks/badge-bar/badge-bar.tsx",
@@ -96,7 +96,7 @@
       "title": "Pager",
       "description": "A pagination component with page size and page index controls.",
       "registryDependencies": ["button", "input"],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["lucide-react", "mobx-restful", "web-utility"],
       "files": [
         {
           "path": "registry/new-york/blocks/pager/pager.tsx",
@@ -110,7 +110,12 @@
       "title": "Image Preview",
       "description": "An image preview component with modal viewing and download functionality.",
       "registryDependencies": ["dialog"],
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react",
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/image-preview/image-preview.tsx",
@@ -149,7 +154,13 @@
       "type": "registry:component",
       "title": "Scroll List",
       "description": "An infinite scroll list component using MobX for state management.",
-      "dependencies": ["mobx", "mobx-react", "mobx-restful", "lodash"],
+      "dependencies": [
+        "mobx",
+        "mobx-i18n",
+        "mobx-react",
+        "mobx-restful",
+        "lodash.debounce"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/scroll-list/scroll-list.tsx",
