@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "shadcn-helper install",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -40,6 +41,7 @@
     "@types/react-dom": "19.1.2",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
+    "shadcn-helper": "^0.5.2",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2"
   },
@@ -47,6 +49,9 @@
     "overrides": {
       "@types/react": "19.1.2",
       "@types/react-dom": "19.1.2"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "core-js"
+    ]
   }
 }
