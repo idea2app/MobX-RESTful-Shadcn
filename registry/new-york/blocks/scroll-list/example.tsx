@@ -14,30 +14,10 @@ interface Item {
 
 // Mock store that extends ListModel
 class MockItemStore extends ListModel<Item> {
-  constructor() {
-    super()
-    makeObservable(this, {
-      downloading: observable,
-      noMore: observable,
-      allItems: observable,
-    })
-  }
+  baseURI = ""
+  client = {} as any
 
-  @observable
-  accessor downloading = 0
-
-  @observable
-  accessor noMore = false
-
-  @observable
-  accessor allItems: Item[] = []
-
-  @observable
-  accessor pageList: Item[] = []
-
-  async getList(filter?: any, pageIndex = 1) {
-    this.downloading++
-
+  async loadPage(pageIndex: number, pageSize: number, filter?: any) {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 500))
 
@@ -48,26 +28,12 @@ class MockItemStore extends ListModel<Item> {
       description: `Description for item ${(pageIndex - 1) * 10 + i + 1}`,
     }))
 
-    this.allItems = [...this.allItems, ...newItems]
-    this.pageList = [...this.pageList, ...newItems]
-
-    // Simulate end of data after 5 pages
-    if (pageIndex >= 5) {
-      this.noMore = true
+    return {
+      pageData: newItems,
+      pageIndex,
+      pageSize,
+      totalCount: pageIndex >= 5 ? newItems.length : 100,
     }
-
-    this.downloading--
-  }
-
-  clearList() {
-    this.allItems = []
-    this.pageList = []
-    this.noMore = false
-  }
-
-  async restoreList({ allItems }: any) {
-    this.allItems = allItems
-    this.pageList = allItems
   }
 }
 

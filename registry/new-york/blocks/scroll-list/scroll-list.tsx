@@ -90,5 +90,3 @@ export const ScrollList = observer(function ScrollList<
     </ScrollBoundary>
   )
 })
-
-ScrollList.displayName = "ScrollList"
