@@ -1,10 +1,10 @@
 "use client"
 
-import * as React from "react"
-import { observer } from "mobx-react"
-import { when } from "mobx"
-import { DataObject, Filter, ListModel } from "mobx-restful"
 import { debounce } from "lodash"
+import { when } from "mobx"
+import { observer } from "mobx-react"
+import { DataObject, Filter, ListModel, Stream } from "mobx-restful"
+import { Component, ReactNode } from "react"
 import {
   EdgePosition,
   ScrollBoundary,
@@ -23,70 +23,58 @@ export interface ScrollListProps<
   store: ListModel<D, F>
   filter?: F
   defaultData?: D[]
-  renderList: (allItems: D[]) => React.ReactNode
+  renderList(allItems: D[]): ReactNode
 }
 
-export const ScrollList = observer(function ScrollList<
+@observer
+export class ScrollList<
   D extends DataObject = DataObject,
   F extends Filter<D> = Filter<D>
->({
-  translator,
-  store,
-  filter,
-  defaultData,
-  renderList,
-  ...props
-}: ScrollListProps<D, F>) {
-  const mountedRef = React.useRef(false)
+> extends Component<ScrollListProps<D, F>> {
+  static readonly displayName = "ScrollList"
 
-  React.useEffect(() => {
-    if (mountedRef.current) return
-    mountedRef.current = true
+  async componentDidMount() {
+    const BaseStream = Stream<DataObject>
+    const { filter, defaultData } = this.props
 
-    const initData = async () => {
-      await when(() => (store as any).downloading < 1)
+    const store = this.props.store as unknown as InstanceType<
+      ReturnType<typeof BaseStream>
+    >
+    await when(() => store.downloading < 1)
 
-      store.clearList()
+    store.clearList()
 
-      if (defaultData) {
-        await (store as any).restoreList({ allItems: defaultData, filter })
-      }
+    if (defaultData) await store.restoreList({ allItems: defaultData, filter })
 
-      await store.getList(filter, (store as any).pageList?.length + 1 || 1)
-    }
+    await store.getList(filter, store.pageList.length + 1)
+  }
 
-    initData()
+  componentWillUnmount() {
+    this.props.store.clearList()
+  }
 
-    return () => {
-      store.clearList()
-    }
-  }, [store, filter, defaultData])
+  loadMore = debounce((edge: EdgePosition) => {
+    const { store } = this.props
 
-  const loadMore = React.useMemo(
-    () =>
-      debounce((edge: EdgePosition) => {
-        const storeAny = store as any
-        if (edge === "bottom" && storeAny.downloading < 1 && !storeAny.noMore) {
-          store.getList()
-        }
-      }, 300),
-    [store]
-  )
+    if (edge === "bottom" && store.downloading < 1 && !store.noMore)
+      store.getList()
+  })
 
-  const { t } = translator
-  const storeAny = store as any
-  const noMore = storeAny.noMore || false
-  const allItems = storeAny.allItems || []
+  render() {
+    const { translator, store, renderList, ...props } = this.props
+    const { t } = translator
+    const { noMore, allItems } = store
 
-  return (
-    <ScrollBoundary {...props} onTouch={loadMore}>
-      <div>
-        {renderList(allItems)}
+    return (
+      <ScrollBoundary {...props} onTouch={this.loadMore}>
+        <div>
+          {renderList(allItems)}
 
-        <footer className="mt-2 text-center text-muted-foreground text-sm">
-          {noMore || !allItems.length ? t("no_more") : t("load_more")}
-        </footer>
-      </div>
-    </ScrollBoundary>
-  )
-})
+          <footer className="mt-2 text-center text-muted-foreground text-sm">
+            {noMore || !allItems.length ? t("no_more") : t("load_more")}
+          </footer>
+        </div>
+      </ScrollBoundary>
+    )
+  }
+}
