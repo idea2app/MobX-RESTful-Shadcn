@@ -31,13 +31,18 @@ const touch =
     const edgeMargins = Array(4).fill("0px")
     edgeMargins[EdgeOrder.indexOf(edge)] = "200px"
 
-    new IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([{ isIntersecting }]) => isIntersecting && onTouch(edge),
       {
         root,
         rootMargin: edgeMargins.join(" "),
       }
-    ).observe(node)
+    )
+    
+    observer.observe(node)
+    
+    // Return cleanup function
+    return () => observer.disconnect()
   }
 
 export function ScrollBoundary({

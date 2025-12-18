@@ -43,16 +43,16 @@ export function Pager({
   }
 
   const handlePageSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value)
-    if (value > 0) {
+    const value = parseInt(e.target.value, 10)
+    if (!isNaN(value) && value > 0) {
       setLocalPageSize(value)
       onChange?.({ pageSize: value, pageIndex: localPageIndex })
     }
   }
 
   const handlePageIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value)
-    if (value > 0 && value <= pageCount) {
+    const value = parseInt(e.target.value, 10)
+    if (!isNaN(value) && value > 0 && value <= pageCount) {
       setLocalPageIndex(value)
       onChange?.({ pageSize: localPageSize, pageIndex: value })
     }

@@ -22,6 +22,15 @@ export const text2color = (raw: string): BadgeVariant => {
   return VariantColors[sum % VariantColors.length]
 }
 
+const isValidUrl = (text: string): boolean => {
+  try {
+    new URL(text)
+    return true
+  } catch {
+    return false
+  }
+}
+
 export interface BadgeItem {
   text: string
   link?: string
@@ -51,10 +60,10 @@ export function BadgeBar({
         <Badge
           key={`${text}-${index}`}
           variant={bgResolver(text)}
-          asChild={!!(link || URL.canParse(text))}
+          asChild={!!(link || isValidUrl(text))}
           className="flex items-center gap-2"
         >
-          {link || URL.canParse(text) ? (
+          {link || isValidUrl(text) ? (
             <a
               href={link || text}
               className="no-underline"

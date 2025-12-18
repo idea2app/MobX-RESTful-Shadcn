@@ -44,9 +44,15 @@ export function FilePreview({
   ...props
 }: FilePreviewProps) {
   const [category, ...kind] = type?.split(/\W+/) || []
-  const fileName = decodeURI(
-    new URL(path, "http://localhost").pathname.split("/").pop() || ""
-  )
+  
+  let fileName: string
+  try {
+    const url = new URL(path)
+    fileName = decodeURI(url.pathname.split("/").pop() || "")
+  } catch {
+    // If path is not a valid URL, treat it as a relative path
+    fileName = decodeURI(path.split("/").pop() || "")
+  }
   const extension =
     FileTypeMap[kind.at(-1) || ""] ||
     (fileName?.includes(".") ? fileName.split(".").pop() : kind.at(-1))
