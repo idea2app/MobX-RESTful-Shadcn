@@ -9,6 +9,12 @@ import { ImagePreviewExample } from "@/registry/new-york/blocks/image-preview/ex
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
 import { ScrollBoundaryExample } from "@/registry/new-york/blocks/scroll-boundary/example";
 import { ScrollListExample } from "@/registry/new-york/blocks/scroll-list/example";
+import { ArrayFieldExample } from "@/registry/new-york/blocks/array-field/example";
+import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/example";
+import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
+import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
+import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
+import { SearchableInputExample } from "@/registry/new-york/blocks/searchable-input/example";
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
 
@@ -143,6 +149,83 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-center min-h-[400px] relative">
             <ScrollListExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A dynamic array field component with add/remove functionality for
+              form arrays.
+            </h2>
+            <OpenInV0Button name="array-field" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <ArrayFieldExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              An input component that displays values as removable badges,
+              supporting multiple entries.
+            </h2>
+            <OpenInV0Button name="badge-input" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <BadgeInputExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A range slider input with optional custom icon display for each
+              step.
+            </h2>
+            <OpenInV0Button name="range-input" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <RangeInputExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A file picker component with preview and remove functionality.
+            </h2>
+            <OpenInV0Button name="file-picker" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <FilePickerExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A unified form field component supporting input, textarea, and
+              select elements with labels.
+            </h2>
+            <OpenInV0Button name="form-field" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <FormFieldExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A searchable select input with badge display, supporting single or
+              multiple selection.
+            </h2>
+            <OpenInV0Button name="searchable-input" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <SearchableInputExample />
           </div>
         </div>
       </main>
