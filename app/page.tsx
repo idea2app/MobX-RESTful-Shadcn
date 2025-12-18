@@ -4,6 +4,12 @@ import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world"
 import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form"
 import PokemonPage from "@/registry/new-york/blocks/complex-component/page"
 import { ExampleCard } from "@/registry/new-york/blocks/example-with-css/example-card"
+import BadgeBarExample from "@/registry/new-york/blocks/badge-bar/example"
+import PagerExample from "@/registry/new-york/blocks/pager/example"
+import ImagePreviewExample from "@/registry/new-york/blocks/image-preview/example"
+import FilePreviewExample from "@/registry/new-york/blocks/file-preview/example"
+import ScrollBoundaryExample from "@/registry/new-york/blocks/scroll-boundary/example"
+import ScrollListExample from "@/registry/new-york/blocks/scroll-list/example"
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
 
@@ -62,6 +68,78 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-center min-h-[400px] relative">
             <ExampleCard />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A component for displaying a list of badges with optional click and delete handlers.
+            </h2>
+            <OpenInV0Button name="badge-bar" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <BadgeBarExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A pagination component with page size and page index controls.
+            </h2>
+            <OpenInV0Button name="pager" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <PagerExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              An image preview component with modal viewing and download functionality.
+            </h2>
+            <OpenInV0Button name="image-preview" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <ImagePreviewExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A file preview component supporting images, audio, video, and documents.
+            </h2>
+            <OpenInV0Button name="file-preview" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <FilePreviewExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              A component that detects when scroll reaches edges using IntersectionObserver.
+            </h2>
+            <OpenInV0Button name="scroll-boundary" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <ScrollBoundaryExample />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              An infinite scroll list component using MobX for state management.
+            </h2>
+            <OpenInV0Button name="scroll-list" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center min-h-[400px] relative">
+            <ScrollListExample />
           </div>
         </div>
       </main>

@@ -75,6 +75,87 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "badge-bar",
+      "type": "registry:component",
+      "title": "Badge Bar",
+      "description": "A component for displaying a list of badges with optional click and delete handlers.",
+      "registryDependencies": ["badge"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/badge-bar/badge-bar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pager",
+      "type": "registry:component",
+      "title": "Pager",
+      "description": "A pagination component with page size and page index controls.",
+      "registryDependencies": ["button", "input"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/pager/pager.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "image-preview",
+      "type": "registry:component",
+      "title": "Image Preview",
+      "description": "An image preview component with modal viewing and download functionality.",
+      "registryDependencies": ["dialog"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/image-preview/image-preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "file-preview",
+      "type": "registry:component",
+      "title": "File Preview",
+      "description": "A file preview component supporting images, audio, video, and documents.",
+      "registryDependencies": ["dialog"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/file-preview/file-preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scroll-boundary",
+      "type": "registry:component",
+      "title": "Scroll Boundary",
+      "description": "A component that detects when scroll reaches edges using IntersectionObserver.",
+      "files": [
+        {
+          "path": "registry/new-york/blocks/scroll-boundary/scroll-boundary.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scroll-list",
+      "type": "registry:component",
+      "title": "Scroll List",
+      "description": "An infinite scroll list component using MobX for state management.",
+      "dependencies": ["mobx", "mobx-react", "mobx-restful", "lodash"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/scroll-list/scroll-list.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
