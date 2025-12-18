@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { OpenInV0Button } from "@/components/open-in-v0-button";
 import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world";
 import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form";
@@ -18,6 +19,28 @@ import { SearchableInputExample } from "@/registry/new-york/blocks/searchable-in
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
 
+const ComponentCard = ({
+  name,
+  description,
+  children,
+  minHeight = "min-h-[400px]",
+}: {
+  name: string;
+  description: string;
+  children: ReactNode;
+  minHeight?: string;
+}) => (
+  <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
+    <div className="flex items-center justify-between">
+      <h2 className="text-sm text-muted-foreground sm:pl-3">{description}</h2>
+      <OpenInV0Button name={name} className="w-fit" />
+    </div>
+    <div className={`flex items-center justify-center ${minHeight} relative`}>
+      {children}
+    </div>
+  </div>
+);
+
 export default function Home() {
   return (
     <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
@@ -28,206 +51,118 @@ export default function Home() {
         </p>
       </header>
       <main className="flex flex-col flex-1 gap-8">
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A simple hello world component
-            </h2>
-            <OpenInV0Button name="hello-world" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <HelloWorld />
-          </div>
-        </div>
+        <ComponentCard
+          name="hello-world"
+          description="A simple hello world component"
+        >
+          <HelloWorld />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A contact form with Zod validation.
-            </h2>
-            <OpenInV0Button name="example-form" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[500px] relative">
-            <ExampleForm />
-          </div>
-        </div>
+        <ComponentCard
+          name="example-form"
+          description="A contact form with Zod validation."
+          minHeight="min-h-[500px]"
+        >
+          <ExampleForm />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A complex component showing hooks, libs and components.
-            </h2>
-            <OpenInV0Button name="complex-component" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <PokemonPage />
-          </div>
-        </div>
+        <ComponentCard
+          name="complex-component"
+          description="A complex component showing hooks, libs and components."
+        >
+          <PokemonPage />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A login form with a CSS file.
-            </h2>
-            <OpenInV0Button name="example-with-css" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <ExampleCard />
-          </div>
-        </div>
+        <ComponentCard
+          name="example-with-css"
+          description="A login form with a CSS file."
+        >
+          <ExampleCard />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A component for displaying a list of badges with optional click
-              and delete handlers.
-            </h2>
-            <OpenInV0Button name="badge-bar" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <BadgeBarExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="badge-bar"
+          description="A component for displaying a list of badges with optional click and delete handlers."
+        >
+          <BadgeBarExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A pagination component with page size and page index controls.
-            </h2>
-            <OpenInV0Button name="pager" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <PagerExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="pager"
+          description="A pagination component with page size and page index controls."
+        >
+          <PagerExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              An image preview component with modal viewing and download
-              functionality.
-            </h2>
-            <OpenInV0Button name="image-preview" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <ImagePreviewExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="image-preview"
+          description="An image preview component with modal viewing and download functionality."
+        >
+          <ImagePreviewExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A file preview component supporting images, audio, video, and
-              documents.
-            </h2>
-            <OpenInV0Button name="file-preview" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <FilePreviewExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="file-preview"
+          description="A file preview component supporting images, audio, video, and documents."
+        >
+          <FilePreviewExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A component that detects when scroll reaches edges using
-              IntersectionObserver.
-            </h2>
-            <OpenInV0Button name="scroll-boundary" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <ScrollBoundaryExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="scroll-boundary"
+          description="A component that detects when scroll reaches edges using IntersectionObserver."
+        >
+          <ScrollBoundaryExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              An infinite scroll list component using MobX for state management.
-            </h2>
-            <OpenInV0Button name="scroll-list" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <ScrollListExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="scroll-list"
+          description="An infinite scroll list component using MobX for state management."
+        >
+          <ScrollListExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A dynamic array field component with add/remove functionality for
-              form arrays.
-            </h2>
-            <OpenInV0Button name="array-field" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <ArrayFieldExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="array-field"
+          description="A dynamic array field component with add/remove functionality for form arrays."
+        >
+          <ArrayFieldExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              An input component that displays values as removable badges,
-              supporting multiple entries.
-            </h2>
-            <OpenInV0Button name="badge-input" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <BadgeInputExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="badge-input"
+          description="An input component that displays values as removable badges, supporting multiple entries."
+        >
+          <BadgeInputExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A range slider input with optional custom icon display for each
-              step.
-            </h2>
-            <OpenInV0Button name="range-input" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <RangeInputExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="range-input"
+          description="A range slider input with optional custom icon display for each step."
+        >
+          <RangeInputExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A file picker component with preview and remove functionality.
-            </h2>
-            <OpenInV0Button name="file-picker" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <FilePickerExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="file-picker"
+          description="A file picker component with preview and remove functionality."
+        >
+          <FilePickerExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A unified form field component supporting input, textarea, and
-              select elements with labels.
-            </h2>
-            <OpenInV0Button name="form-field" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <FormFieldExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="form-field"
+          description="A unified form field component supporting input, textarea, and select elements with labels."
+        >
+          <FormFieldExample />
+        </ComponentCard>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A searchable select input with badge display, supporting single or
-              multiple selection.
-            </h2>
-            <OpenInV0Button name="searchable-input" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <SearchableInputExample />
-          </div>
-        </div>
+        <ComponentCard
+          name="searchable-input"
+          description="A searchable select input with badge display, supporting single or multiple selection."
+        >
+          <SearchableInputExample />
+        </ComponentCard>
       </main>
     </div>
   );

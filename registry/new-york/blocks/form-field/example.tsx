@@ -2,9 +2,8 @@
 
 import { FormField } from "./form-field";
 
-export const FormFieldExample = () => {
-  return (
-    <div className="w-full space-y-8">
+export const FormFieldExample = () => (
+  <div className="w-full space-y-8">
       <div>
         <h3 className="text-lg font-semibold mb-4">Text Input</h3>
         <FormField
@@ -69,5 +68,4 @@ export const FormFieldExample = () => {
         />
       </div>
     </div>
-  );
-};
+);
