@@ -18,8 +18,8 @@ export interface BadgeInputProps extends FormComponentProps<string[]> {
 export class BadgeInput extends FormComponent<BadgeInputProps> {
   static readonly displayName = "BadgeInput";
 
-  static match(type: string): type is BadgeInputProps["type"] {
-    return TextInputTypes.includes(type as BadgeInputProps["type"]);
+  static match(type: string): type is (typeof TextInputTypes)[number] {
+    return TextInputTypes.includes(type as (typeof TextInputTypes)[number]);
   }
 
   handleInput = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ export class BadgeInput extends FormComponent<BadgeInputProps> {
   };
 
   delete(index: number) {
-    const { innerValue } = this;
+    const innerValue = this.innerValue || [];
 
     this.innerValue = [
       ...innerValue.slice(0, index),

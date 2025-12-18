@@ -12,35 +12,36 @@ interface User extends DataObject {
   email: string;
 }
 
-// Mock store for demonstration
-class MockUserStore extends ListModel<User> {
-  constructor() {
-    super();
-    makeObservable(this);
-  }
+// Mock store for demonstration - simplified for type compatibility
+const mockUsers: User[] = [
+  { id: "1", name: "John Doe", email: "john@example.com" },
+  { id: "2", name: "Jane Smith", email: "jane@example.com" },
+  { id: "3", name: "Bob Johnson", email: "bob@example.com" },
+  { id: "4", name: "Alice Williams", email: "alice@example.com" },
+];
+
+class MockUserStore {
+  downloading = 0;
+  allItems: User[] = mockUsers;
+  currentOne: User | null = null;
 
   async getList(filter?: any, page = 1) {
-    // Simulate API call
-    const mockUsers: User[] = [
-      { id: "1", name: "John Doe", email: "john@example.com" },
-      { id: "2", name: "Jane Smith", email: "jane@example.com" },
-      { id: "3", name: "Bob Johnson", email: "bob@example.com" },
-      { id: "4", name: "Alice Williams", email: "alice@example.com" },
-    ];
-
     // Filter by name if search term provided
-    const filtered = filter?.name
+    this.allItems = filter?.name
       ? mockUsers.filter((u) =>
           u.name.toLowerCase().includes(filter.name.toLowerCase())
         )
       : mockUsers;
 
-    this.allItems = filtered;
-    return filtered;
+    return this.allItems;
+  }
+
+  clearList() {
+    this.allItems = [];
   }
 }
 
-const mockStore = new MockUserStore();
+const mockStore = new MockUserStore() as any;
 
 export const SearchableInputExample = () => {
   const [selectedUsers, setSelectedUsers] = useState<OptionData[]>([]);

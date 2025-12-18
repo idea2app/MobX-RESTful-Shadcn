@@ -19,11 +19,17 @@ export type OptionData = Record<"label" | "value", string>;
 export interface SearchableInputProps<
   D extends DataObject,
   F extends Filter<D> = Filter<D>
-> extends Omit<
-    ScrollListProps<D, F>,
-    "id" | "defaultValue" | "onChange" | "defaultData" | "renderList"
-  >,
-    FormComponentProps<OptionData[]> {
+> {
+  store: ScrollListProps<D, F>["store"];
+  translator: ScrollListProps<D, F>["translator"];
+  filter?: ScrollListProps<D, F>["filter"];
+  value?: OptionData[];
+  onChange?: (value: OptionData[]) => void;
+  name?: string;
+  required?: boolean;
+  readOnly?: boolean;
+  disabled?: boolean;
+  className?: string;
   labelKey: keyof D;
   valueKey: keyof D;
   renderList?: ScrollListProps<D, F>["renderList"];
@@ -50,7 +56,7 @@ export class SearchableInput<
 
     value = value.trim();
 
-    this.filter = { ...this.filter, [labelKey]: value || undefined };
+    this.filter = { ...this.filter, [labelKey]: value || undefined } as F;
 
     if (store.downloading < 1)
       if (value) {
@@ -72,11 +78,13 @@ export class SearchableInput<
     if (!this.props.multiple) this.listShown = false;
   };
 
-  delete = (index: number) =>
-    (this.innerValue = [
-      ...this.value.slice(0, index),
-      ...this.value.slice(index + 1),
-    ]);
+  delete = (index: number) => {
+    const value = this.value || [];
+    this.innerValue = [
+      ...value.slice(0, index),
+      ...value.slice(index + 1),
+    ];
+  };
 
   handleBlur = ({ target, relatedTarget }: FocusEvent<HTMLElement>) => {
     if (target.parentElement !== relatedTarget?.parentElement)
@@ -116,7 +124,7 @@ export class SearchableInput<
     const { translator, store, labelKey, renderList = this.renderList } =
       this.props;
 
-    const keyword = filter[labelKey] as string;
+    const keyword = (filter ? (filter as any)[labelKey] : undefined) as string;
 
     const needNew = !store.allItems.some(
       ({ [labelKey]: label }) => label === keyword

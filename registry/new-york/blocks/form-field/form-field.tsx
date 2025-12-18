@@ -57,7 +57,7 @@ export const FormField: FC<FormFieldProps> = ({
             }
             onBlur?.(event as any);
           }}
-          {...controlProps}
+          {...(controlProps as any)}
         >
           {options.map(({ value, text, label, disabled }) => (
             <option key={value} {...{ value, label, disabled }}>
@@ -86,7 +86,7 @@ export const FormField: FC<FormFieldProps> = ({
             }
             onBlur?.(event as any);
           }}
-          {...controlProps}
+          {...(controlProps as any)}
         />
       ) : (
         <Input

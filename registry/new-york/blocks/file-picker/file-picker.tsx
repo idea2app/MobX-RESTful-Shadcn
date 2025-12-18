@@ -33,7 +33,7 @@ export class FilePicker extends FormComponent<FilePickerProps> {
   get filePath() {
     const { value } = this;
 
-    return typeof value === "string" ? value : blobCache.get(value);
+    return typeof value === "string" ? value : value ? blobCache.get(value) : undefined;
   }
 
   @reaction(({ value }) => value)
