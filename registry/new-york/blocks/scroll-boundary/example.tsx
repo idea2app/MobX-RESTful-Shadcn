@@ -1,19 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ScrollBoundary, EdgePosition } from "./scroll-boundary"
+import { useState } from "react";
 
-export default function ScrollBoundaryExample() {
-  const [touchedEdges, setTouchedEdges] = React.useState<EdgePosition[]>([])
+import { ScrollBoundary, EdgePosition } from "./scroll-boundary";
 
-  const handleTouch = (edge: EdgePosition) => {
-    setTouchedEdges((prev) => {
-      if (!prev.includes(edge)) {
-        return [...prev, edge]
-      }
-      return prev
-    })
-  }
+export const ScrollBoundaryExample = () => {
+  const [touchedEdges, setTouchedEdges] = useState<EdgePosition[]>([]);
+
+  const handleTouch = (edge: EdgePosition) =>
+    setTouchedEdges((prev) => (prev.includes(edge) ? prev : [...prev, edge]));
 
   return (
     <div className="w-full space-y-8">
@@ -50,9 +45,7 @@ export default function ScrollBoundaryExample() {
             <div className="w-[150%] h-[600px] p-8">
               <div className="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-950 dark:to-purple-950 rounded-lg p-8 h-full flex items-center justify-center">
                 <div className="text-center">
-                  <h4 className="text-xl font-bold mb-2">
-                    Scrollable Content
-                  </h4>
+                  <h4 className="text-xl font-bold mb-2">Scrollable Content</h4>
                   <p className="text-muted-foreground">
                     Scroll in any direction to trigger edge detection
                   </p>
@@ -63,5 +56,5 @@ export default function ScrollBoundaryExample() {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

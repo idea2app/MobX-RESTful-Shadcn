@@ -1,51 +1,50 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import { FC, HTMLAttributes, ReactNode } from "react";
 
-export type EdgePosition = "top" | "bottom" | "left" | "right"
+import { cn } from "@/lib/utils";
 
-export type TouchHandler = (edge: EdgePosition) => void
+export type EdgePosition = "top" | "bottom" | "left" | "right";
+
+export type TouchHandler = (edge: EdgePosition) => void;
 
 export interface ScrollBoundaryProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    Partial<Record<EdgePosition, React.ReactNode>> {
-  onTouch: TouchHandler
+  extends HTMLAttributes<HTMLDivElement>,
+    Partial<Record<EdgePosition, ReactNode>> {
+  onTouch: TouchHandler;
 }
 
-const EdgeOrder: EdgePosition[] = ["top", "right", "bottom", "left"]
+const EdgeOrder: EdgePosition[] = ["top", "right", "bottom", "left"];
 
-const touch =
-  (edge: EdgePosition, onTouch: TouchHandler) =>
-  (node: HTMLElement | null) => {
-    if (!node) return
+const touch = (edge: EdgePosition, onTouch: TouchHandler) => {
+  let observer: IntersectionObserver | undefined;
 
-    const anchor = node.parentElement?.parentElement
+  return (node: HTMLElement | null) => {
+    if (!node) return observer?.disconnect();
 
-    const { overflowX, overflowY } = anchor ? getComputedStyle(anchor) : {}
+    const anchor = node.parentElement?.parentElement;
+
+    const { overflowX, overflowY } = anchor ? getComputedStyle(anchor) : {};
 
     const root = `${overflowX}${overflowY}`.match(/auto|scroll/)
       ? anchor
-      : null
+      : null;
 
-    const edgeMargins = Array(4).fill("0px")
-    edgeMargins[EdgeOrder.indexOf(edge)] = "200px"
+    const edgeMargins = Array(4).fill("0px");
+    edgeMargins[EdgeOrder.indexOf(edge)] = "200px";
 
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       ([{ isIntersecting }]) => isIntersecting && onTouch(edge),
       {
         root,
         rootMargin: edgeMargins.join(" "),
       }
-    )
-    
-    observer.observe(node)
-    
-    // Return cleanup function
-    return () => observer.disconnect()
-  }
+    );
+    observer.observe(node);
+  };
+};
 
-export function ScrollBoundary({
+export const ScrollBoundary: FC<ScrollBoundaryProps> = ({
   className,
   onTouch,
   top,
@@ -54,38 +53,30 @@ export function ScrollBoundary({
   bottom,
   children,
   ...props
-}: ScrollBoundaryProps) {
-  return (
-    <div className={cn("relative", className)} {...props}>
-      <div
-        className="absolute top-0 left-0 w-full"
-        ref={touch("top", onTouch)}
-      >
-        {top}
-      </div>
-      <div
-        className="absolute top-0 left-0 h-full"
-        ref={touch("left", onTouch)}
-      >
-        {left}
-      </div>
-
-      {children}
-
-      <div
-        className="absolute top-0 right-0 h-full"
-        ref={touch("right", onTouch)}
-      >
-        {right}
-      </div>
-      <div
-        className="absolute bottom-0 left-0 w-full"
-        ref={touch("bottom", onTouch)}
-      >
-        {bottom}
-      </div>
+}) => (
+  <div className={cn("relative", className)} {...props}>
+    <div className="absolute top-0 left-0 w-full" ref={touch("top", onTouch)}>
+      {top}
     </div>
-  )
-}
+    <div className="absolute top-0 left-0 h-full" ref={touch("left", onTouch)}>
+      {left}
+    </div>
 
-ScrollBoundary.displayName = "ScrollBoundary"
+    {children}
+
+    <div
+      className="absolute top-0 right-0 h-full"
+      ref={touch("right", onTouch)}
+    >
+      {right}
+    </div>
+    <div
+      className="absolute bottom-0 left-0 w-full"
+      ref={touch("bottom", onTouch)}
+    >
+      {bottom}
+    </div>
+  </div>
+);
+
+ScrollBoundary.displayName = "ScrollBoundary";

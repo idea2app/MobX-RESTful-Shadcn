@@ -1,155 +1,118 @@
-"use client"
+import { MoreHorizontal } from "lucide-react";
+import { ListModel } from "mobx-restful";
+import { FC, MouseEvent } from "react";
+import { buildURLData, parseURLData } from "web-utility";
 
-import * as React from "react"
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-export interface PageMeta {
-  pageSize: number
-  pageIndex: number
-}
+export type PageMeta = Pick<ListModel<{}>, "pageSize" | "pageIndex">;
 
 export interface PagerProps extends PageMeta {
-  pageCount: number
-  onChange?: (meta: PageMeta) => void
+  pageCount: number;
+  onChange?: (meta: PageMeta) => void;
 }
 
-export function Pager({
+export const Pager: FC<PagerProps> = ({
   pageSize,
   pageIndex,
   pageCount,
   onChange,
-}: PagerProps) {
-  const [localPageSize, setLocalPageSize] = React.useState(pageSize)
-  const [localPageIndex, setLocalPageIndex] = React.useState(pageIndex)
+}) => {
+  function propsOf(pageIndex = 1) {
+    const pagination = { pageSize, pageIndex };
 
-  React.useEffect(() => {
-    setLocalPageSize(pageSize)
-  }, [pageSize])
-
-  React.useEffect(() => {
-    setLocalPageIndex(pageIndex)
-  }, [pageIndex])
-
-  function propsOf(newPageIndex = 1) {
     return {
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
-        onChange?.({ pageSize: localPageSize, pageIndex: newPageIndex })
-      },
-    }
-  }
+      href: `?${buildURLData({ ...parseURLData(), ...pagination })}`,
+      onClick:
+        onChange &&
+        ((event: MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
 
-  const handlePageSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10)
-    if (!isNaN(value) && value > 0) {
-      setLocalPageSize(value)
-      onChange?.({ pageSize: value, pageIndex: localPageIndex })
-    }
+          onChange(pagination);
+        }),
+    };
   }
-
-  const handlePageIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10)
-    if (!isNaN(value) && value > 0 && value <= pageCount) {
-      setLocalPageIndex(value)
-      onChange?.({ pageSize: localPageSize, pageIndex: value })
-    }
-  }
-
-  const showFirstPage = pageIndex > 1
-  const showPrevEllipsis = pageIndex > 3
-  const showPrevPage = pageIndex > 2
-  const showNextPage = pageCount - pageIndex > 1
-  const showNextEllipsis = pageCount - pageIndex > 2
-  const showLastPage = pageIndex < pageCount
 
   return (
     <form
       className="m-0 flex items-center gap-2"
-      onSubmit={(e) => {
-        e.preventDefault()
-        e.stopPropagation()
-      }}
+      onSubmit={
+        onChange &&
+        ((event) => (event.preventDefault(), event.stopPropagation()))
+      }
     >
       <Input
+        className="w-20"
         type="number"
         name="pageSize"
-        value={localPageSize}
+        defaultValue={pageSize}
         min={1}
         required
-        onChange={handlePageSizeChange}
-        className="w-20"
+        onChange={({ currentTarget: input }) =>
+          input.reportValidity() &&
+          onChange?.({ pageSize: +input.value, pageIndex })
+        }
       />
       <span className="text-sm text-muted-foreground">×</span>
       <Input
+        className="w-20"
         type="number"
         name="pageIndex"
-        value={localPageIndex}
+        defaultValue={pageIndex || 1}
         min={1}
         max={pageCount}
         required
-        onChange={handlePageIndexChange}
-        className="w-20"
+        onChange={({ currentTarget: input }) =>
+          input.reportValidity() &&
+          onChange?.({ pageSize, pageIndex: +input.value })
+        }
       />
       <nav className="flex items-center gap-1">
-        {showFirstPage && (
-          <Button
-            variant="outline"
-            size="sm"
-            {...propsOf(1)}
-            aria-label="Go to first page"
-          >
-            1
+        {pageIndex > 1 && (
+          <Button variant="outline" size="sm" asChild>
+            <a {...propsOf(1)} aria-label="Go to first page">
+              1
+            </a>
           </Button>
         )}
-        {showPrevEllipsis && (
+        {pageIndex > 3 && (
           <Button variant="ghost" size="sm" disabled>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         )}
-        {showPrevPage && (
-          <Button
-            variant="outline"
-            size="sm"
-            {...propsOf(pageIndex - 1)}
-            aria-label="Go to previous page"
-          >
-            {pageIndex - 1}
+        {pageIndex > 2 && (
+          <Button variant="outline" size="sm" asChild>
+            <a {...propsOf(pageIndex - 1)} aria-label="Go to previous page">
+              {pageIndex - 1}
+            </a>
           </Button>
         )}
         <Button variant="default" size="sm" disabled>
           {pageIndex}
         </Button>
-        {showNextPage && (
-          <Button
-            variant="outline"
-            size="sm"
-            {...propsOf(pageIndex + 1)}
-            aria-label="Go to next page"
-          >
-            {pageIndex + 1}
+        {pageCount - pageIndex > 1 && (
+          <Button variant="outline" size="sm" asChild>
+            <a {...propsOf(pageIndex + 1)} aria-label="Go to next page">
+              {pageIndex + 1}
+            </a>
           </Button>
         )}
-        {showNextEllipsis && (
+        {pageCount - pageIndex > 2 && (
           <Button variant="ghost" size="sm" disabled>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         )}
-        {showLastPage && (
-          <Button
-            variant="outline"
-            size="sm"
-            {...propsOf(pageCount)}
-            aria-label="Go to last page"
-          >
-            {pageCount}
+        {pageIndex < pageCount && (
+          <Button variant="outline" size="sm" asChild>
+            <a {...propsOf(pageCount)} aria-label="Go to last page">
+              {pageCount}
+            </a>
           </Button>
         )}
       </nav>
     </form>
-  )
-}
+  );
+};
 
-Pager.displayName = "Pager"
+Pager.displayName = "Pager";

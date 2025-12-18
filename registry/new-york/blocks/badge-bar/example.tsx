@@ -1,25 +1,24 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { BadgeBar, BadgeItem } from "./badge-bar"
+import { useState } from "react";
 
-export default function BadgeBarExample() {
-  const [items, setItems] = React.useState<BadgeItem[]>([
+import { BadgeBar, BadgeItem } from "./badge-bar";
+
+export const BadgeBarExample = () => {
+  const [items, setItems] = useState<BadgeItem[]>([
     { text: "React" },
     { text: "TypeScript" },
     { text: "Next.js", link: "https://nextjs.org" },
     { text: "Tailwind CSS", link: "https://tailwindcss.com" },
     { text: "Shadcn UI" },
     { text: "MobX" },
-  ])
+  ]);
 
-  const handleCheck = (item: BadgeItem, index: number) => {
-    console.log("Clicked:", item, "at index", index)
-  }
+  const handleCheck = (item: BadgeItem, index: number) =>
+    console.log("Clicked:", item, "at index", index);
 
-  const handleDelete = (item: BadgeItem, index: number) => {
-    setItems((prev) => prev.filter((_, i) => i !== index))
-  }
+  const handleDelete = (item: BadgeItem, index: number) =>
+    setItems((prev) => prev.filter((_, i) => i !== index));
 
   return (
     <div className="w-full space-y-8">
@@ -49,5 +48,5 @@ export default function BadgeBarExample() {
         <BadgeBar list={items} onCheck={handleCheck} onDelete={handleDelete} />
       </div>
     </div>
-  )
-}
+  );
+};

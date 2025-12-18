@@ -41,5 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Shadcn UI components
-app/components/.stash/
-app/components/ui/*
+components/.stash/
+components/ui/*

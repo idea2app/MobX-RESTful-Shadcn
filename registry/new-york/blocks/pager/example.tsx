@@ -1,25 +1,26 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Pager } from "./pager"
+import { useState } from "react";
 
-export default function PagerExample() {
-  const [pageSize, setPageSize] = React.useState(10)
-  const [pageIndex, setPageIndex] = React.useState(1)
-  const pageCount = 20
+import { PageMeta, Pager } from "./pager";
 
-  const handleChange = ({ pageSize, pageIndex }: any) => {
-    setPageSize(pageSize)
-    setPageIndex(pageIndex)
-  }
+export const PagerExample = () => {
+  const [pageSize, setPageSize] = useState(10);
+  const [pageIndex, setPageIndex] = useState(1);
+  const pageCount = 20;
+
+  const handleChange = ({ pageSize, pageIndex }: PageMeta) => {
+    setPageSize(pageSize);
+    setPageIndex(pageIndex);
+  };
 
   return (
     <div className="w-full space-y-8">
       <div>
         <h3 className="text-lg font-semibold mb-4">Pager Component</h3>
         <p className="text-sm text-muted-foreground mb-4">
-          Current: Page {pageIndex} of {pageCount}, showing {pageSize} items
-          per page
+          Current: Page {pageIndex} of {pageCount}, showing {pageSize} items per
+          page
         </p>
         <Pager
           pageSize={pageSize}
@@ -59,5 +60,5 @@ export default function PagerExample() {
         />
       </div>
     </div>
-  )
-}
+  );
+};

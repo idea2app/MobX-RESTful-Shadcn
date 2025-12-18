@@ -1,15 +1,23 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { File, FileText, FileArchive, FileSpreadsheet } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { ImagePreview } from "@/registry/new-york/blocks/image-preview/image-preview"
+import {
+  FC,
+  HTMLAttributes,
+  ImgHTMLAttributes,
+  InputHTMLAttributes,
+} from "react";
+import { FileText, FileArchive, FileSpreadsheet } from "lucide-react";
 
-export interface FilePreviewProps
-  extends React.HTMLAttributes<HTMLElement> {
-  type?: string
-  path: string
-}
+import { cn } from "@/lib/utils";
+import { ImagePreview } from "../image-preview/image-preview";
+
+export type FilePreviewProps = ImgHTMLAttributes<HTMLImageElement> &
+  HTMLAttributes<HTMLAudioElement> &
+  HTMLAttributes<HTMLVideoElement> &
+  HTMLAttributes<HTMLAnchorElement> & {
+    type?: InputHTMLAttributes<HTMLInputElement>["accept"];
+    path: string;
+  };
 
 export const FileTypeMap: Record<string, string> = {
   stream: "binary",
@@ -20,67 +28,57 @@ export const FileTypeMap: Record<string, string> = {
   presentation: "pptx",
   excel: "xls",
   sheet: "xlsx",
-}
+};
 
 const getFileIcon = (extension?: string) => {
-  if (!extension) return FileText
+  if (!extension) return FileText;
 
-  const lowerExt = extension.toLowerCase()
-  if (["zip", "rar", "7z", "tar", "gz"].includes(lowerExt)) {
-    return FileArchive
-  }
-  if (["xls", "xlsx", "csv"].includes(lowerExt)) {
-    return FileSpreadsheet
-  }
-  return FileText
-}
+  const lowerExt = extension.toLowerCase();
 
-export function FilePreview({
+  if (["zip", "rar", "7z", "tar", "gz"].includes(lowerExt)) return FileArchive;
+
+  if (["xls", "xlsx", "csv"].includes(lowerExt)) return FileSpreadsheet;
+
+  return FileText;
+};
+
+export const FilePreview: FC<FilePreviewProps> = ({
   className,
   style,
   hidden,
   type,
   path,
   ...props
-}: FilePreviewProps) {
-  const [category, ...kind] = type?.split(/\W+/) || []
-  
-  let fileName: string
-  try {
-    const url = new URL(path)
-    fileName = decodeURI(url.pathname.split("/").pop() || "")
-  } catch {
-    // If path is not a valid URL, treat it as a relative path
-    fileName = decodeURI(path.split("/").pop() || "")
-  }
+}) => {
+  const [category, ...kind] = type?.split(/\W+/) || [],
+    fileName = decodeURI(
+      new URL(path, "http://localhost").pathname.split("/").at(-1) || ""
+    );
   const extension =
     FileTypeMap[kind.at(-1) || ""] ||
-    (fileName?.includes(".") ? fileName.split(".").pop() : kind.at(-1))
+    (fileName?.includes(".") ? fileName.split(".").at(-1) : kind.at(-1));
 
-  const FileIcon = getFileIcon(extension)
+  const FileIcon = getFileIcon(extension);
 
   return (
     <figure
-      className={cn(
-        "flex flex-col items-center justify-center m-0",
-        className
-      )}
+      className={cn("flex flex-col items-center justify-center m-0", className)}
       style={style}
       hidden={hidden}
       {...props}
     >
       {category === "image" ? (
-        <ImagePreview className="h-full" src={path} />
+        <ImagePreview className="h-full" {...props} src={path} />
       ) : category === "audio" ? (
-        <audio controls src={path} className="max-w-full" />
+        <audio className="max-w-full" {...props} controls src={path} />
       ) : category === "video" ? (
         <video
           muted
           src={path}
           className="max-w-full max-h-[400px]"
-          onMouseEnter={(e) => e.currentTarget.play()}
-          onMouseLeave={(e) => e.currentTarget.pause()}
-          controls
+          onMouseEnter={({ currentTarget }) => currentTarget.play()}
+          onMouseLeave={({ currentTarget }) => currentTarget.pause()}
+          {...props}
         />
       ) : (
         <>
@@ -99,7 +97,7 @@ export function FilePreview({
         </>
       )}
     </figure>
-  )
-}
+  );
+};
 
-FilePreview.displayName = "FilePreview"
+FilePreview.displayName = "FilePreview";
