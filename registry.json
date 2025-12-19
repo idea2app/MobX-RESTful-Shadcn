@@ -222,6 +222,95 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "file-uploader",
+      "type": "registry:component",
+      "title": "File Uploader",
+      "description": "A file uploader component with drag-and-drop support for managing multiple files using MobX.",
+      "registryDependencies": ["file-picker"],
+      "dependencies": [
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper",
+        "mobx-restful"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/file-uploader/file-uploader.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "rest-form",
+      "type": "registry:component",
+      "title": "REST Form",
+      "description": "A comprehensive form component for CRUD operations with MobX RESTful integration, supporting various field types and validation.",
+      "registryDependencies": [
+        "button",
+        "label",
+        "badge-input",
+        "file-preview",
+        "file-uploader",
+        "form-field"
+      ],
+      "dependencies": [
+        "mobx",
+        "mobx-i18n",
+        "mobx-react",
+        "mobx-react-helper",
+        "mobx-restful",
+        "web-utility"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/rest-form/rest-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "rest-form-modal",
+      "type": "registry:component",
+      "title": "REST Form Modal",
+      "description": "A modal wrapper for REST Form component, displaying forms in a dialog for editing data.",
+      "registryDependencies": ["dialog", "rest-form"],
+      "dependencies": ["mobx-react", "mobx-restful", "web-utility"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/rest-form-modal/rest-form-modal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "searchable-input",
+      "type": "registry:component",
+      "title": "Searchable Input",
+      "description": "A searchable input component with autocomplete, supporting multiple selections and inline creation of new items.",
+      "registryDependencies": [
+        "button",
+        "input",
+        "badge-bar",
+        "badge-input",
+        "rest-form-modal",
+        "scroll-list"
+      ],
+      "dependencies": [
+        "lodash.debounce",
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper",
+        "mobx-restful",
+        "web-utility"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/searchable-input/searchable-input.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
