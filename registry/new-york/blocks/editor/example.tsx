@@ -3,6 +3,7 @@
 import { configure } from "mobx";
 import { formToJSON } from "web-utility";
 import { Editor, OriginalTools, ExtraTools } from "./index";
+import { Button } from "@/components/ui/button";
 
 configure({ enforceActions: "never" });
 
@@ -31,12 +32,7 @@ export default function EditorExample() {
           onChange={console.log}
         />
 
-        <button
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2"
-          type="submit"
-        >
-          Submit
-        </button>
+        <Button type="submit">Submit</Button>
       </div>
     </form>
   );

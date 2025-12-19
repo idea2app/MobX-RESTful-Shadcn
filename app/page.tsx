@@ -15,6 +15,7 @@ import { RangeInputExample } from "@/registry/new-york/blocks/range-input/exampl
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
 import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
+import EditorExample from "@/registry/new-york/blocks/editor/example";
 
 export default function Home() {
   return (
@@ -138,6 +139,14 @@ export default function Home() {
           minHeight="min-h-[600px]"
         >
           <RestTableExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="editor"
+          description="A lightweight rich text editor based on Edkit and Shadcn UI with various formatting tools."
+          minHeight="min-h-[400px]"
+        >
+          <EditorExample />
         </ComponentCard>
       </main>
     </div>
