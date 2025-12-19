@@ -1,8 +1,12 @@
 "use client";
 
+import { configure } from "mobx";
+
 import { columns } from "@/components/example/form";
 import { i18n, repositoryStore } from "@/models/example";
 import { RestTable } from "./rest-table";
+
+configure({ enforceActions: "never" });
 
 export const RestTableExample = () => (
   <div className="w-full h-screen">
