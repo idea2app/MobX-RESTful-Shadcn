@@ -1,7 +1,8 @@
 "use client";
 
+import { FC } from "react";
 import { observer } from "mobx-react";
-import { DataObject } from "mobx-restful";
+import { DataObject, Filter } from "mobx-restful";
 import { isEmpty } from "web-utility";
 
 import {
@@ -13,12 +14,12 @@ import {
 import { RestForm, RestFormProps } from "../rest-form/rest-form";
 
 export const RestFormModal = observer(
-  <T extends DataObject>({
+  <D extends DataObject, F extends Filter<D> = Filter<D>>({
     fields,
     store,
     translator,
     ...props
-  }: RestFormProps<T>) => {
+  }: RestFormProps<D, F>) => {
     if (!store) return null;
 
     const { indexKey, currentOne } = store;
@@ -33,14 +34,10 @@ export const RestFormModal = observer(
             <DialogTitle>{ID}</DialogTitle>
           </DialogHeader>
 
-          <RestForm
-            id={ID}
-            {...{ fields, store, translator, ...props }}
-          />
+          <RestForm id={ID} {...{ fields, store, translator, ...props }} />
         </DialogContent>
       </Dialog>
     );
   }
-) as any;
-
-RestFormModal.displayName = "RestFormModal";
+);
+(RestFormModal as FC).displayName = "RestFormModal";

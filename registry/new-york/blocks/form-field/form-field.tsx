@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentProps, FC, FocusEvent, TextareaHTMLAttributes } from "react";
+import { ComponentProps, FC, FocusEvent, ReactNode, TextareaHTMLAttributes } from "react";
 import { uniqueID } from "web-utility";
 
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,7 @@ export interface SelectOption
 
 export type FormFieldProps = ComponentProps<typeof Input> &
   Pick<TextareaHTMLAttributes<HTMLTextAreaElement>, "rows"> & {
-    label?: string;
+    label?: ReactNode;
     options?: SelectOption[];
     multiple?: boolean;
   };

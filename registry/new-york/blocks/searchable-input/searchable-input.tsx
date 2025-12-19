@@ -8,11 +8,10 @@ import { DataObject, Filter } from "mobx-restful";
 import { FocusEvent } from "react";
 import { Second } from "web-utility";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BadgeBar } from "../badge-bar/badge-bar";
-import { TextInputTypes } from "../badge-input/badge-input";
+import { TextInputType } from "../badge-input/badge-input";
 import { RestFormProps } from "../rest-form/rest-form";
 import { RestFormModal } from "../rest-form-modal/rest-form-modal";
 import { ScrollList, ScrollListProps } from "../scroll-list/scroll-list";
@@ -27,14 +26,14 @@ export type SearchableInputProps<
   "id" | "defaultValue" | "onChange" | "defaultData" | "renderList"
 > &
   FormComponentProps<OptionData[]> &
-  Omit<RestFormProps<D, F>, "fields"> & {
+  Omit<RestFormProps<D, F>, "defaultValue" | "onChange" | "fields"> & {
     translator: RestFormProps<D, F>["translator"] &
       ScrollListProps<D, F>["translator"];
     fields?: RestFormProps<D, F>["fields"];
     labelKey: keyof D;
     valueKey: keyof D;
     renderList?: ScrollListProps<D, F>["renderList"];
-    type?: (typeof TextInputTypes)[number];
+    type?: TextInputType;
     multiple?: boolean;
   };
 
@@ -80,8 +79,8 @@ export class SearchableInput<
 
   delete = (index: number) =>
     (this.innerValue = [
-      ...this.value.slice(0, index),
-      ...this.value.slice(index + 1),
+      ...this.value!.slice(0, index),
+      ...this.value!.slice(index + 1),
     ]);
 
   handleBlur = ({ target, relatedTarget }: FocusEvent<HTMLElement>) => {
@@ -128,7 +127,7 @@ export class SearchableInput<
       renderList = this.renderList,
     } = this.props;
 
-    const keyword = filter[labelKey] as string;
+    const keyword = filter?.[labelKey as keyof F] as string;
 
     const needNew = !store.allItems.some(
       ({ [labelKey]: label }) => label === keyword
@@ -136,8 +135,8 @@ export class SearchableInput<
 
     return (
       <div
-        className="absolute start-0 z-50 overflow-auto py-1 bg-background shadow-md border rounded-md"
-        style={{ top: "100%", maxHeight: "30vh", width: "100%" }}
+        className="absolute start-0 z-50 overflow-auto py-1 w-full bg-background shadow-md border rounded-md"
+        style={{ top: "100%", maxHeight: "30vh" }}
         onBlurCapture={this.handleBlur}
       >
         {needNew && fields?.[0] && (
@@ -174,16 +173,11 @@ export class SearchableInput<
 
     return (
       <div className="relative">
-        <div
-          className={cn(
-            "flex min-h-9 w-full flex-wrap items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
-          )}
-        >
+        <div className="flex min-h-9 w-full flex-wrap items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]">
           <BadgeBar
             list={(value || []).map(({ label }) => ({ text: label }))}
             onDelete={({}, index) => this.delete(index)}
           />
-
           <input
             type="hidden"
             name={name}

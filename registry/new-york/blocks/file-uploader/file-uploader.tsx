@@ -105,7 +105,7 @@ export class FileUploader extends FormComponent<FileUploaderProps> {
       const { store } = this.props;
 
       if (oldURI) await store.delete(oldURI);
-      if (file instanceof File) await store.upload(file);
+      if (file) await store.upload(file);
 
       this.innerValue = store.files;
     };

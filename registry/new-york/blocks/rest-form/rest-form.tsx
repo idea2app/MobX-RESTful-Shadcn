@@ -5,7 +5,13 @@ import { TranslationModel } from "mobx-i18n";
 import { observer } from "mobx-react";
 import { ObservedComponent } from "mobx-react-helper";
 import { DataObject, Filter, IDType, ListModel } from "mobx-restful";
-import { FormEvent, Fragment, InputHTMLAttributes, ReactNode } from "react";
+import {
+  FormEvent,
+  Fragment,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  ReactNode,
+} from "react";
 import { formatDate, formToJSON, isEmpty } from "web-utility";
 
 import { cn } from "@/lib/utils";
@@ -44,15 +50,15 @@ export interface Field<T extends DataObject>
 }
 
 export interface FieldBoxProps<D extends DataObject>
-  extends React.HTMLAttributes<HTMLDivElement>,
-    Pick<Field<D>, "renderLabel" | "validMessage" | "invalidMessage"> {
+  extends HTMLAttributes<HTMLDivElement>,
+    Pick<Field<D>, "renderLabel" | `${"" | "in"}validMessage`> {
   name: Field<D>["key"];
 }
 
 export interface RestFormProps<
   D extends DataObject,
   F extends Filter<D> = Filter<D>
-> extends Omit<React.HTMLAttributes<HTMLFormElement>, "id" | "onSubmit" | "onReset"> {
+> extends Omit<HTMLAttributes<HTMLFormElement>, "id" | "onSubmit" | "onReset"> {
   id?: IDType;
   fields: Field<D>[];
   store?: ListModel<D, F>;
@@ -91,27 +97,24 @@ export class RestForm<
     children,
     className,
     ...props
-  }: FieldBoxProps<D>) => {
-    let label: ReactNode;
-    if (typeof renderLabel === "function") {
-      label = name ? renderLabel(name) : "";
-    } else {
-      label = renderLabel || (name as string);
-    }
-
-    return (
-      <div className={cn("grid w-full gap-1.5", className)} {...props}>
-        <Label>{label}</Label>
-        {children}
-        {validMessage && (
-          <div className="text-sm text-green-600">{validMessage}</div>
-        )}
-        {invalidMessage && (
-          <div className="text-sm text-destructive">{invalidMessage}</div>
-        )}
-      </div>
-    );
-  };
+  }: FieldBoxProps<D>) => (
+    <div className={cn("grid w-full gap-1.5", className)} {...props}>
+      <Label>
+        {typeof renderLabel === "function"
+          ? name
+            ? renderLabel(name)
+            : ""
+          : renderLabel || (name as string)}
+      </Label>
+      {children}
+      {validMessage && (
+        <div className="text-sm text-green-600">{validMessage}</div>
+      )}
+      {invalidMessage && (
+        <div className="text-sm text-destructive">{invalidMessage}</div>
+      )}
+    </div>
+  );
 
   @observable
   accessor validated = false;
@@ -135,9 +138,7 @@ export class RestForm<
       const { id, store, onSubmit } = this.props;
       let data = formToJSON<D>(form);
 
-      if (store) {
-        data = await store.updateOne(data, id);
-      }
+      if (store) data = await store.updateOne(data, id);
 
       onSubmit?.(data);
 
@@ -196,8 +197,7 @@ export class RestForm<
 
   renderFile =
     ({ key, type, required, multiple, accept, uploader, ...meta }: Field<D>) =>
-    (data: D) => {
-      const paths = key ? data[key] : undefined;
+    ({ [key!]: paths }: D) => {
       const value = (
         (Array.isArray(paths) ? paths : [paths]) as string[]
       ).filter(Boolean);
@@ -220,45 +220,44 @@ export class RestForm<
 
   renderCheckGroup =
     ({ key, type, options, ...meta }: Field<D>) =>
-    (data: D) => (
-      <RestForm.FieldBox name={key} {...meta}>
-        <div className="flex flex-col gap-2">
-          {this.fieldReady &&
-            options?.map(({ value, label = value }) => (
-              <div key={value} className="flex items-center space-x-2">
-                <input
-                  id={[key, value] + ""}
-                  type={type as "radio" | "checkbox"}
-                  name={key?.toString()}
-                  value={value}
-                  defaultChecked={key && data[key]?.includes(value)}
-                  className="h-4 w-4 rounded border-input"
-                  {...meta}
-                />
-                <Label
-                  htmlFor={[key, value] + ""}
-                  className="text-sm font-normal"
-                >
-                  {label}
-                </Label>
-              </div>
-            ))}
-        </div>
-      </RestForm.FieldBox>
-    );
+    (data: D) =>
+      (
+        <RestForm.FieldBox name={key} {...meta}>
+          <div className="flex flex-col gap-2">
+            {this.fieldReady &&
+              options?.map(({ value, label = value }) => (
+                <div key={value} className="flex items-center space-x-2">
+                  <input
+                    className="h-4 w-4 rounded border-input"
+                    id={[key, value] + ""}
+                    type={type as "radio" | "checkbox"}
+                    name={key?.toString()}
+                    value={value}
+                    defaultChecked={data[key!]?.includes(value)}
+                    {...meta}
+                  />
+                  <Label
+                    htmlFor={[key, value] + ""}
+                    className="text-sm font-normal"
+                  >
+                    {label}
+                  </Label>
+                </div>
+              ))}
+          </div>
+        </RestForm.FieldBox>
+      );
 
   renderMultipleInput =
     ({ key, type, ...meta }: Field<D>) =>
-    (data: D) => {
-      const value = key ? data[key] : undefined;
-      return (
+    ({ [key!]: value }: D) =>
+      (
         <RestForm.FieldBox name={key} {...meta}>
           {this.fieldReady && (
             <BadgeInput {...meta} name={key?.toString()} defaultValue={value} />
           )}
         </RestForm.FieldBox>
       );
-    };
 
   renderField = (
     {
@@ -273,62 +272,46 @@ export class RestForm<
     }: Field<D>,
     props: Partial<FormFieldProps> = {}
   ) => {
-    let label: string;
-    if (typeof renderLabel === "function") {
-      const result = key ? renderLabel(key) : "";
-      label = typeof result === "string" ? result : String(result || "");
-    } else if (typeof renderLabel === "string") {
-      label = renderLabel;
-    } else {
-      label = key as string;
-    }
+    const label =
+      typeof renderLabel === "function"
+        ? key
+          ? renderLabel(key)
+          : ""
+        : renderLabel || (key as string);
 
-    return (data: D) => {
-      const value = key ? data[key] : undefined;
-      const defaultValue = value !== undefined ? RestForm.dateValueOf({ type, step }, value as any) : undefined;
-      return (
-        <div className="grid w-full gap-1.5">
-          {this.fieldReady && (
-            <FormField
-              {...props}
-              {...meta}
-              {...{ type, step, label }}
-              name={key?.toString()}
-              defaultValue={defaultValue}
-            />
-          )}
-          {validMessage && (
-            <div className="text-sm text-green-600">{validMessage}</div>
-          )}
-          {invalidMessage && (
-            <div className="text-sm text-destructive">{invalidMessage}</div>
-          )}
-        </div>
-      );
-    };
+    return ({ [key!]: value }: D) => (
+      <div className="grid w-full gap-1.5">
+        {this.fieldReady && (
+          <FormField
+            {...props}
+            {...meta}
+            {...{ type, step, label }}
+            name={key?.toString()}
+            defaultValue={RestForm.dateValueOf({ type, step }, value)}
+          />
+        )}
+        {validMessage && (
+          <div className="text-sm text-green-600">{validMessage}</div>
+        )}
+        {invalidMessage && (
+          <div className="text-sm text-destructive">{invalidMessage}</div>
+        )}
+      </div>
+    );
   };
 
   render() {
-    const { fields, readOnly, validated } = this,
-      {
-        id,
-        className,
-        size,
-        store,
-        translator,
-        onSubmit: _onSubmit,
-        onReset: _onReset,
-        ...props
-      } = this.props;
-    const { downloading = 0, uploading = 0, currentOne = {} as D } = store || {},
+    const { fields, readOnly, customValidation } = this,
+      { id, className, size, store, translator, ...props } = this.props;
+    const { downloading, uploading, currentOne = {} as D } = store || {},
       { t } = translator;
-    const loading = downloading > 0 || uploading > 0;
+    const loading = downloading! > 0 || uploading! > 0;
 
     return (
       <form
         {...props}
         className={cn("flex flex-col gap-3", className)}
-        noValidate={this.customValidation}
+        noValidate={customValidation}
         onSubmit={this.handleSubmit}
         onReset={this.handleReset}
       >
