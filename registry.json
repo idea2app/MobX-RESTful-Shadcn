@@ -311,6 +311,37 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "rest-table",
+      "type": "registry:component",
+      "title": "REST Table",
+      "description": "A comprehensive pagination table component for CRUD operations with MobX RESTful integration, supporting sorting, filtering, and inline editing.",
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "table",
+        "badge-bar",
+        "file-preview",
+        "pager",
+        "rest-form",
+        "rest-form-modal"
+      ],
+      "dependencies": [
+        "lodash.debounce",
+        "mobx",
+        "mobx-i18n",
+        "mobx-react",
+        "mobx-react-helper",
+        "mobx-restful",
+        "web-utility"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/rest-table/rest-table.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
