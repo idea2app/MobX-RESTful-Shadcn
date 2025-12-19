@@ -1,4 +1,4 @@
-import { ComponentCard } from "@/components/component-card";
+import { ComponentCard } from "@/components/example/component-card";
 import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world";
 import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form";
 import PokemonPage from "@/registry/new-york/blocks/complex-component/page";
