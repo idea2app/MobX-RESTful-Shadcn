@@ -1,15 +1,23 @@
 import { components, operations } from "@octokit/openapi-types";
 import { githubClient, RepositoryModel } from "mobx-github";
 import { TranslationModel } from "mobx-i18n";
-import { ListModel, Filter } from "mobx-restful";
+import { ListModel, Filter, IDType } from "mobx-restful";
 import { buildURLData } from "web-utility";
 
 export const i18n = new TranslationModel({
   en_US: {
     load_more: "Load more",
     no_more: "No more",
+    create: "Create",
+    view: "View",
     submit: "Submit",
     cancel: "Cancel",
+    edit: "Edit",
+    delete: "Delete",
+    total_x_rows: ({ totalCount }: { totalCount: number }) =>
+      `Total ${totalCount} rows`,
+    sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+      `Are you sure to delete ${keys.join(", ")}?`,
   },
 });
 

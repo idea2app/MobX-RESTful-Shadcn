@@ -14,6 +14,7 @@ import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/exampl
 import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
+import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
 
 export default function Home() {
   return (
@@ -129,6 +130,14 @@ export default function Home() {
           description="A unified form field component supporting input, textarea, and select elements with labels."
         >
           <FormFieldExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="rest-table"
+          description="A comprehensive pagination table component for CRUD operations with MobX RESTful integration."
+          minHeight="min-h-[600px]"
+        >
+          <RestTableExample />
         </ComponentCard>
       </main>
     </div>

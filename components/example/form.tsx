@@ -1,22 +1,37 @@
 import { GitRepository } from "mobx-github";
 
 import { i18n, topicStore } from "@/models/example";
+import { BadgeBar } from "@/registry/new-york/blocks/badge-bar/badge-bar";
 import { Field } from "@/registry/new-york/blocks/rest-form/rest-form";
+import { Column } from "@/registry/new-york/blocks/rest-table/rest-table";
 import { SearchableInput } from "@/registry/new-york/blocks/searchable-input/searchable-input";
 
-export const fields: Field<GitRepository>[] = [
+export const columns: Column<GitRepository>[] = [
   {
     key: "full_name",
-    renderLabel: "Repository Name",
+    renderHead: "Repository Name",
+    renderBody: ({ html_url, full_name }) => (
+      <a target="_blank" href={html_url} rel="noreferrer">
+        {full_name}
+      </a>
+    ),
     required: true,
     minLength: 3,
     invalidMessage: "Input 3 characters at least",
   },
-  { key: "homepage", type: "url", renderLabel: "Home Page" },
-  { key: "language", renderLabel: "Programming Language" },
+  { key: "homepage", type: "url", renderHead: "Home Page" },
+  { key: "language", renderHead: "Programming Language" },
   {
     key: "topics",
-    renderLabel: "Topic",
+    renderHead: "Topic",
+    renderBody: ({ topics }) => (
+      <BadgeBar
+        list={(topics || []).map((text) => ({
+          text,
+          link: `https://github.com/topics/${text}`,
+        }))}
+      />
+    ),
     renderInput: ({ topics }) => (
       <SearchableInput
         translator={i18n}
@@ -29,6 +44,13 @@ export const fields: Field<GitRepository>[] = [
       />
     ),
   },
-  { key: "stargazers_count", type: "number", renderLabel: "Star Count" },
-  { key: "description", renderLabel: "Description", rows: 3 },
+  { key: "stargazers_count", type: "number", renderHead: "Star Count" },
+  { key: "description", renderHead: "Description", rows: 3 },
 ];
+
+export const fields: Field<GitRepository>[] = columns.map(
+  ({ renderHead, renderBody, ...meta }) => ({
+    ...meta,
+    renderLabel: renderHead,
+  })
+);
