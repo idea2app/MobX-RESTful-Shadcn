@@ -342,6 +342,63 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "editor",
+      "type": "registry:component",
+      "title": "Editor",
+      "description": "A lightweight rich text editor based on Edkit and Shadcn UI with various formatting tools.",
+      "registryDependencies": ["button"],
+      "dependencies": [
+        "edkit",
+        "lucide-react",
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper",
+        "web-utility"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/editor/editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tool.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/text.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/layout.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/control.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/media.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/color.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/extra.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/index.ts",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

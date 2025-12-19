@@ -1,0 +1,90 @@
+import { FC, RefObject } from "react";
+import {
+  ColorName,
+  ColorTool,
+  ForeColorTool as FCT,
+  BackColorTool as BCT,
+} from "edkit";
+import { Button } from "@/components/ui/button";
+import { Type, FileText } from "lucide-react";
+
+export interface ColorSelectorProps
+  extends Partial<Record<"className" | "title" | "value", string>> {
+  icon: "file-earmark-font" | "file-earmark-font-fill";
+  type: ColorName;
+  onChange?: (color: string) => any;
+}
+
+export const ColorSelector: FC<ColorSelectorProps> = ({
+  className = "",
+  title,
+  type,
+  value,
+  onChange,
+  icon,
+}) => {
+  const IconComponent = icon === "file-earmark-font" ? Type : FileText;
+
+  return (
+    <span
+      className={`inline-block align-middle relative ${className}`}
+      title={title}
+    >
+      <input
+        className="absolute w-full h-full left-0 top-0 -z-10 rounded-md opacity-0 cursor-pointer"
+        type="color"
+        value={value}
+        onChange={({ target: { value } }) => onChange?.(value)}
+      />
+      <Button
+        type="button"
+        variant="outline"
+        size="icon-sm"
+        style={{
+          color: type === "color" ? value : undefined,
+          backgroundColor: type === "color" ? undefined : value,
+          borderColor: value,
+        }}
+        onClick={(event) => {
+          event.preventDefault();
+          const input = event.currentTarget
+            .previousElementSibling as HTMLInputElement;
+          input.click();
+        }}
+      >
+        <IconComponent className="size-4" />
+      </Button>
+    </span>
+  );
+};
+
+export function renderColorTool(
+  this: ColorTool,
+  editor: RefObject<HTMLElement>
+) {
+  const { icon, name, colorName } = this;
+
+  return (
+    <ColorSelector
+      className="mr-2 mb-2"
+      key={icon}
+      title={name}
+      icon={icon as "file-earmark-font" | "file-earmark-font-fill"}
+      type={colorName}
+      value={this.getColor()}
+      onChange={(color) =>
+        editor.current && this.execute(editor.current, color)
+      }
+    />
+  );
+}
+
+export class ForeColorTool extends FCT {
+  icon = "file-earmark-font";
+  render = renderColorTool;
+}
+
+export class BackColorTool extends BCT {
+  icon = "file-earmark-font-fill";
+  render = renderColorTool;
+}
