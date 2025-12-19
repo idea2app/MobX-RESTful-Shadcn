@@ -84,7 +84,7 @@ export class FileUploader extends FormComponent<FileUploaderProps> {
   protected restoreFile(value: FileUploaderProps["value"]) {
     const { store } = this.props;
 
-    store.files = value;
+    store.files = value || [];
   }
 
   handleDrop = (index: number) => (event: DragEvent<HTMLElement>) => {
@@ -101,11 +101,11 @@ export class FileUploader extends FormComponent<FileUploaderProps> {
 
   handleChange =
     (oldURI = "") =>
-    async (file: File) => {
+    async (file: string | File) => {
       const { store } = this.props;
 
       if (oldURI) await store.delete(oldURI);
-      if (file) await store.upload(file);
+      if (file instanceof File) await store.upload(file);
 
       this.innerValue = store.files;
     };

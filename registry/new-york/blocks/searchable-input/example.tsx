@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { makeObservable, observable } from "mobx";
 import { TranslationModel } from "mobx-i18n";
-import { ListModel } from "mobx-restful";
 
 import { SearchableInput } from "./searchable-input";
 
@@ -12,7 +11,7 @@ interface Item {
   name: string;
 }
 
-class ExampleStore extends ListModel<Item> {
+class ExampleStore {
   indexKey = "id" as const;
 
   @observable
@@ -27,8 +26,13 @@ class ExampleStore extends ListModel<Item> {
     { id: 5, name: "Elderberry" },
   ];
 
+  @observable
+  accessor downloading = 0;
+
+  @observable
+  accessor uploading = 0;
+
   constructor() {
-    super();
     makeObservable(this);
   }
 
@@ -53,27 +57,15 @@ class ExampleStore extends ListModel<Item> {
   }
 }
 
-class ExampleTranslator extends TranslationModel<string> {
-  @observable
-  accessor currentLanguage = "en";
-
-  constructor() {
-    super();
-    makeObservable(this);
-  }
-
-  t(key: string) {
-    const translations: Record<string, string> = {
-      load_more: "Load more...",
-      no_more: "No more items",
-    };
-    return translations[key] || key;
-  }
-}
+const translator = new TranslationModel({
+  "en-US": {
+    load_more: "Load more...",
+    no_more: "No more items",
+  },
+});
 
 export const SearchableInputExample = () => {
   const [store] = useState(() => new ExampleStore());
-  const [translator] = useState(() => new ExampleTranslator());
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   return (
@@ -81,15 +73,15 @@ export const SearchableInputExample = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">Searchable Input</h3>
         <SearchableInput
-          store={store}
-          translator={translator}
+          store={store as any}
+          translator={translator as any}
           labelKey="name"
           valueKey="id"
           name="items"
           placeholder="Search items..."
           multiple
           defaultValue={selectedItems}
-          onChange={setSelectedItems}
+          onChange={(value: any) => setSelectedItems(value)}
         />
         <p className="text-sm text-muted-foreground mt-2">
           Type to search for items

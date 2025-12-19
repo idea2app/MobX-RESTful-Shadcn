@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { makeObservable, observable } from "mobx";
 import { TranslationModel } from "mobx-i18n";
-import { ListModel } from "mobx-restful";
 
 import { Button } from "@/components/ui/button";
 import { RestFormModal } from "./rest-form-modal";
@@ -15,14 +14,19 @@ interface FormData {
   email: string;
 }
 
-class ExampleStore extends ListModel<FormData> {
+class ExampleStore {
   indexKey = "id" as const;
 
   @observable
   accessor currentOne: FormData = {} as FormData;
 
+  @observable
+  accessor downloading = 0;
+
+  @observable
+  accessor uploading = 0;
+
   constructor() {
-    super();
     makeObservable(this);
   }
 
@@ -33,6 +37,10 @@ class ExampleStore extends ListModel<FormData> {
 
   clearCurrent() {
     this.currentOne = {} as FormData;
+  }
+
+  async getOne(id: any) {
+    console.log("Getting:", id);
   }
 }
 
@@ -51,27 +59,15 @@ const fields: Field<FormData>[] = [
   },
 ];
 
-class ExampleTranslator extends TranslationModel<string> {
-  @observable
-  accessor currentLanguage = "en";
-
-  constructor() {
-    super();
-    makeObservable(this);
-  }
-
-  t(key: string) {
-    const translations: Record<string, string> = {
-      submit: "Submit",
-      cancel: "Cancel",
-    };
-    return translations[key] || key;
-  }
-}
+const translator = new TranslationModel({
+  "en-US": {
+    submit: "Submit",
+    cancel: "Cancel",
+  },
+});
 
 export const RestFormModalExample = () => {
   const [store] = useState(() => new ExampleStore());
-  const [translator] = useState(() => new ExampleTranslator());
 
   const openModal = () => {
     store.currentOne = { id: 1, name: "John Doe", email: "john@example.com" };
@@ -88,9 +84,9 @@ export const RestFormModalExample = () => {
 
       <RestFormModal
         fields={fields}
-        store={store}
+        store={store as any}
         translator={translator}
-        onSubmit={(data) => console.log("Form submitted:", data)}
+        onSubmit={(data: any) => console.log("Form submitted:", data)}
       />
     </div>
   );

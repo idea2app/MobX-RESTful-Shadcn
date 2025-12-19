@@ -19,6 +19,8 @@ export const RestFormModal = observer(
     translator,
     ...props
   }: RestFormProps<T>) => {
+    if (!store) return null;
+
     const { indexKey, currentOne } = store;
 
     const editing = !isEmpty(currentOne),
@@ -39,6 +41,6 @@ export const RestFormModal = observer(
       </Dialog>
     );
   }
-);
+) as any;
 
 RestFormModal.displayName = "RestFormModal";

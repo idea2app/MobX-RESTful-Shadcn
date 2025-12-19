@@ -56,7 +56,7 @@ export class SearchableInput<
 
     value = value.trim();
 
-    this.filter = { ...this.filter, [labelKey]: value || undefined };
+    this.filter = { ...this.filter, [labelKey]: value || undefined } as F;
 
     if (store.downloading < 1)
       if (value) {
