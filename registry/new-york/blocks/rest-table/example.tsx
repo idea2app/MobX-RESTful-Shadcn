@@ -1,12 +1,28 @@
 "use client";
 
 import { computed } from "mobx";
+import { TranslationModel } from "mobx-i18n";
 import { observer } from "mobx-react";
 import { GitRepository } from "mobx-github";
 
 import { BadgeBar } from "../badge-bar/badge-bar";
-import { i18n, repositoryStore } from "@/models/example";
+import { repositoryStore } from "@/models/example";
 import { Column, RestTable } from "./rest-table";
+
+const tableI18n = new TranslationModel({
+  en_US: {
+    load_more: "Load more",
+    no_more: "No more",
+    submit: "Submit",
+    cancel: "Cancel",
+    create: "Create",
+    view: "View",
+    edit: "Edit",
+    delete: "Delete",
+    total_x_rows: "Total {{totalCount}} rows",
+    sure_to_delete_x: "Are you sure to delete {{keys}}?",
+  },
+});
 
 export const RestTableExample = observer(() => {
   const columns = computed<Column<GitRepository>[]>(() => [
@@ -64,20 +80,7 @@ export const RestTableExample = observer(() => {
         deletable
         columns={columns}
         store={repositoryStore}
-        translator={{
-          ...i18n,
-          t: (key: string, data?: Record<string, any>) => {
-            const translations: Record<string, string> = {
-              create: "Create",
-              view: "View",
-              edit: "Edit",
-              delete: "Delete",
-              total_x_rows: `Total ${data?.totalCount || 0} rows`,
-              sure_to_delete_x: `Are you sure to delete ${data?.keys || ""}?`,
-            };
-            return translations[key] || key;
-          },
-        }}
+        translator={tableI18n}
         onCheck={(keys) => console.log("Checked keys:", keys)}
       />
     </div>

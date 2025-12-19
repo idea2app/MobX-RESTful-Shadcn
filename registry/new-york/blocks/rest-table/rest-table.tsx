@@ -48,11 +48,7 @@ type Translator<T extends DataObject> = RestFormProps<T>["translator"] &
 export interface RestTableProps<
   D extends DataObject,
   F extends Filter<D> = Filter<D>
-> extends Omit<
-      HTMLAttributes<HTMLDivElement>,
-      "onSubmit" | "onReset" | "children"
-    >,
-    Omit<RestFormProps<D>, "id" | "size" | "fields" | "translator"> {
+> extends Omit<HTMLAttributes<HTMLDivElement>, "onSubmit" | "onReset" | "children"> {
   filter?: F;
   filterFields?: Field<F>[];
   editable?: boolean;
@@ -64,6 +60,9 @@ export interface RestTableProps<
   striped?: boolean;
   hover?: boolean;
   responsive?: boolean;
+  store?: RestFormProps<D>["store"];
+  onSubmit?: RestFormProps<D>["onSubmit"];
+  onReset?: RestFormProps<D>["onReset"];
 }
 
 @observer
