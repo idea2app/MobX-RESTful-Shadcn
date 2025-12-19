@@ -1,5 +1,6 @@
 "use client";
 
+import debounce from "lodash.debounce";
 import { computed, observable } from "mobx";
 import { TranslationModel } from "mobx-i18n";
 import { observer } from "mobx-react";
@@ -7,9 +8,7 @@ import { ObservedComponent } from "mobx-react-helper";
 import { DataObject, Filter, IDType } from "mobx-restful";
 import { HTMLAttributes, ReactNode } from "react";
 import { isEmpty } from "web-utility";
-import debounce from "lodash.debounce";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -37,32 +36,21 @@ export interface Column<T extends DataObject>
 type Translator<T extends DataObject> = RestFormProps<T>["translator"] &
   TranslationModel<
     string,
-    | "create"
-    | "view"
-    | "edit"
-    | "delete"
-    | "total_x_rows"
-    | "sure_to_delete_x"
+    "create" | "view" | "edit" | "delete" | "total_x_rows" | "sure_to_delete_x"
   >;
 
 export interface RestTableProps<
   D extends DataObject,
   F extends Filter<D> = Filter<D>
-> extends Omit<HTMLAttributes<HTMLDivElement>, "onSubmit" | "onReset" | "children"> {
+> extends Omit<HTMLAttributes<HTMLDivElement>, "onSubmit" | "onReset">,
+    Pick<RestFormProps<D>, "size" | "store" | "onSubmit" | "onReset"> {
   filter?: F;
   filterFields?: Field<F>[];
   editable?: boolean;
   deletable?: boolean;
   columns: Column<D>[];
   translator: Translator<D>;
-  size?: "default" | "sm" | "lg";
   onCheck?: (keys: IDType[]) => any;
-  striped?: boolean;
-  hover?: boolean;
-  responsive?: boolean;
-  store?: RestFormProps<D>["store"];
-  onSubmit?: RestFormProps<D>["onSubmit"];
-  onReset?: RestFormProps<D>["onReset"];
 }
 
 @observer
@@ -75,10 +63,8 @@ export class RestTable<
   componentDidMount() {
     const { store, filter } = this.props;
 
-    if (store) {
-      store.clear();
-      store.getList(filter);
-    }
+    store?.clear();
+    store?.getList(filter);
   }
 
   @computed
@@ -105,14 +91,14 @@ export class RestTable<
 
   toggleCheckAll = () => {
     const { store, onCheck } = this.props;
+
     if (!store) return;
 
     const { indexKey, currentPage } = store;
 
-    this.checkedKeys =
-      this.checkedKeys.length
-        ? []
-        : currentPage.map(({ [indexKey]: ID }) => ID);
+    this.checkedKeys = this.checkedKeys.length
+      ? []
+      : currentPage.map(({ [indexKey]: ID }) => ID);
 
     onCheck?.(this.checkedKeys);
   };
@@ -121,6 +107,7 @@ export class RestTable<
   get checkColumn(): Column<D> {
     const { checkedKeys, toggleCheckAll } = this;
     const { store } = this.observedProps;
+
     if (!store) return {} as Column<D>;
 
     const { indexKey, currentPage } = store;
@@ -130,9 +117,7 @@ export class RestTable<
         <Checkbox
           checked={
             !!currentPage[0] &&
-            currentPage.every(({ [indexKey]: ID }) =>
-              checkedKeys.includes(ID)
-            )
+            currentPage.every(({ [indexKey]: ID }) => checkedKeys.includes(ID))
           }
           onCheckedChange={toggleCheckAll}
           aria-label="Select all"
@@ -152,32 +137,32 @@ export class RestTable<
   get operateColumn(): Column<D> {
     const { editable, deletable, columns, store, translator } =
       this.observedProps;
+
     if (!store) return {} as Column<D>;
 
-    const { fieldSize } = this;
-    const { t } = translator;
-    const readOnly = columns.every(({ readOnly }) => readOnly);
-    const disabled = columns.every(({ disabled }) => disabled);
+    const { fieldSize } = this,
+      { t } = translator,
+      readOnly = columns.every(({ readOnly }) => readOnly),
+      disabled = columns.every(({ disabled }) => disabled);
 
     return {
       renderHead: () => <></>,
       renderBody: (data) => (
         <div className="flex gap-1">
-          {!disabled &&
-            editable && (
-              <Button
-                variant={readOnly ? "default" : "outline"}
-                size={fieldSize}
-                onClick={() => (store.currentOne = data)}
-              >
-                {readOnly ? t("view") : t("edit")}
-              </Button>
-            )}
+          {!disabled && editable && (
+            <Button
+              variant={readOnly ? "default" : "outline"}
+              size={fieldSize}
+              onClick={() => (store.currentOne = data)}
+            >
+              {readOnly ? t("view") : t("edit")}
+            </Button>
+          )}
           {deletable && (
             <Button
               variant="destructive"
               size={fieldSize}
-              onClick={() => this.deleteList([data[store.indexKey] as IDType])}
+              onClick={() => this.deleteList([data[store.indexKey]])}
             >
               {t("delete")}
             </Button>
@@ -188,7 +173,7 @@ export class RestTable<
   }
 
   @computed
-  get columns(): Column<D>[] {
+  get columns() {
     const { editable, deletable, columns, onCheck } = this.observedProps;
 
     return [
@@ -216,8 +201,7 @@ export class RestTable<
 
   @computed
   get editing() {
-    const { store } = this.observedProps;
-    return !isEmpty(store?.currentOne);
+    return !isEmpty(this.observedProps.store?.currentOne);
   }
 
   renderCustomBody = ({
@@ -232,10 +216,10 @@ export class RestTable<
       ? ({ [key!]: value }) =>
           value && (
             <a
+              className="text-primary hover:underline"
               target="_blank"
               rel="noopener noreferrer"
               href={value as string}
-              className="text-primary hover:underline"
             >
               {value as string}
             </a>
@@ -244,8 +228,8 @@ export class RestTable<
       ? ({ [key!]: value }) =>
           value && (
             <a
-              href={`mailto:${value}`}
               className="text-primary hover:underline"
+              href={`mailto:${value}`}
             >
               {value as string}
             </a>
@@ -253,7 +237,7 @@ export class RestTable<
       : type === "tel"
       ? ({ [key!]: value }) =>
           value && (
-            <a href={`tel:${value}`} className="text-primary hover:underline">
+            <a className="text-primary hover:underline" href={`tel:${value}`}>
               {value as string}
             </a>
           )
@@ -266,9 +250,7 @@ export class RestTable<
       : options || multiple
       ? ({ [key!]: value }) =>
           value && (
-            <BadgeBar
-              list={(value as string[]).map((text) => ({ text }))}
-            />
+            <BadgeBar list={(value as string[]).map((text) => ({ text }))} />
           )
       : !options && rows
       ? ({ [key!]: value }) => (
@@ -279,7 +261,8 @@ export class RestTable<
       : undefined;
 
   renderTable() {
-    const { store, className: _, ...tableProps } = this.props;
+    const { store } = this.props;
+
     if (!store) return null;
 
     const { hasHeader, hasFooter, columns, editing } = this;
@@ -308,7 +291,7 @@ export class RestTable<
             <TableRow>
               <TableCell className="text-center p-3" colSpan={columns.length}>
                 <div className="flex justify-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
                 </div>
               </TableCell>
             </TableRow>
@@ -353,14 +336,13 @@ export class RestTable<
 
     if (store && store.downloading < 1)
       store.getList(filter, pageIndex, pageSize);
-  }, 300);
+  });
 
   async deleteList(keys: IDType[]) {
     const { translator, store } = this.props;
-    if (!store) return;
 
     if (confirm(translator.t("sure_to_delete_x", { keys })))
-      for (const key of keys) await store.deleteOne(key);
+      for (const key of keys) await store?.deleteOne(key);
   }
 
   render() {
@@ -373,9 +355,6 @@ export class RestTable<
       translator,
       onSubmit,
       onReset,
-      striped,
-      hover,
-      responsive,
       ...props
     } = this.props;
 
@@ -386,42 +365,36 @@ export class RestTable<
     const { indexKey, pageSize, pageIndex, pageCount, totalCount } = store;
 
     return (
-      <div className={cn(className)} {...props}>
-        <header className="sticky top-0 bg-background py-3 flex flex-col gap-3 border-b">
+      <div className={className} {...props}>
+        <header className="sticky top-0 bg-background py-3 flex flex-wrap gap-3 justify-between items-center border-b">
           {filterFields && (
             <RestForm
-              className="flex flex-wrap items-center gap-3 pb-3 border-b"
+              className="flex flex-wrap items-center gap-3 pb-3 m-0 border-b"
               size={fieldSize}
               translator={translator}
               fields={filterFields}
-              onSubmit={(filter) => store.getList(filter as F, 1)}
-              onReset={() => store.getList({} as F, 1)}
+              onSubmit={(filter) => store.getList(filter, 1)}
+              onReset={() => store.getList({}, 1)}
             />
           )}
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2">
-              {deletable && (
-                <Button
-                  variant="destructive"
-                  size={fieldSize}
-                  onClick={() => this.deleteList(this.checkedKeys)}
-                  disabled={this.checkedKeys.length === 0}
-                >
-                  {t("delete")}
-                </Button>
-              )}
-              {editable && (
-                <Button
-                  size={fieldSize}
-                  onClick={() =>
-                    (store.currentOne[indexKey] = "" as D[keyof D])
-                  }
-                >
-                  {t("create")}
-                </Button>
-              )}
-            </div>
-          </div>
+          {deletable && (
+            <Button
+              variant="destructive"
+              size={fieldSize}
+              disabled={!this.checkedKeys[0]}
+              onClick={() => this.deleteList(this.checkedKeys)}
+            >
+              {t("delete")}
+            </Button>
+          )}
+          {editable && (
+            <Button
+              size={fieldSize}
+              onClick={() => (store.currentOne[indexKey] = "" as D[keyof D])}
+            >
+              {t("create")}
+            </Button>
+          )}
         </header>
 
         {this.renderTable()}
@@ -432,7 +405,6 @@ export class RestTable<
               {t("total_x_rows", { totalCount })}
             </span>
           )}
-
           <Pager
             {...{ pageSize, pageIndex, pageCount }}
             onChange={this.getList}
