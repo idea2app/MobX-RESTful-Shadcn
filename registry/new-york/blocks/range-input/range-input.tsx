@@ -15,8 +15,8 @@ export class RangeInput extends FormComponent<RangeInputProps> {
   static readonly displayName = "RangeInput";
 
   renderItem(index: number) {
-    const { value = 0 } = this;
-    const { icon, step = 1 } = this.observedProps;
+    const { value = 0 } = this,
+      { icon, step = 1 } = this.observedProps;
     const fullValue = +step * index;
     const itemValue = Math.max(Math.min(+value - fullValue, +step), 0);
 
@@ -39,18 +39,13 @@ export class RangeInput extends FormComponent<RangeInputProps> {
     const { value = min || 0 } = this;
 
     return (
-      <div className={cn(className)} title={value + ""}>
+      <div className={className} title={value + ""}>
         <input
           {...{ min, max, value, ...props }}
-          className={cn(
-            "cursor-pointer",
-            icon ? "opacity-0" : ""
-          )}
+          className={cn("cursor-pointer", icon ? "opacity-0" : "")}
           style={{ margin: "0 -0.5rem" }}
           type="range"
-          onChange={({ currentTarget: { value } }) =>
-            (this.innerValue = value)
-          }
+          onChange={({ currentTarget: { value } }) => (this.innerValue = value)}
         />
         {icon && (
           <ol className="list-none select-none absolute left-0 top-0 w-full h-full pointer-events-none flex justify-around m-0 p-0">

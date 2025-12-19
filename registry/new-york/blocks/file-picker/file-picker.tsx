@@ -8,7 +8,7 @@ import { blobOf } from "web-utility";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { FilePreview } from "@/registry/new-york/blocks/file-preview/file-preview";
+import { FilePreview } from "../file-preview/file-preview";
 
 export type FilePickerProps = FormComponentProps<string | File>;
 
@@ -23,8 +23,8 @@ export class FilePicker extends FormComponent<FilePickerProps> {
 
   @computed
   get fileType() {
-    const { accept } = this.observedProps;
-    const { file } = this;
+    const { accept } = this.observedProps,
+      { file } = this;
 
     return file?.type || file?.name.match(/\.\w+$/)?.[0] || accept;
   }
@@ -33,15 +33,15 @@ export class FilePicker extends FormComponent<FilePickerProps> {
   get filePath() {
     const { value } = this;
 
-    return typeof value === "string" ? value : value ? blobCache.get(value) : undefined;
+    return typeof value === "string" ? value : value && blobCache.get(value);
   }
 
   @reaction(({ value }) => value)
   protected async restoreFile(data: FilePickerProps["value"]) {
     if (typeof data === "string")
       try {
-        const blob = await blobOf(data);
-        const name = data.split("/").at(-1);
+        const blob = await blobOf(data),
+          name = data.split("/").at(-1);
         const file = new File([blob], name!, { type: blob.type });
 
         blobCache.set(file, data);
@@ -105,19 +105,20 @@ export class FilePicker extends FormComponent<FilePickerProps> {
   }
 
   render() {
-    const { filePath, fileType } = this;
-    const { className = "", style } = this.props;
+    const { filePath, fileType } = this,
+      { className = "", style } = this.props;
 
     return (
       <div
-        className={cn(
-          "inline-block border rounded-md relative",
-          className
-        )}
+        className={cn("inline-block border rounded-md relative", className)}
         style={{ width: "10rem", height: "10rem", ...style }}
       >
         {filePath ? (
-          <FilePreview className="w-full h-full" type={fileType} path={filePath} />
+          <FilePreview
+            className="w-full h-full"
+            type={fileType}
+            path={filePath}
+          />
         ) : (
           <div className="w-full h-full flex justify-center items-center text-6xl text-muted-foreground">
             +

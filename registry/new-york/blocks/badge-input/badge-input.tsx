@@ -6,26 +6,34 @@ import { KeyboardEvent } from "react";
 import { isEmpty } from "web-utility";
 
 import { cn } from "@/lib/utils";
-import { BadgeBar } from "@/registry/new-york/blocks/badge-bar/badge-bar";
+import { BadgeBar } from "../badge-bar/badge-bar";
 
-export const TextInputTypes = ["text", "number", "tel", "email", "url"] as const;
+export const TextInputTypes = [
+  "text",
+  "number",
+  "tel",
+  "email",
+  "url",
+] as const;
+
+export type TextInputType = (typeof TextInputTypes)[number];
 
 export interface BadgeInputProps extends FormComponentProps<string[]> {
-  type?: (typeof TextInputTypes)[number];
+  type?: TextInputType;
 }
 
 @observer
 export class BadgeInput extends FormComponent<BadgeInputProps> {
   static readonly displayName = "BadgeInput";
 
-  static match(type: string): type is (typeof TextInputTypes)[number] {
-    return TextInputTypes.includes(type as (typeof TextInputTypes)[number]);
+  static match(type: string): type is TextInputType {
+    return TextInputTypes.includes(type as TextInputType);
   }
 
   handleInput = (event: KeyboardEvent<HTMLInputElement>) => {
     const input = event.currentTarget;
-    const { value } = input;
-    const innerValue = this.innerValue || [];
+    const { value } = input,
+      innerValue = this.innerValue || [];
 
     switch (event.key) {
       case "Enter": {
@@ -52,9 +60,8 @@ export class BadgeInput extends FormComponent<BadgeInputProps> {
   }
 
   render() {
-    const { value } = this;
-    const { className = "", style, type, name, required, placeholder } =
-      this.props;
+    const { value } = this,
+      { className, style, type, name, required, placeholder } = this.props;
 
     return (
       <div

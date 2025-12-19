@@ -4,33 +4,6 @@
   "homepage": "https://acme.com",
   "items": [
     {
-      "name": "hello-world",
-      "type": "registry:component",
-      "title": "Hello World",
-      "description": "A simple hello world component",
-      "registryDependencies": ["button"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "example-form",
-      "type": "registry:component",
-      "title": "Example Form",
-      "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/example-form/example-form.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "complex-component",
       "type": "registry:component",
       "title": "Complex Component",
@@ -195,12 +168,7 @@
       "title": "Badge Input",
       "description": "An input component that displays values as removable badges, supporting multiple entries.",
       "registryDependencies": ["badge"],
-      "dependencies": [
-        "mobx",
-        "mobx-react",
-        "mobx-react-helper",
-        "web-utility"
-      ],
+      "dependencies": ["mobx-react", "mobx-react-helper", "web-utility"],
       "files": [
         {
           "path": "registry/new-york/blocks/badge-input/badge-input.tsx",
@@ -213,12 +181,7 @@
       "type": "registry:component",
       "title": "Range Input",
       "description": "A range slider input with optional custom icon display for each step.",
-      "dependencies": [
-        "lucide-react",
-        "mobx",
-        "mobx-react",
-        "mobx-react-helper"
-      ],
+      "dependencies": ["mobx-react", "mobx-react-helper"],
       "files": [
         {
           "path": "registry/new-york/blocks/range-input/range-input.tsx",
@@ -252,30 +215,10 @@
       "title": "Form Field",
       "description": "A unified form field component supporting input, textarea, and select elements with labels.",
       "registryDependencies": ["input", "label"],
+      "dependencies": ["web-utility"],
       "files": [
         {
           "path": "registry/new-york/blocks/form-field/form-field.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "searchable-input",
-      "type": "registry:component",
-      "title": "Searchable Input",
-      "description": "A searchable select input with badge display, supporting single or multiple selection.",
-      "registryDependencies": ["button", "input"],
-      "dependencies": [
-        "lodash.debounce",
-        "mobx",
-        "mobx-react",
-        "mobx-react-helper",
-        "mobx-restful",
-        "web-utility"
-      ],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/searchable-input/searchable-input.tsx",
           "type": "registry:component"
         }
       ]

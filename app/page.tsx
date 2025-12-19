@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { OpenInV0Button } from "@/components/open-in-v0-button";
+import { ComponentCard } from "@/components/component-card";
 import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world";
 import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form";
 import PokemonPage from "@/registry/new-york/blocks/complex-component/page";
@@ -15,31 +14,6 @@ import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/exampl
 import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
-import { SearchableInputExample } from "@/registry/new-york/blocks/searchable-input/example";
-// This page displays items from the custom registry.
-// You are free to implement this with your own design as needed.
-
-const ComponentCard = ({
-  name,
-  description,
-  children,
-  minHeight = "min-h-[400px]",
-}: {
-  name: string;
-  description: string;
-  children: ReactNode;
-  minHeight?: string;
-}) => (
-  <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-    <div className="flex items-center justify-between">
-      <h2 className="text-sm text-muted-foreground sm:pl-3">{description}</h2>
-      <OpenInV0Button name={name} className="w-fit" />
-    </div>
-    <div className={`flex items-center justify-center ${minHeight} relative`}>
-      {children}
-    </div>
-  </div>
-);
 
 export default function Home() {
   return (
@@ -155,13 +129,6 @@ export default function Home() {
           description="A unified form field component supporting input, textarea, and select elements with labels."
         >
           <FormFieldExample />
-        </ComponentCard>
-
-        <ComponentCard
-          name="searchable-input"
-          description="A searchable select input with badge display, supporting single or multiple selection."
-        >
-          <SearchableInputExample />
         </ComponentCard>
       </main>
     </div>

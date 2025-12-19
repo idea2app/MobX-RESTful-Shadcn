@@ -47,6 +47,7 @@ export class ArrayField<
         item,
         ...innerValue!.slice(index + 1),
       ].map((item) => toJS(item));
+
       this.props.onChange?.(list);
     };
 
