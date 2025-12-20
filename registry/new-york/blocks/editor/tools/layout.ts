@@ -11,36 +11,36 @@ import {
 import { renderTool } from "../tool";
 
 export class AlignLeftTool extends ALT {
-  icon = "text-left";
+  icon = "AlignLeft";
   render = renderTool;
 }
 
 export class AlignCenterTool extends ACT {
-  icon = "text-center";
+  icon = "AlignCenter";
   render = renderTool;
 }
 
 export class AlignRightTool extends ART {
-  icon = "text-right";
+  icon = "AlignRight";
   render = renderTool;
 }
 
 export class AlignFullTool extends AFT {
-  icon = "justify";
+  icon = "AlignJustify";
   render = renderTool;
 }
 
 export class OrderedListTool extends OLT {
-  icon = "list-ol";
+  icon = "ListOrdered";
   render = renderTool;
 }
 
 export class UnorderedListTool extends ULT {
-  icon = "list-ul";
+  icon = "List";
   render = renderTool;
 }
 
 export class HorizontalRuleTool extends HRT {
-  icon = "reception-0";
+  icon = "Minus";
   render = renderTool;
 }

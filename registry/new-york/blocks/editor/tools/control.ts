@@ -8,21 +8,21 @@ import {
 import { renderTool } from "../tool";
 
 export class UndoTool extends UDT {
-  icon = "arrow-counterclockwise";
+  icon = "Undo";
   render = renderTool;
 }
 
 export class RedoTool extends RDT {
-  icon = "arrow-clockwise";
+  icon = "Redo";
   render = renderTool;
 }
 
 export class ResetTool extends RST {
-  icon = "eraser";
+  icon = "Eraser";
   render = renderTool;
 }
 
 export class ClearTool extends CT {
-  icon = "file-earmark-x";
+  icon = "X";
   render = renderTool;
 }

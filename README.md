@@ -201,6 +201,7 @@ export const EditorPage = () => (
 ```tsx
 import { configure } from "mobx";
 import { formToJSON } from "web-utility";
+
 import { Editor, OriginalTools, ExtraTools } from "@/components/ui/editor";
 
 configure({ enforceActions: "never" });
@@ -209,7 +210,9 @@ export const EditorPage = () => (
   <form
     onSubmit={(event) => {
       event.preventDefault();
+
       const { content } = formToJSON(event.currentTarget);
+
       alert(content);
     }}
   >

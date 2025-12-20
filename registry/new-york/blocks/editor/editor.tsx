@@ -7,12 +7,12 @@ import { FormComponent, FormComponentProps } from "mobx-react-helper";
 import { createRef } from "react";
 import { Constructor } from "web-utility";
 
-import { AudioTool, DefaultTools, VideoTool } from "./tools";
 import { cn } from "@/lib/utils";
+import { AudioTool, DefaultTools, VideoTool } from "./tools";
 
 export interface EditorProps extends FormComponentProps {
-  tools?: Constructor<Tool>[];
   className?: string;
+  tools?: Constructor<Tool>[];
 }
 
 export interface Editor extends EditorComponent {}
@@ -39,23 +39,17 @@ export class Editor
 
   @computed
   get imageTool() {
-    return this.toolList.find(
-      (tool) => tool instanceof ImageTool
-    ) as ImageTool;
+    return this.toolList.find((tool) => tool instanceof ImageTool) as ImageTool;
   }
 
   @computed
   get audioTool() {
-    return this.toolList.find(
-      (tool) => tool instanceof AudioTool
-    ) as AudioTool;
+    return this.toolList.find((tool) => tool instanceof AudioTool) as AudioTool;
   }
 
   @computed
   get videoTool() {
-    return this.toolList.find(
-      (tool) => tool instanceof VideoTool
-    ) as VideoTool;
+    return this.toolList.find((tool) => tool instanceof VideoTool) as VideoTool;
   }
 
   componentDidMount() {
@@ -77,19 +71,14 @@ export class Editor
   updateTools = () => {
     if (this.box.current !== document.activeElement) return;
 
-    const selection = getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const { endContainer } = selection.getRangeAt(0) || {};
-    const element =
-      endContainer instanceof Element
+    const { endContainer } = getSelection()?.getRangeAt(0) || {};
+    const { x, y } =
+      (endContainer instanceof Element
         ? endContainer
-        : endContainer?.parentElement;
+        : endContainer?.parentElement
+      )?.getBoundingClientRect() || {};
 
-    const rect = element?.getBoundingClientRect();
-    if (rect) {
-      this.cursorPoint = [rect.x, rect.y].join("");
-    }
+    this.cursorPoint = [x, y] + "";
   };
 
   updateValue = (markup: string) => (this.innerValue = markup.trim());

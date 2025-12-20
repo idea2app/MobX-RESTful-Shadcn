@@ -47,9 +47,7 @@ export const TextTools = [
   SuperscriptTool,
   LinkTool,
 ];
-
 export const ColorTools = [ForeColorTool, BackColorTool];
-
 export const LayoutTools = [
   AlignLeftTool,
   AlignCenterTool,
@@ -59,11 +57,8 @@ export const LayoutTools = [
   UnorderedListTool,
   HorizontalRuleTool,
 ];
-
 export const MediaTools = [IFrameTool, ImageTool, AudioTool, VideoTool];
-
 export const ControlTools = [UndoTool, RedoTool, ResetTool, ClearTool];
-
 export const ExtraTools = [CopyMarkdownTool];
 
 export const OriginalTools = [

@@ -5,8 +5,9 @@ import {
   ForeColorTool as FCT,
   BackColorTool as BCT,
 } from "edkit";
-import { Button } from "@/components/ui/button";
 import { Type, FileText } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 export interface ColorSelectorProps
   extends Partial<Record<"className" | "title" | "value", string>> {
@@ -22,41 +23,43 @@ export const ColorSelector: FC<ColorSelectorProps> = ({
   value,
   onChange,
   icon,
-}) => {
-  const IconComponent = icon === "file-earmark-font" ? Type : FileText;
+}) => (
+  <span
+    className={`inline-block align-middle relative ${className}`}
+    title={title}
+  >
+    <input
+      className="absolute w-full h-full left-0 top-0 -z-10 rounded-md opacity-0 cursor-pointer"
+      type="color"
+      value={value}
+      onChange={({ target: { value } }) => onChange?.(value)}
+    />
+    <Button
+      type="button"
+      variant="outline"
+      size="icon-sm"
+      style={{
+        color: type === "color" ? value : undefined,
+        backgroundColor: type === "color" ? undefined : value,
+        borderColor: value,
+      }}
+      onClick={(event) => {
+        event.preventDefault();
 
-  return (
-    <span
-      className={`inline-block align-middle relative ${className}`}
-      title={title}
+        const input = event.currentTarget
+          .previousElementSibling as HTMLInputElement;
+
+        input.click();
+      }}
     >
-      <input
-        className="absolute w-full h-full left-0 top-0 -z-10 rounded-md opacity-0 cursor-pointer"
-        type="color"
-        value={value}
-        onChange={({ target: { value } }) => onChange?.(value)}
-      />
-      <Button
-        type="button"
-        variant="outline"
-        size="icon-sm"
-        style={{
-          color: type === "color" ? value : undefined,
-          backgroundColor: type === "color" ? undefined : value,
-          borderColor: value,
-        }}
-        onClick={(event) => {
-          event.preventDefault();
-          const input = event.currentTarget
-            .previousElementSibling as HTMLInputElement;
-          input.click();
-        }}
-      >
-        <IconComponent className="size-4" />
-      </Button>
-    </span>
-  );
-};
+      {icon === "file-earmark-font" ? (
+        <Type className="size-4" />
+      ) : (
+        <FileText className="size-4" />
+      )}
+    </Button>
+  </span>
+);
 
 export function renderColorTool(
   this: ColorTool,
@@ -69,7 +72,7 @@ export function renderColorTool(
       className="mr-2 mb-2"
       key={icon}
       title={name}
-      icon={icon as "file-earmark-font" | "file-earmark-font-fill"}
+      icon={icon as ColorSelectorProps["icon"]}
       type={colorName}
       value={this.getColor()}
       onChange={(color) =>

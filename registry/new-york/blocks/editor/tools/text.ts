@@ -16,61 +16,61 @@ import {
 import { renderTool } from "../tool";
 
 export class BoldTool extends BT {
-  icon = "type-bold";
+  icon = "Bold";
   render = renderTool;
 }
 
 export class ItalicTool extends IT {
-  icon = "type-italic";
+  icon = "Italic";
   render = renderTool;
 }
 
 export class UnderlineTool extends UT {
-  icon = "type-underline";
+  icon = "Underline";
   render = renderTool;
 }
 
 export class StrikeThroughTool extends STT {
-  icon = "type-strikethrough";
+  icon = "Strikethrough";
   render = renderTool;
 }
 
 export class H1Tool extends H1T {
-  icon = "type-h1";
+  icon = "Heading1";
   render = renderTool;
 }
 
 export class H2Tool extends H2T {
-  icon = "type-h2";
+  icon = "Heading2";
   render = renderTool;
 }
 
 export class H3Tool extends H3T {
-  icon = "type-h3";
+  icon = "Heading3";
   render = renderTool;
 }
 
 export class FontSizeDownTool extends FSDT {
-  icon = "sort-alpha-down";
+  icon = "ArrowDownAZ";
   render = renderTool;
 }
 
 export class FontSizeUpTool extends FSUT {
-  icon = "sort-alpha-up";
+  icon = "ArrowUpAZ";
   render = renderTool;
 }
 
 export class SubscriptTool extends SubST {
-  icon = "box-arrow-down-right";
+  icon = "ArrowDownRight";
   render = renderTool;
 }
 
 export class SuperscriptTool extends SupST {
-  icon = "box-arrow-up-right";
+  icon = "ArrowUpRight";
   render = renderTool;
 }
 
 export class LinkTool extends LT {
-  icon = "link";
+  icon = "Link";
   render = renderTool;
 }

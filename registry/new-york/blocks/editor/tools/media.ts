@@ -8,21 +8,21 @@ import {
 import { renderTool } from "../tool";
 
 export class IFrameTool extends FT {
-  icon = "window";
+  icon = "Frame";
   render = renderTool;
 }
 
 export class ImageTool extends IT {
-  icon = "image";
+  icon = "Image";
   render = renderTool;
 }
 
 export class AudioTool extends AT {
-  icon = "voicemail";
+  icon = "Mic";
   render = renderTool;
 }
 
 export class VideoTool extends VT {
-  icon = "camera-video";
+  icon = "Video";
   render = renderTool;
 }

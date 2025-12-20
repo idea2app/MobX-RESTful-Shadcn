@@ -3,6 +3,6 @@ import { CopyMarkdownTool as CMDT } from "edkit";
 import { renderTool } from "../tool";
 
 export class CopyMarkdownTool extends CMDT {
-  icon = "markdown";
+  icon = "FileText";
   render = renderTool;
 }
