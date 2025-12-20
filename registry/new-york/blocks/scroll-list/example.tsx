@@ -3,7 +3,7 @@
 import { RepositoryModel } from "mobx-github";
 import { TranslationModel } from "mobx-i18n";
 
-import { ScrollList } from "./scroll-list";
+import { ScrollList } from "./index";
 
 const repositoryStore = new RepositoryModel("idea2app");
 

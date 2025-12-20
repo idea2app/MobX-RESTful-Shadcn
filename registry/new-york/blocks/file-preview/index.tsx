@@ -9,7 +9,7 @@ import {
 import { FileText, FileArchive, FileSpreadsheet } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { ImagePreview } from "../image-preview/image-preview";
+import { ImagePreview } from "../image-preview";
 
 export type FilePreviewProps = ImgHTMLAttributes<HTMLImageElement> &
   HTMLAttributes<HTMLAudioElement> &

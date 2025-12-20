@@ -8,12 +8,13 @@
       "type": "registry:component",
       "title": "Badge Bar",
       "description": "A component for displaying a list of badges with optional click and delete handlers.",
-      "registryDependencies": ["badge", "@mobx-restful-shadcn/badge-bar"],
+      "registryDependencies": ["badge"],
       "dependencies": ["lucide-react", "web-utility"],
       "files": [
         {
-          "path": "registry/new-york/blocks/badge-bar/badge-bar.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/badge-bar/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/badge-bar/index.tsx"
         }
       ]
     },
@@ -26,8 +27,9 @@
       "dependencies": ["lucide-react", "mobx-restful", "web-utility"],
       "files": [
         {
-          "path": "registry/new-york/blocks/pager/pager.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/pager/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/pager/index.tsx"
         }
       ]
     },
@@ -45,8 +47,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/image-preview/image-preview.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/image-preview/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/image-preview/index.tsx"
         }
       ]
     },
@@ -59,8 +62,9 @@
       "dependencies": ["lucide-react"],
       "files": [
         {
-          "path": "registry/new-york/blocks/file-preview/file-preview.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/file-preview/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/file-preview/index.tsx"
         }
       ]
     },
@@ -71,8 +75,9 @@
       "description": "A component that detects when scroll reaches edges using IntersectionObserver.",
       "files": [
         {
-          "path": "registry/new-york/blocks/scroll-boundary/scroll-boundary.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/scroll-boundary/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/scroll-boundary/index.tsx"
         }
       ]
     },
@@ -91,8 +96,9 @@
       "registryDependencies": ["@mobx-restful-shadcn/scroll-boundary"],
       "files": [
         {
-          "path": "registry/new-york/blocks/scroll-list/scroll-list.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/scroll-list/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/scroll-list/index.tsx"
         }
       ]
     },
@@ -112,8 +118,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/array-field/array-field.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/array-field/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/array-field/index.tsx"
         }
       ]
     },
@@ -126,8 +133,9 @@
       "dependencies": ["mobx-react", "mobx-react-helper", "web-utility"],
       "files": [
         {
-          "path": "registry/new-york/blocks/badge-input/badge-input.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/badge-input/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/badge-input/index.tsx"
         }
       ]
     },
@@ -139,8 +147,9 @@
       "dependencies": ["mobx-react", "mobx-react-helper"],
       "files": [
         {
-          "path": "registry/new-york/blocks/range-input/range-input.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/range-input/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/range-input/index.tsx"
         }
       ]
     },
@@ -159,8 +168,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/file-picker/file-picker.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/file-picker/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/file-picker/index.tsx"
         }
       ]
     },
@@ -173,8 +183,9 @@
       "dependencies": ["web-utility"],
       "files": [
         {
-          "path": "registry/new-york/blocks/form-field/form-field.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/form-field/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/form-field/index.tsx"
         }
       ]
     },
@@ -192,8 +203,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/file-uploader/file-uploader.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/file-uploader/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/file-uploader/index.tsx"
         }
       ]
     },
@@ -205,10 +217,11 @@
       "registryDependencies": [
         "button",
         "label",
-        "badge-input",
-        "file-preview",
-        "file-uploader",
-        "form-field"
+        "@mobx-restful-shadcn/badge-input",
+        "@mobx-restful-shadcn/editor",
+        "@mobx-restful-shadcn/file-preview",
+        "@mobx-restful-shadcn/file-uploader",
+        "@mobx-restful-shadcn/form-field"
       ],
       "dependencies": [
         "mobx",
@@ -220,8 +233,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/rest-form/rest-form.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/rest-form/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/rest-form/index.tsx"
         }
       ]
     },
@@ -230,12 +244,13 @@
       "type": "registry:component",
       "title": "REST Form Modal",
       "description": "A modal wrapper for REST Form component, displaying forms in a dialog for editing data.",
-      "registryDependencies": ["dialog", "rest-form"],
+      "registryDependencies": ["dialog", "@mobx-restful-shadcn/rest-form"],
       "dependencies": ["mobx-react", "mobx-restful", "web-utility"],
       "files": [
         {
-          "path": "registry/new-york/blocks/rest-form-modal/rest-form-modal.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/rest-form-modal/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/rest-form-modal/index.tsx"
         }
       ]
     },
@@ -247,10 +262,10 @@
       "registryDependencies": [
         "button",
         "input",
-        "badge-bar",
-        "badge-input",
-        "rest-form-modal",
-        "scroll-list"
+        "@mobx-restful-shadcn/badge-bar",
+        "@mobx-restful-shadcn/badge-input",
+        "@mobx-restful-shadcn/rest-form-modal",
+        "@mobx-restful-shadcn/scroll-list"
       ],
       "dependencies": [
         "lodash.debounce",
@@ -262,8 +277,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/searchable-input/searchable-input.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/searchable-input/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/searchable-input/index.tsx"
         }
       ]
     },
@@ -276,11 +292,11 @@
         "button",
         "checkbox",
         "table",
-        "badge-bar",
-        "file-preview",
-        "pager",
-        "rest-form",
-        "rest-form-modal"
+        "@mobx-restful-shadcn/badge-bar",
+        "@mobx-restful-shadcn/file-preview",
+        "@mobx-restful-shadcn/pager",
+        "@mobx-restful-shadcn/rest-form",
+        "@mobx-restful-shadcn/rest-form-modal"
       ],
       "dependencies": [
         "lodash.debounce",
@@ -293,8 +309,9 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/blocks/rest-table/rest-table.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/rest-table/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/rest-table/index.tsx"
         }
       ]
     },
@@ -314,44 +331,54 @@
       ],
       "files": [
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/index.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/index.ts"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/editor.tsx",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/editor.tsx"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tool.tsx",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tool.tsx"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/index.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/index.ts"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/text.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/text.ts"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/layout.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/layout.ts"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/control.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/control.ts"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/media.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/media.ts"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/color.tsx",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/color.tsx"
         },
         {
+          "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/extra.ts",
-          "type": "registry:component"
+          "target": "components/ui/mobx-restful-shadcn/editor/tools/extra.ts"
         }
       ]
     }

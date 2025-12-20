@@ -1,10 +1,10 @@
 import { GitRepository } from "mobx-github";
 
 import { i18n, topicStore } from "@/models/example";
-import { BadgeBar } from "@/registry/new-york/blocks/badge-bar/badge-bar";
-import { Field } from "@/registry/new-york/blocks/rest-form/rest-form";
-import { Column } from "@/registry/new-york/blocks/rest-table/rest-table";
-import { SearchableInput } from "@/registry/new-york/blocks/searchable-input/searchable-input";
+import { BadgeBar } from "@/registry/new-york/blocks/badge-bar";
+import { Field } from "@/registry/new-york/blocks/rest-form";
+import { Column } from "@/registry/new-york/blocks/rest-table";
+import { SearchableInput } from "@/registry/new-york/blocks/searchable-input";
 
 export const columns: Column<GitRepository>[] = [
   {

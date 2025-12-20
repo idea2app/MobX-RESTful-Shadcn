@@ -10,11 +10,11 @@ import { Second } from "web-utility";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BadgeBar } from "../badge-bar/badge-bar";
-import { TextInputType } from "../badge-input/badge-input";
-import { RestFormProps } from "../rest-form/rest-form";
-import { RestFormModal } from "../rest-form-modal/rest-form-modal";
-import { ScrollList, ScrollListProps } from "../scroll-list/scroll-list";
+import { BadgeBar } from "../badge-bar";
+import { TextInputType } from "../badge-input";
+import { RestFormProps } from "../rest-form";
+import { RestFormModal } from "../rest-form-modal";
+import { ScrollList, ScrollListProps } from "../scroll-list";
 
 export type OptionData = Record<"label" | "value", string>;
 

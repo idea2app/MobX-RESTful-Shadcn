@@ -1,6 +1,6 @@
 "use client";
 
-import { FileModel, FileUploader } from "./file-uploader";
+import { FileModel, FileUploader } from "./index";
 
 class MyFileModel extends FileModel {}
 

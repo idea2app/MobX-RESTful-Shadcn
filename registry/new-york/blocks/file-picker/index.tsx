@@ -8,7 +8,7 @@ import { blobOf } from "web-utility";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { FilePreview } from "../file-preview/file-preview";
+import { FilePreview } from "../file-preview";
 
 export type FilePickerProps = FormComponentProps<string | File>;
 

@@ -10,7 +10,7 @@ import {
   EdgePosition,
   ScrollBoundary,
   ScrollBoundaryProps,
-} from "../scroll-boundary/scroll-boundary";
+} from "../scroll-boundary";
 
 export interface ScrollListProps<
   D extends DataObject,

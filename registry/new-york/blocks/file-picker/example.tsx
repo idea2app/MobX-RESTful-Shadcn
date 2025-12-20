@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { FilePicker } from "./file-picker";
+import { FilePicker } from "./index";
 
 export const FilePickerExample = () => {
   const [imageFile, setImageFile] = useState<string | File>("");

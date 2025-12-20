@@ -3,7 +3,7 @@
 import { DataObject } from "mobx-restful";
 
 import { Input } from "@/components/ui/input";
-import { ArrayField } from "./array-field";
+import { ArrayField } from "./index";
 
 interface TodoItem extends DataObject {
   title: string;

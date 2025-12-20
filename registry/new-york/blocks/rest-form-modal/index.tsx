@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { RestForm, RestFormProps } from "../rest-form/rest-form";
+import { RestForm, RestFormProps } from "../rest-form";
 
 export const RestFormModal = observer(
   <D extends DataObject, F extends Filter<D> = Filter<D>>({

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormField } from "./form-field";
+import { FormField } from "./index";
 
 export const FormFieldExample = () => (
   <div className="w-full space-y-8">

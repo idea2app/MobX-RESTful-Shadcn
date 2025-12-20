@@ -17,10 +17,11 @@ import { formatDate, formToJSON, isEmpty } from "web-utility";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { BadgeInput } from "../badge-input/badge-input";
-import { FilePreview } from "../file-preview/file-preview";
-import { FileModel, FileUploader } from "../file-uploader/file-uploader";
-import { FormField, FormFieldProps } from "../form-field/form-field";
+import { BadgeInput } from "../badge-input";
+import { Editor, EditorProps } from "../editor";
+import { FilePreview } from "../file-preview";
+import { FileModel, FileUploader } from "../file-uploader";
+import { FormField, FormFieldProps } from "../form-field";
 
 export interface Field<T extends DataObject>
   extends Pick<
@@ -39,7 +40,8 @@ export interface Field<T extends DataObject>
       | "accept"
       | "placeholder"
     >,
-    Pick<FormFieldProps, "options" | "rows"> {
+    Pick<FormFieldProps, "options" | "rows" | "contentEditable">,
+    Pick<EditorProps, "tools"> {
   key?: keyof T;
   renderLabel?: ReactNode | ((key: keyof T) => ReactNode);
   renderInput?: (data: T, meta: Field<T>) => ReactNode;
@@ -166,6 +168,8 @@ export class RestForm<
           ? this.renderFile(meta)
           : (meta.type === "radio" || meta.type === "checkbox") && meta.options
           ? this.renderCheckGroup(meta)
+          : meta.contentEditable
+          ? this.renderHTMLEditor(meta)
           : !meta.options && meta.multiple
           ? this.renderMultipleInput(meta)
           : meta.key &&
@@ -255,6 +259,17 @@ export class RestForm<
         <RestForm.FieldBox name={key} {...meta}>
           {this.fieldReady && (
             <BadgeInput {...meta} name={key?.toString()} defaultValue={value} />
+          )}
+        </RestForm.FieldBox>
+      );
+
+  renderHTMLEditor =
+    ({ key, contentEditable, tools, ...meta }: Field<D>) =>
+    ({ [key!]: value }: D) =>
+      (
+        <RestForm.FieldBox name={key} {...meta}>
+          {this.fieldReady && (
+            <Editor tools={tools} name={key?.toString()} defaultValue={value} />
           )}
         </RestForm.FieldBox>
       );

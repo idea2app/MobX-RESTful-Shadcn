@@ -6,7 +6,7 @@ import { KeyboardEvent } from "react";
 import { isEmpty } from "web-utility";
 
 import { cn } from "@/lib/utils";
-import { BadgeBar } from "../badge-bar/badge-bar";
+import { BadgeBar } from "../badge-bar";
 
 export const TextInputTypes = [
   "text",

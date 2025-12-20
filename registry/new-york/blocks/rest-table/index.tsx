@@ -20,11 +20,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { BadgeBar } from "../badge-bar/badge-bar";
-import { FilePreview } from "../file-preview/file-preview";
-import { Pager } from "../pager/pager";
-import { Field, RestForm, RestFormProps } from "../rest-form/rest-form";
-import { RestFormModal } from "../rest-form-modal/rest-form-modal";
+import { BadgeBar } from "../badge-bar";
+import { FilePreview } from "../file-preview";
+import { Pager } from "../pager";
+import { Field, RestForm, RestFormProps } from "../rest-form";
+import { RestFormModal } from "../rest-form-modal";
 
 export interface Column<T extends DataObject>
   extends Omit<Field<T>, "renderLabel"> {

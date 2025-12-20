@@ -6,7 +6,7 @@ import { FormComponent, FormComponentProps, reaction } from "mobx-react-helper";
 import { BaseModel } from "mobx-restful";
 import { DragEvent } from "react";
 
-import { FilePicker } from "../file-picker/file-picker";
+import { FilePicker } from "../file-picker";
 
 export abstract class FileModel extends BaseModel {
   @observable

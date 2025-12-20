@@ -1,4 +1,4 @@
-import { ImagePreview } from "./image-preview";
+import { ImagePreview } from "./index";
 
 export const ImagePreviewExample = () => (
   <div className="w-full space-y-8">
