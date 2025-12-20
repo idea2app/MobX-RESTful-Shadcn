@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export interface ColorSelectorProps
   extends Partial<Record<"className" | "title" | "value", string>> {
-  icon: "file-earmark-font" | "file-earmark-font-fill";
+  icon: "Type" | "FileText";
   type: ColorName;
   onChange?: (color: string) => any;
 }
@@ -38,6 +38,7 @@ export const ColorSelector: FC<ColorSelectorProps> = ({
       type="button"
       variant="outline"
       size="icon-sm"
+      className="p-2"
       style={{
         color: type === "color" ? value : undefined,
         backgroundColor: type === "color" ? undefined : value,
@@ -52,10 +53,16 @@ export const ColorSelector: FC<ColorSelectorProps> = ({
         input.click();
       }}
     >
-      {icon === "file-earmark-font" ? (
-        <Type className="size-4" />
+      {icon === "Type" ? (
+        <Type
+          className="size-4"
+          style={type !== "color" ? { filter: "invert(1)" } : undefined}
+        />
       ) : (
-        <FileText className="size-4" />
+        <FileText
+          className="size-4"
+          style={type !== "color" ? { filter: "invert(1)" } : undefined}
+        />
       )}
     </Button>
   </span>
@@ -83,11 +90,11 @@ export function renderColorTool(
 }
 
 export class ForeColorTool extends FCT {
-  icon = "file-earmark-font";
+  icon = "Type";
   render = renderColorTool;
 }
 
 export class BackColorTool extends BCT {
-  icon = "file-earmark-font-fill";
+  icon = "FileText";
   render = renderColorTool;
 }

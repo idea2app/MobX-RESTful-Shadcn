@@ -19,7 +19,7 @@ export function renderTool(this: Tool, editor: RefObject<HTMLElement>) {
       title={title}
       variant={active ? "default" : "outline"}
       size="icon-sm"
-      className="mr-2 mb-2"
+      className="mr-2 mb-2 p-2"
       disabled={!usable}
       onClick={(event) => {
         event.preventDefault();

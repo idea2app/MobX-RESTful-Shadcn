@@ -9,7 +9,7 @@ import { RestTable } from "./rest-table";
 configure({ enforceActions: "never" });
 
 export const RestTableExample = () => (
-  <div className="w-full h-screen">
+  <div className="w-full">
     <RestTable
       className="text-center"
       editable
