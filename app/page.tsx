@@ -1,8 +1,4 @@
 import { ComponentCard } from "@/components/example/component-card";
-import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world";
-import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form";
-import PokemonPage from "@/registry/new-york/blocks/complex-component/page";
-import { ExampleCard } from "@/registry/new-york/blocks/example-with-css/example-card";
 import { BadgeBarExample } from "@/registry/new-york/blocks/badge-bar/example";
 import { PagerExample } from "@/registry/new-york/blocks/pager/example";
 import { ImagePreviewExample } from "@/registry/new-york/blocks/image-preview/example";
@@ -15,46 +11,20 @@ import { RangeInputExample } from "@/registry/new-york/blocks/range-input/exampl
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
 import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
+import { EditorExample } from "@/registry/new-york/blocks/editor/example";
 
 export default function Home() {
   return (
     <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
       <header className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight">Custom Registry</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          MobX-RESTful-Shadcn Registry
+        </h1>
         <p className="text-muted-foreground">
           A custom registry for distributing code using shadcn.
         </p>
       </header>
       <main className="flex flex-col flex-1 gap-8">
-        <ComponentCard
-          name="hello-world"
-          description="A simple hello world component"
-        >
-          <HelloWorld />
-        </ComponentCard>
-
-        <ComponentCard
-          name="example-form"
-          description="A contact form with Zod validation."
-          minHeight="min-h-[500px]"
-        >
-          <ExampleForm />
-        </ComponentCard>
-
-        <ComponentCard
-          name="complex-component"
-          description="A complex component showing hooks, libs and components."
-        >
-          <PokemonPage />
-        </ComponentCard>
-
-        <ComponentCard
-          name="example-with-css"
-          description="A login form with a CSS file."
-        >
-          <ExampleCard />
-        </ComponentCard>
-
         <ComponentCard
           name="badge-bar"
           description="A component for displaying a list of badges with optional click and delete handlers."
@@ -138,6 +108,14 @@ export default function Home() {
           minHeight="min-h-[600px]"
         >
           <RestTableExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="editor"
+          description="A lightweight rich text editor based on Edkit and Shadcn UI with various formatting tools."
+          minHeight="min-h-[400px]"
+        >
+          <EditorExample />
         </ComponentCard>
       </main>
     </div>

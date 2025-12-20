@@ -1,60 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "MobX RESTful Shadcn",
+  "name": "mobx-restful-shadcn",
   "homepage": "https://mobx-restful-shadcn.idea2.app",
   "items": [
-    {
-      "name": "complex-component",
-      "type": "registry:component",
-      "title": "Complex Component",
-      "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/complex-component/page.tsx",
-          "type": "registry:page",
-          "target": "app/pokemon/page.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-image.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/lib/pokemon.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/hooks/use-pokemon.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
-      "name": "example-with-css",
-      "type": "registry:component",
-      "title": "Example with CSS",
-      "description": "A login form with a CSS file.",
-      "files": [
-        {
-          "path": "registry/new-york/blocks/example-with-css/example-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/example-with-css/example-card.css",
-          "type": "registry:component"
-        }
-      ]
-    },
     {
       "name": "badge-bar",
       "type": "registry:component",
       "title": "Badge Bar",
       "description": "A component for displaying a list of badges with optional click and delete handlers.",
-      "registryDependencies": ["badge"],
+      "registryDependencies": ["badge", "@mobx-restful-shadcn/badge-bar"],
       "dependencies": ["lucide-react", "web-utility"],
       "files": [
         {
@@ -101,7 +55,7 @@
       "type": "registry:component",
       "title": "File Preview",
       "description": "A file preview component supporting images, audio, video, and documents.",
-      "registryDependencies": ["dialog"],
+      "registryDependencies": ["@mobx-restful-shadcn/image-preview"],
       "dependencies": ["lucide-react"],
       "files": [
         {
@@ -134,6 +88,7 @@
         "mobx-restful",
         "lodash.debounce"
       ],
+      "registryDependencies": ["@mobx-restful-shadcn/scroll-boundary"],
       "files": [
         {
           "path": "registry/new-york/blocks/scroll-list/scroll-list.tsx",
@@ -167,7 +122,7 @@
       "type": "registry:component",
       "title": "Badge Input",
       "description": "An input component that displays values as removable badges, supporting multiple entries.",
-      "registryDependencies": ["badge"],
+      "registryDependencies": ["@mobx-restful-shadcn/badge-bar"],
       "dependencies": ["mobx-react", "mobx-react-helper", "web-utility"],
       "files": [
         {
@@ -194,7 +149,7 @@
       "type": "registry:component",
       "title": "File Picker",
       "description": "A file picker component with preview and remove functionality.",
-      "registryDependencies": ["button"],
+      "registryDependencies": ["button", "@mobx-restful-shadcn/file-preview"],
       "dependencies": [
         "lucide-react",
         "mobx",
@@ -228,7 +183,7 @@
       "type": "registry:component",
       "title": "File Uploader",
       "description": "A file uploader component with drag-and-drop support for managing multiple files using MobX.",
-      "registryDependencies": ["file-picker"],
+      "registryDependencies": ["@mobx-restful-shadcn/file-picker"],
       "dependencies": [
         "mobx",
         "mobx-react",
@@ -339,6 +294,63 @@
       "files": [
         {
           "path": "registry/new-york/blocks/rest-table/rest-table.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "editor",
+      "type": "registry:component",
+      "title": "HTML Editor",
+      "description": "A lightweight rich text editor based on Edkit and Shadcn UI with various formatting tools.",
+      "registryDependencies": ["button"],
+      "dependencies": [
+        "edkit",
+        "lucide-react",
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper",
+        "web-utility"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/editor/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tool.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/text.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/layout.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/control.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/media.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/color.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/editor/tools/extra.ts",
           "type": "registry:component"
         }
       ]

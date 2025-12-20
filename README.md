@@ -24,6 +24,7 @@ A **Pagination Table** & **Scroll List** component suite for [CRUD operation][1]
 14. [Scroll Boundary](https://mobx-restful-shadcn.idea2.app/)
 15. [Scroll List](https://mobx-restful-shadcn.idea2.app/)
 16. [Searchable Input](https://mobx-restful-shadcn.idea2.app/)
+17. [Editor](https://mobx-restful-shadcn.idea2.app/)
 
 ## Installation
 
@@ -192,6 +193,37 @@ export const EditorPage = () => (
     required
     onChange={console.log}
   />
+);
+```
+
+### Editor
+
+```tsx
+import { configure } from "mobx";
+import { formToJSON } from "web-utility";
+
+import { Editor, OriginalTools, ExtraTools } from "@/components/ui/editor";
+
+configure({ enforceActions: "never" });
+
+export const EditorPage = () => (
+  <form
+    onSubmit={(event) => {
+      event.preventDefault();
+
+      const { content } = formToJSON(event.currentTarget);
+
+      alert(content);
+    }}
+  >
+    <Editor
+      tools={[...OriginalTools, ...ExtraTools]}
+      name="content"
+      defaultValue="Hello <b>Edkit</b>!"
+      onChange={console.log}
+    />
+    <button type="submit">Submit</button>
+  </form>
 );
 ```
 
