@@ -116,8 +116,8 @@ importers:
         specifier: ^3.6.2
         version: 3.6.2(@types/node@22.19.3)(typescript@5.9.3)
       shadcn-helper:
-        specifier: ^0.5.3
-        version: 0.5.3(typescript@5.9.3)
+        specifier: ^0.5.5
+        version: 0.5.5(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
@@ -2286,8 +2286,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn-helper@0.5.3:
-    resolution: {integrity: sha512-8zwsKf73LNk1h28HXQFuSeErbpBeO23PG/L2Uzjk/q1LPeJM/BQ3xuuCIi9MbCMHKsgU0NfLNGsOTGGl1TQgDw==}
+  shadcn-helper@0.5.5:
+    resolution: {integrity: sha512-GUiK4biscmMDQk6b7Muy+R4FLWRlVPwMf1nsyjoQNAGweAvytWM1VUreNsf1oAZ/ZVkxI6dcOuVcNJViGWgzsg==}
     hasBin: true
 
   shadcn@3.6.2:
@@ -4664,7 +4664,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn-helper@0.5.3(typescript@5.9.3):
+  shadcn-helper@0.5.5(typescript@5.9.3):
     dependencies:
       '@tech_query/node-toolkit': 2.0.0-beta.3
       array-unique-proposal: 0.3.4

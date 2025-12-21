@@ -93,6 +93,7 @@
         "mobx-restful",
         "lodash.debounce"
       ],
+      "devDependencies": ["@types/lodash.debounce"],
       "registryDependencies": ["@mobx-restful-shadcn/scroll-boundary"],
       "files": [
         {
@@ -275,6 +276,7 @@
         "mobx-restful",
         "web-utility"
       ],
+      "devDependencies": ["@types/lodash.debounce"],
       "files": [
         {
           "type": "registry:component",
@@ -307,6 +309,7 @@
         "mobx-restful",
         "web-utility"
       ],
+      "devDependencies": ["@types/lodash.debounce"],
       "files": [
         {
           "type": "registry:component",

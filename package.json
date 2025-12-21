@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "postinstall": "shadcn-helper install",
+    "install-shadcn": "shadcn-helper install",
     "test": "lint-staged",
     "registry:build": "shadcn build",
     "dev": "next dev --webpack",
@@ -48,7 +48,7 @@
     "lint-staged": "^16.2.7",
     "mobx-github": "^0.6.2",
     "shadcn": "^3.6.2",
-    "shadcn-helper": "^0.5.3",
+    "shadcn-helper": "^0.5.5",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3"
   },
