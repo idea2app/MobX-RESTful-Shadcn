@@ -38,7 +38,7 @@ const touch = (edge: EdgePosition, onTouch: TouchHandler) => {
       {
         root,
         rootMargin: edgeMargins.join(" "),
-      }
+      },
     );
     observer.observe(node);
   };

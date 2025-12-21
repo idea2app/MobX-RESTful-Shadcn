@@ -1,13 +1,13 @@
 "use client";
 
+import { X } from "lucide-react";
 import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
 import { FormComponent, FormComponentProps, reaction } from "mobx-react-helper";
-import { X } from "lucide-react";
 import { blobOf } from "web-utility";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { FilePreview } from "../file-preview";
 
 export type FilePickerProps = FormComponentProps<string | File>;

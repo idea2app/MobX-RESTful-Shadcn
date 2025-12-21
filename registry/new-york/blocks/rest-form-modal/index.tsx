@@ -1,8 +1,8 @@
 "use client";
 
-import { FC } from "react";
 import { observer } from "mobx-react";
 import { DataObject, Filter } from "mobx-restful";
+import { FC } from "react";
 import { isEmpty } from "web-utility";
 
 import {
@@ -38,6 +38,6 @@ export const RestFormModal = observer(
         </DialogContent>
       </Dialog>
     );
-  }
+  },
 );
 (RestFormModal as FC).displayName = "RestFormModal";

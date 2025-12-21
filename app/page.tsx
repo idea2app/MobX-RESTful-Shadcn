@@ -1,17 +1,17 @@
 import { ComponentCard } from "@/components/example/component-card";
+import { ArrayFieldExample } from "@/registry/new-york/blocks/array-field/example";
 import { BadgeBarExample } from "@/registry/new-york/blocks/badge-bar/example";
-import { PagerExample } from "@/registry/new-york/blocks/pager/example";
-import { ImagePreviewExample } from "@/registry/new-york/blocks/image-preview/example";
+import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/example";
+import { EditorExample } from "@/registry/new-york/blocks/editor/example";
+import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
+import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
+import { ImagePreviewExample } from "@/registry/new-york/blocks/image-preview/example";
+import { PagerExample } from "@/registry/new-york/blocks/pager/example";
+import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
+import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
 import { ScrollBoundaryExample } from "@/registry/new-york/blocks/scroll-boundary/example";
 import { ScrollListExample } from "@/registry/new-york/blocks/scroll-list/example";
-import { ArrayFieldExample } from "@/registry/new-york/blocks/array-field/example";
-import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/example";
-import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
-import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
-import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
-import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
-import { EditorExample } from "@/registry/new-york/blocks/editor/example";
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
-import { FC } from "react";
 import { X } from "lucide-react";
+import { FC } from "react";
 import { sum } from "web-utility";
 
 import { Badge } from "@/components/ui/badge";
@@ -54,12 +54,13 @@ export const BadgeBar: FC<BadgeBarProps> = ({
             {text}
           </a>
         ) : onCheck ? (
-          <span
-            className="cursor-pointer"
+          <button
+            type="button"
+            className="cursor-pointer bg-transparent border-0 p-0"
             onClick={() => onCheck({ text, link }, index)}
           >
             {text}
-          </span>
+          </button>
         ) : (
           text
         )}

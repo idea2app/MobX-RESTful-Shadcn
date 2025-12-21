@@ -1,6 +1,6 @@
-import { ComponentType, RefObject, SVGProps } from "react";
 import { Tool } from "edkit";
 import * as Icons from "lucide-react";
+import { ComponentType, RefObject, SVGProps } from "react";
 
 import { Button } from "@/components/ui/button";
 

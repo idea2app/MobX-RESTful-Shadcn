@@ -14,7 +14,7 @@ import {
 
 export interface ScrollListProps<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends Omit<ScrollBoundaryProps, "onTouch"> {
   translator: TranslationModel<string, "load_more" | "no_more">;
   store: ListModel<D, F>;
@@ -26,7 +26,7 @@ export interface ScrollListProps<
 @observer
 export class ScrollList<
   D extends DataObject = DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends Component<ScrollListProps<D, F>> {
   static readonly displayName = "ScrollList";
 

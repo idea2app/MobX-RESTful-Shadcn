@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { ScrollBoundary, EdgePosition } from "./index";
+import { EdgePosition, ScrollBoundary } from "./index";
 
 export const ScrollBoundaryExample = () => {
   const [touchedEdges, setTouchedEdges] = useState<EdgePosition[]>([]);

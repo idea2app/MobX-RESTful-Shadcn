@@ -71,7 +71,7 @@ export const Pager: FC<PagerProps> = ({
       <nav className="flex items-center gap-1">
         {pageIndex > 1 && (
           <Button variant="outline" size="sm" asChild>
-            <a {...propsOf(1)} aria-label="Go to first page">
+            <a {...propsOf(1)} title="Go to first page">
               1
             </a>
           </Button>
@@ -83,7 +83,7 @@ export const Pager: FC<PagerProps> = ({
         )}
         {pageIndex > 2 && (
           <Button variant="outline" size="sm" asChild>
-            <a {...propsOf(pageIndex - 1)} aria-label="Go to previous page">
+            <a {...propsOf(pageIndex - 1)} title="Go to previous page">
               {pageIndex - 1}
             </a>
           </Button>
@@ -93,7 +93,7 @@ export const Pager: FC<PagerProps> = ({
         </Button>
         {pageCount - pageIndex > 1 && (
           <Button variant="outline" size="sm" asChild>
-            <a {...propsOf(pageIndex + 1)} aria-label="Go to next page">
+            <a {...propsOf(pageIndex + 1)} title="Go to next page">
               {pageIndex + 1}
             </a>
           </Button>
@@ -105,7 +105,7 @@ export const Pager: FC<PagerProps> = ({
         )}
         {pageIndex < pageCount && (
           <Button variant="outline" size="sm" asChild>
-            <a {...propsOf(pageCount)} aria-label="Go to last page">
+            <a {...propsOf(pageCount)} title="Go to last page">
               {pageCount}
             </a>
           </Button>

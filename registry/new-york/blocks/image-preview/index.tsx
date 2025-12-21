@@ -1,10 +1,11 @@
 "use client";
 
-import { ImgHTMLAttributes } from "react";
+import { Loader2 } from "lucide-react";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import { ObservedComponent, reaction } from "mobx-react-helper";
-import { Loader2 } from "lucide-react";
+import { ImgHTMLAttributes } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -71,7 +72,7 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
         className={cn(
           "m-0",
           downloading && "flex justify-center items-center min-h-[100px]",
-          className
+          className,
         )}
         {...props}
       >
@@ -83,6 +84,7 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
               className="object-contain cursor-pointer max-w-full h-auto"
               src={loadedPath}
               loading="lazy"
+              alt="Preview"
               onClick={() => (this.viewing = true)}
             />
           )
@@ -91,7 +93,11 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
           <DialogContent className="max-w-4xl">
             <DialogTitle className="sr-only">Image Preview</DialogTitle>
             <div className="text-center">
-              <img className="max-w-full h-auto mx-auto" src={loadedPath} />
+              <img
+                className="max-w-full h-auto mx-auto"
+                src={loadedPath}
+                alt="Preview"
+              />
             </div>
             <DialogFooter className="justify-center">
               <a

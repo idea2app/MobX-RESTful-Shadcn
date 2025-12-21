@@ -5,7 +5,11 @@ import { useState } from "react";
 import { BadgeInput } from "./index";
 
 export const BadgeInputExample = () => {
-  const [tags, setTags] = useState<string[]>(["React", "TypeScript", "Next.js"]);
+  const [tags, setTags] = useState<string[]>([
+    "React",
+    "TypeScript",
+    "Next.js",
+  ]);
   const [emails, setEmails] = useState<string[]>(["user@example.com"]);
 
   return (

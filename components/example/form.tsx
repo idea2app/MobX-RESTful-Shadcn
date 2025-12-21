@@ -52,5 +52,5 @@ export const fields: Field<GitRepository>[] = columns.map(
   ({ renderHead, renderBody, ...meta }) => ({
     ...meta,
     renderLabel: renderHead,
-  })
+  }),
 );

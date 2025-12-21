@@ -14,9 +14,9 @@ import {
 } from "react";
 import { formatDate, formToJSON, isEmpty } from "web-utility";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { BadgeInput } from "../badge-input";
 import { Editor, EditorProps } from "../editor";
 import { FilePreview } from "../file-preview";
@@ -59,7 +59,7 @@ export interface FieldBoxProps<D extends DataObject>
 
 export interface RestFormProps<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends Omit<HTMLAttributes<HTMLFormElement>, "id" | "onSubmit" | "onReset"> {
   id?: IDType;
   fields: Field<D>[];
@@ -73,23 +73,23 @@ export interface RestFormProps<
 @observer
 export class RestForm<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends ObservedComponent<RestFormProps<D, F>> {
   static readonly displayName = "RestForm";
 
   static dateValueOf = <D extends DataObject>(
     { type, step = "60" }: Field<D>,
-    raw: D[keyof D]
+    raw: D[keyof D],
   ) =>
     isEmpty(raw)
       ? raw
       : type === "month"
-      ? formatDate(raw, "YYYY-MM")
-      : type === "date"
-      ? formatDate(raw, "YYYY-MM-DD")
-      : type === "datetime-local"
-      ? formatDate(raw, `YYYY-MM-DDTHH:mm${+step < 60 ? ":ss" : ""}`)
-      : raw;
+        ? formatDate(raw, "YYYY-MM")
+        : type === "date"
+          ? formatDate(raw, "YYYY-MM-DD")
+          : type === "datetime-local"
+            ? formatDate(raw, `YYYY-MM-DDTHH:mm${+step < 60 ? ":ss" : ""}`)
+            : raw;
 
   static FieldBox = <D extends DataObject>({
     name,
@@ -167,16 +167,16 @@ export class RestForm<
         (meta.type === "file"
           ? this.renderFile(meta)
           : (meta.type === "radio" || meta.type === "checkbox") && meta.options
-          ? this.renderCheckGroup(meta)
-          : meta.contentEditable
-          ? this.renderHTMLEditor(meta)
-          : !meta.options && meta.multiple
-          ? this.renderMultipleInput(meta)
-          : meta.key &&
-            this.renderField(
-              meta,
-              meta.rows && !meta.options ? { rows: meta.rows } : {}
-            )),
+            ? this.renderCheckGroup(meta)
+            : meta.contentEditable
+              ? this.renderHTMLEditor(meta)
+              : !meta.options && meta.multiple
+                ? this.renderMultipleInput(meta)
+                : meta.key &&
+                  this.renderField(
+                    meta,
+                    meta.rows && !meta.options ? { rows: meta.rows } : {},
+                  )),
     }));
   }
 
@@ -188,7 +188,7 @@ export class RestForm<
   @computed
   get customValidation() {
     return this.fields.some(
-      ({ validMessage, invalidMessage }) => validMessage || invalidMessage
+      ({ validMessage, invalidMessage }) => validMessage || invalidMessage,
     );
   }
 
@@ -224,55 +224,52 @@ export class RestForm<
 
   renderCheckGroup =
     ({ key, type, options, ...meta }: Field<D>) =>
-    (data: D) =>
-      (
-        <RestForm.FieldBox name={key} {...meta}>
-          <div className="flex flex-col gap-2">
-            {this.fieldReady &&
-              options?.map(({ value, label = value }) => (
-                <div key={value} className="flex items-center space-x-2">
-                  <input
-                    className="h-4 w-4 rounded border-input"
-                    id={[key, value] + ""}
-                    type={type as "radio" | "checkbox"}
-                    name={key?.toString()}
-                    value={value}
-                    defaultChecked={data[key!]?.includes(value)}
-                    {...meta}
-                  />
-                  <Label
-                    htmlFor={[key, value] + ""}
-                    className="text-sm font-normal"
-                  >
-                    {label}
-                  </Label>
-                </div>
-              ))}
-          </div>
-        </RestForm.FieldBox>
-      );
+    (data: D) => (
+      <RestForm.FieldBox name={key} {...meta}>
+        <div className="flex flex-col gap-2">
+          {this.fieldReady &&
+            options?.map(({ value, label = value }) => (
+              <div key={value} className="flex items-center space-x-2">
+                <input
+                  className="h-4 w-4 rounded border-input"
+                  id={[key, value] + ""}
+                  type={type as "radio" | "checkbox"}
+                  name={key?.toString()}
+                  value={value}
+                  defaultChecked={data[key!]?.includes(value)}
+                  {...meta}
+                />
+                <Label
+                  htmlFor={[key, value] + ""}
+                  className="text-sm font-normal"
+                >
+                  {label}
+                </Label>
+              </div>
+            ))}
+        </div>
+      </RestForm.FieldBox>
+    );
 
   renderMultipleInput =
     ({ key, type, ...meta }: Field<D>) =>
-    ({ [key!]: value }: D) =>
-      (
-        <RestForm.FieldBox name={key} {...meta}>
-          {this.fieldReady && (
-            <BadgeInput {...meta} name={key?.toString()} defaultValue={value} />
-          )}
-        </RestForm.FieldBox>
-      );
+    ({ [key!]: value }: D) => (
+      <RestForm.FieldBox name={key} {...meta}>
+        {this.fieldReady && (
+          <BadgeInput {...meta} name={key?.toString()} defaultValue={value} />
+        )}
+      </RestForm.FieldBox>
+    );
 
   renderHTMLEditor =
     ({ key, contentEditable, tools, ...meta }: Field<D>) =>
-    ({ [key!]: value }: D) =>
-      (
-        <RestForm.FieldBox name={key} {...meta}>
-          {this.fieldReady && (
-            <Editor tools={tools} name={key?.toString()} defaultValue={value} />
-          )}
-        </RestForm.FieldBox>
-      );
+    ({ [key!]: value }: D) => (
+      <RestForm.FieldBox name={key} {...meta}>
+        {this.fieldReady && (
+          <Editor tools={tools} name={key?.toString()} defaultValue={value} />
+        )}
+      </RestForm.FieldBox>
+    );
 
   renderField = (
     {
@@ -285,7 +282,7 @@ export class RestForm<
       invalidMessage,
       ...meta
     }: Field<D>,
-    props: Partial<FormFieldProps> = {}
+    props: Partial<FormFieldProps> = {},
   ) => {
     const label =
       typeof renderLabel === "function"
