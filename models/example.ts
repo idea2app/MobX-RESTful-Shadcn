@@ -1,7 +1,7 @@
 import { components, operations } from "@octokit/openapi-types";
 import { githubClient, RepositoryModel } from "mobx-github";
 import { TranslationModel } from "mobx-i18n";
-import { ListModel, Filter, IDType } from "mobx-restful";
+import { Filter, IDType, ListModel } from "mobx-restful";
 import { buildURLData } from "web-utility";
 
 export const i18n = new TranslationModel({
@@ -47,7 +47,7 @@ class GitHubTopicModel extends ListModel<Topic> {
         q: name,
         page: pageIndex,
         per_page: pageSize,
-      })}`
+      })}`,
     );
     return { pageData: body!.items, totalCount: body!.total_count };
   }

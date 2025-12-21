@@ -1,11 +1,11 @@
 import {
-  AlignLeftTool as ALT,
   AlignCenterTool as ACT,
-  AlignRightTool as ART,
   AlignFullTool as AFT,
+  AlignLeftTool as ALT,
+  AlignRightTool as ART,
+  HorizontalRuleTool as HRT,
   OrderedListTool as OLT,
   UnorderedListTool as ULT,
-  HorizontalRuleTool as HRT,
 } from "edkit";
 
 import { renderTool } from "../tool";

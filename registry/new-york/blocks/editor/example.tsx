@@ -4,7 +4,7 @@ import { configure } from "mobx";
 import { formToJSON } from "web-utility";
 
 import { Button } from "@/components/ui/button";
-import { Editor, OriginalTools, ExtraTools } from "./index";
+import { Editor, ExtraTools, OriginalTools } from "./index";
 
 configure({ enforceActions: "never" });
 

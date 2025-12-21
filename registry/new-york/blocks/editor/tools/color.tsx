@@ -1,11 +1,11 @@
-import { FC, RefObject } from "react";
 import {
+  BackColorTool as BCT,
   ColorName,
   ColorTool,
   ForeColorTool as FCT,
-  BackColorTool as BCT,
 } from "edkit";
-import { Type, FileText } from "lucide-react";
+import { FileText, Type } from "lucide-react";
+import { FC, RefObject } from "react";
 
 import { Button } from "@/components/ui/button";
 
@@ -70,7 +70,7 @@ export const ColorSelector: FC<ColorSelectorProps> = ({
 
 export function renderColorTool(
   this: ColorTool,
-  editor: RefObject<HTMLElement>
+  editor: RefObject<HTMLElement>,
 ) {
   const { icon, name, colorName } = this;
 

@@ -2,7 +2,7 @@
 
 import { fields } from "@/components/example/form";
 import { i18n, repositoryStore } from "@/models/example";
-import { RestForm } from "./rest-form";
+import { RestForm } from "./index";
 
 export const RestFormExample = () => (
   <div className="w-full max-w-2xl space-y-8">

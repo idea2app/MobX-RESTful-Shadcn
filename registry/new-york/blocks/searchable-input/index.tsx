@@ -10,17 +10,17 @@ import { Second } from "web-utility";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BadgeBar } from "../badge-bar/badge-bar";
-import { TextInputType } from "../badge-input/badge-input";
-import { RestFormProps } from "../rest-form/rest-form";
-import { RestFormModal } from "../rest-form-modal/rest-form-modal";
-import { ScrollList, ScrollListProps } from "../scroll-list/scroll-list";
+import { BadgeBar } from "../badge-bar";
+import { TextInputType } from "../badge-input";
+import { RestFormProps } from "../rest-form";
+import { RestFormModal } from "../rest-form-modal";
+import { ScrollList, ScrollListProps } from "../scroll-list";
 
 export type OptionData = Record<"label" | "value", string>;
 
 export type SearchableInputProps<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > = Omit<
   ScrollListProps<D, F>,
   "id" | "defaultValue" | "onChange" | "defaultData" | "renderList"
@@ -40,7 +40,7 @@ export type SearchableInputProps<
 @observer
 export class SearchableInput<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends FormComponent<SearchableInputProps<D, F>> {
   static readonly displayName = "SearchableInput";
 
@@ -130,7 +130,7 @@ export class SearchableInput<
     const keyword = filter?.[labelKey as keyof F] as string;
 
     const needNew = !store.allItems.some(
-      ({ [labelKey]: label }) => label === keyword
+      ({ [labelKey]: label }) => label === keyword,
     );
 
     return (

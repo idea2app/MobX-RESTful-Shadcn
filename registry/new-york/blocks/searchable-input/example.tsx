@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { i18n, topicStore } from "@/models/example";
-import { OptionData, SearchableInput } from "./searchable-input";
+import { OptionData, SearchableInput } from "./index";
 
 export const SearchableInputExample = () => {
   const [selectedTopics, setSelectedTopics] = useState<OptionData[]>([]);

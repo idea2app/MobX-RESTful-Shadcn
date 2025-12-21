@@ -4,7 +4,7 @@ import { configure } from "mobx";
 
 import { columns } from "@/components/example/form";
 import { i18n, repositoryStore } from "@/models/example";
-import { RestTable } from "./rest-table";
+import { RestTable } from "./index";
 
 configure({ enforceActions: "never" });
 

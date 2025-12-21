@@ -1,6 +1,6 @@
 "use client";
 
-import { EditorComponent, ImageTool, Tool, editor } from "edkit";
+import { EditorComponent, editor, ImageTool, Tool } from "edkit";
 import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
 import { FormComponent, FormComponentProps } from "mobx-react-helper";
@@ -33,7 +33,7 @@ export class Editor
   @computed
   get toolList(): Tool[] {
     return (this.observedProps.tools || DefaultTools).map(
-      (ToolButton) => new ToolButton()
+      (ToolButton) => new ToolButton(),
     );
   }
 
@@ -84,7 +84,7 @@ export class Editor
   updateValue = (markup: string) => (this.innerValue = markup.trim());
 
   render() {
-    // Don't remove unused variable `cursorPoint`, which is used for triggering updates
+    // biome-ignore lint/correctness/noUnusedVariables: Used for triggering updates
     const { cursorPoint, toolList, innerValue } = this;
     const { name, className } = this.props;
 
@@ -95,14 +95,17 @@ export class Editor
         </header>
         <div
           ref={this.box}
+          contentEditable
+          tabIndex={0}
+          role="textbox"
+          aria-multiline="true"
           className={cn(
             "min-h-[200px] w-full rounded-md border border-input bg-background px-3 py-2",
             "text-base shadow-xs outline-none",
             "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
             "disabled:cursor-not-allowed disabled:opacity-50",
-            className
+            className,
           )}
-          contentEditable
           onInput={({ currentTarget: { innerHTML } }) =>
             this.updateValue(innerHTML)
           }

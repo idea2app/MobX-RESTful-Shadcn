@@ -6,7 +6,7 @@ import { KeyboardEvent } from "react";
 import { isEmpty } from "web-utility";
 
 import { cn } from "@/lib/utils";
-import { BadgeBar } from "../badge-bar/badge-bar";
+import { BadgeBar } from "../badge-bar";
 
 export const TextInputTypes = [
   "text",
@@ -67,7 +67,7 @@ export class BadgeInput extends FormComponent<BadgeInputProps> {
       <div
         className={cn(
           "flex min-h-9 w-full flex-wrap items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]",
-          className
+          className,
         )}
         style={style}
       >

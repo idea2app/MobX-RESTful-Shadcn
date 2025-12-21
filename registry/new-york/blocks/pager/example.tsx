@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { PageMeta, Pager } from "./pager";
+import { PageMeta, Pager } from "./index";
 
 export const PagerExample = () => {
   const [pageSize, setPageSize] = useState(10);

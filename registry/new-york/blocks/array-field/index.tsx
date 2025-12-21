@@ -1,11 +1,11 @@
 "use client";
 
+import { Minus, Plus } from "lucide-react";
 import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import { FormComponent, FormComponentProps } from "mobx-react-helper";
 import { DataObject } from "mobx-restful";
 import { ChangeEvent, HTMLAttributes, ReactNode } from "react";
-import { Plus, Minus } from "lucide-react";
 import { formToJSON, isEmpty } from "web-utility";
 
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ export type ArrayFieldProps<T extends DataObject = DataObject> = Pick<
 
 @observer
 export class ArrayField<
-  T extends DataObject = DataObject
+  T extends DataObject = DataObject,
 > extends FormComponent<ArrayFieldProps<T>> {
   static displayName = "ArrayField";
 
@@ -55,7 +55,7 @@ export class ArrayField<
     (index: number) =>
     ({ currentTarget }: ChangeEvent<EventTarget>) =>
       (this.innerValue![index] = formToJSON<T>(
-        currentTarget as HTMLFieldSetElement
+        currentTarget as HTMLFieldSetElement,
       ));
 
   render() {

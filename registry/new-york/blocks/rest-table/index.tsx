@@ -20,11 +20,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { BadgeBar } from "../badge-bar/badge-bar";
-import { FilePreview } from "../file-preview/file-preview";
-import { Pager } from "../pager/pager";
-import { Field, RestForm, RestFormProps } from "../rest-form/rest-form";
-import { RestFormModal } from "../rest-form-modal/rest-form-modal";
+import { BadgeBar } from "../badge-bar";
+import { FilePreview } from "../file-preview";
+import { Pager } from "../pager";
+import { Field, RestForm, RestFormProps } from "../rest-form";
+import { RestFormModal } from "../rest-form-modal";
 
 export interface Column<T extends DataObject>
   extends Omit<Field<T>, "renderLabel"> {
@@ -41,7 +41,7 @@ type Translator<T extends DataObject> = RestFormProps<T>["translator"] &
 
 export interface RestTableProps<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends Omit<HTMLAttributes<HTMLDivElement>, "onSubmit" | "onReset">,
     Pick<RestFormProps<D>, "size" | "store" | "onSubmit" | "onReset"> {
   filter?: F;
@@ -56,7 +56,7 @@ export interface RestTableProps<
 @observer
 export class RestTable<
   D extends DataObject,
-  F extends Filter<D> = Filter<D>
+  F extends Filter<D> = Filter<D>,
 > extends ObservedComponent<RestTableProps<D, F>> {
   static readonly displayName = "RestTable";
 
@@ -183,7 +183,7 @@ export class RestTable<
           ({
             ...column,
             renderBody: renderBody ?? this.renderCustomBody(column),
-          } as Column<D>)
+          }) as Column<D>,
       ),
       (editable || deletable) && this.operateColumn,
     ].filter(Boolean) as Column<D>[];
@@ -225,40 +225,50 @@ export class RestTable<
             </a>
           )
       : type === "email"
-      ? ({ [key!]: value }) =>
-          value && (
-            <a
-              className="text-primary hover:underline"
-              href={`mailto:${value}`}
-            >
-              {value as string}
-            </a>
-          )
-      : type === "tel"
-      ? ({ [key!]: value }) =>
-          value && (
-            <a className="text-primary hover:underline" href={`tel:${value}`}>
-              {value as string}
-            </a>
-          )
-      : type === "file"
-      ? ({ [key!]: value }) =>
-          ((Array.isArray(value) ? value : [value]) as string[]).map(
-            (path) =>
-              path && <FilePreview key={path} type={accept} path={path} />
-          )
-      : options || multiple
-      ? ({ [key!]: value }) =>
-          value && (
-            <BadgeBar list={(value as string[]).map((text) => ({ text }))} />
-          )
-      : !options && rows
-      ? ({ [key!]: value }) => (
-          <p className="m-0 truncate max-w-xs" title={value as string}>
-            {value as string}
-          </p>
-        )
-      : undefined;
+        ? ({ [key!]: value }) =>
+            value && (
+              <a
+                className="text-primary hover:underline"
+                href={`mailto:${value}`}
+              >
+                {value as string}
+              </a>
+            )
+        : type === "tel"
+          ? ({ [key!]: value }) =>
+              value && (
+                <a
+                  className="text-primary hover:underline"
+                  href={`tel:${value}`}
+                >
+                  {value as string}
+                </a>
+              )
+          : type === "file"
+            ? ({ [key!]: value }) =>
+                ((Array.isArray(value) ? value : [value]) as string[]).map(
+                  (path) =>
+                    path && (
+                      <FilePreview key={path} type={accept} path={path} />
+                    ),
+                )
+            : options || multiple
+              ? ({ [key!]: value }) =>
+                  value && (
+                    <BadgeBar
+                      list={(value as string[]).map((text) => ({ text }))}
+                    />
+                  )
+              : !options && rows
+                ? ({ [key!]: value }) => (
+                    <p
+                      className="m-0 truncate max-w-xs"
+                      title={value as string}
+                    >
+                      {value as string}
+                    </p>
+                  )
+                : undefined;
 
   renderTable() {
     const { store } = this.props;
@@ -281,7 +291,7 @@ export class RestTable<
                         ? renderHead(key!)
                         : renderHead || (key as string)}
                     </TableHead>
-                  )
+                  ),
               )}
             </TableRow>
           </TableHeader>
@@ -304,7 +314,7 @@ export class RestTable<
                       <TableCell key={key?.toString() || index}>
                         {renderBody?.(data) || (key && data[key])}
                       </TableCell>
-                    )
+                    ),
                 )}
               </TableRow>
             ))
@@ -322,7 +332,7 @@ export class RestTable<
                         ? renderFoot(key!)
                         : renderFoot || (key as string)}
                     </TableCell>
-                  )
+                  ),
               )}
             </TableRow>
           </TableFooter>

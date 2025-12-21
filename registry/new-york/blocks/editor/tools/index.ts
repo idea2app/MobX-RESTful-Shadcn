@@ -1,37 +1,37 @@
+import { BackColorTool, ForeColorTool } from "./color";
+import { ClearTool, RedoTool, ResetTool, UndoTool } from "./control";
+import { CopyMarkdownTool } from "./extra";
+import {
+  AlignCenterTool,
+  AlignFullTool,
+  AlignLeftTool,
+  AlignRightTool,
+  HorizontalRuleTool,
+  OrderedListTool,
+  UnorderedListTool,
+} from "./layout";
+import { AudioTool, IFrameTool, ImageTool, VideoTool } from "./media";
 import {
   BoldTool,
-  ItalicTool,
-  UnderlineTool,
-  StrikeThroughTool,
+  FontSizeDownTool,
+  FontSizeUpTool,
   H1Tool,
   H2Tool,
   H3Tool,
-  FontSizeDownTool,
-  FontSizeUpTool,
+  ItalicTool,
+  LinkTool,
+  StrikeThroughTool,
   SubscriptTool,
   SuperscriptTool,
-  LinkTool,
+  UnderlineTool,
 } from "./text";
-import { ForeColorTool, BackColorTool } from "./color";
-import {
-  AlignLeftTool,
-  AlignCenterTool,
-  AlignRightTool,
-  AlignFullTool,
-  OrderedListTool,
-  UnorderedListTool,
-  HorizontalRuleTool,
-} from "./layout";
-import { IFrameTool, ImageTool, AudioTool, VideoTool } from "./media";
-import { UndoTool, RedoTool, ResetTool, ClearTool } from "./control";
-import { CopyMarkdownTool } from "./extra";
 
-export * from "./text";
 export * from "./color";
-export * from "./layout";
-export * from "./media";
 export * from "./control";
 export * from "./extra";
+export * from "./layout";
+export * from "./media";
+export * from "./text";
 
 export const TextTools = [
   BoldTool,

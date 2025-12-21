@@ -28,13 +28,25 @@ A **Pagination Table** & **Scroll List** component suite for [CRUD operation][1]
 
 ## Installation
 
+### `components.json`
+
+```json
+{
+  "registries": {
+    "@mobx-restful-shadcn": "https://mobx-restful-shadcn.idea2.app/r/{name}.json"
+  }
+}
+```
+
+### Adding components
+
 ```shell
-npx shadcn-helper add https://mobx-restful-shadcn.idea2.app/r/rest-table.json
+npx shadcn-helper add @mobx-restful-shadcn/rest-table
 ```
 
 Replace `rest-table` with any component name from the list above.
 
-## Configuration
+## Initialization
 
 ### Internationalization
 
@@ -129,7 +141,7 @@ export class RepositoryTable extends Component {
         ),
       },
       { key: "stargazers_count", type: "number", renderHead: "Star Count" },
-      { key: "description", renderHead: "Description", rows: 3 },
+      { key: "description", renderHead: "Description", contentEditable: true },
     ];
   }
 

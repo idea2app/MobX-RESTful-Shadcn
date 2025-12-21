@@ -1,8 +1,8 @@
 import {
-  UndoTool as UDT,
+  ClearTool as CT,
   RedoTool as RDT,
   ResetTool as RST,
-  ClearTool as CT,
+  UndoTool as UDT,
 } from "edkit";
 
 import { renderTool } from "../tool";

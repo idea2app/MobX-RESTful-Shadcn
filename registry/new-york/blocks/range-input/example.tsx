@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Star } from "lucide-react";
+import { useState } from "react";
 
-import { RangeInput } from "./range-input";
+import { RangeInput } from "./index";
 
 export const RangeInputExample = () => {
   const [rating, setRating] = useState("3");

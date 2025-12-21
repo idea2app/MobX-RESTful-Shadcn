@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { BadgeBar, BadgeItem } from "./badge-bar";
+import { BadgeBar, BadgeItem } from "./index";
 
 export const BadgeBarExample = () => {
   const [items, setItems] = useState<BadgeItem[]>([

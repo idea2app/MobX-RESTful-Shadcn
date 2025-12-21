@@ -1,6 +1,12 @@
 "use client";
 
-import { ComponentProps, FC, FocusEvent, ReactNode, TextareaHTMLAttributes } from "react";
+import {
+  ComponentProps,
+  FC,
+  FocusEvent,
+  ReactNode,
+  TextareaHTMLAttributes,
+} from "react";
 import { uniqueID } from "web-utility";
 
 import { Input } from "@/components/ui/input";
@@ -54,7 +60,7 @@ export const FormField: FC<FormFieldProps> = ({
           "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-          multiple && rows ? "h-auto" : "h-9"
+          multiple && rows ? "h-auto" : "h-9",
         )}
         {...(controlProps as object)}
       >
@@ -72,7 +78,7 @@ export const FormField: FC<FormFieldProps> = ({
           "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-          "resize-vertical"
+          "resize-vertical",
         )}
         {...(controlProps as object)}
       />

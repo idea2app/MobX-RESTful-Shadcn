@@ -5,7 +5,7 @@ import { GitRepository } from "mobx-github";
 import { fields } from "@/components/example/form";
 import { Button } from "@/components/ui/button";
 import { i18n, repositoryStore } from "@/models/example";
-import { RestFormModal } from "./rest-form-modal";
+import { RestFormModal } from "./index";
 
 export const RestFormModalExample = () => (
   <div className="w-full space-y-8">

@@ -1,15 +1,15 @@
 "use client";
 
+import { FileArchive, FileSpreadsheet, FileText } from "lucide-react";
 import {
   FC,
   HTMLAttributes,
   ImgHTMLAttributes,
   InputHTMLAttributes,
 } from "react";
-import { FileText, FileArchive, FileSpreadsheet } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { ImagePreview } from "../image-preview/image-preview";
+import { ImagePreview } from "../image-preview";
 
 export type FilePreviewProps = ImgHTMLAttributes<HTMLImageElement> &
   HTMLAttributes<HTMLAudioElement> &
@@ -52,7 +52,7 @@ export const FilePreview: FC<FilePreviewProps> = ({
 }) => {
   const [category, ...kind] = type?.split(/\W+/) || [],
     fileName = decodeURI(
-      new URL(path, "http://localhost").pathname.split("/").at(-1) || ""
+      new URL(path, "http://localhost").pathname.split("/").at(-1) || "",
     );
   const extension =
     FileTypeMap[kind.at(-1) || ""] ||

@@ -1,16 +1,16 @@
 import {
   BoldTool as BT,
-  ItalicTool as IT,
-  UnderlineTool as UT,
-  StrikeThroughTool as STT,
+  FontSizeDownTool as FSDT,
+  FontSizeUpTool as FSUT,
   H1Tool as H1T,
   H2Tool as H2T,
   H3Tool as H3T,
-  FontSizeDownTool as FSDT,
-  FontSizeUpTool as FSUT,
+  ItalicTool as IT,
+  LinkTool as LT,
+  StrikeThroughTool as STT,
   SubscriptTool as SubST,
   SuperscriptTool as SupST,
-  LinkTool as LT,
+  UnderlineTool as UT,
 } from "edkit";
 
 import { renderTool } from "../tool";
