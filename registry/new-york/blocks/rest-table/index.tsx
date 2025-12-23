@@ -25,6 +25,7 @@ import { FilePreview } from "../file-preview";
 import { Pager } from "../pager";
 import { Field, RestForm, RestFormProps } from "../rest-form";
 import { RestFormModal } from "../rest-form-modal";
+import { Spinner } from "../spinner";
 
 export interface Column<T extends DataObject>
   extends Omit<Field<T>, "renderLabel"> {
@@ -301,7 +302,7 @@ export class RestTable<
             <TableRow>
               <TableCell className="text-center p-3" colSpan={columns.length}>
                 <div className="flex justify-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+                  <Spinner />
                 </div>
               </TableCell>
             </TableRow>

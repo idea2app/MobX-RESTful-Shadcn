@@ -1,6 +1,5 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import { ObservedComponent, reaction } from "mobx-react-helper";
@@ -13,6 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { Spinner } from "../spinner";
 
 export interface ImagePreviewProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -77,7 +77,7 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
         {...props}
       >
         {downloading ? (
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <Spinner className="text-muted-foreground" />
         ) : (
           loadedPath && (
             <img
