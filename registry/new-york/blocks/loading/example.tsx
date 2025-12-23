@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Loading } from ".";
+import { Loading } from "./index";
 
-export default function LoadingExample() {
+export function LoadingExample() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (

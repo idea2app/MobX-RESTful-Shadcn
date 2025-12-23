@@ -1,11 +1,9 @@
-import { FC, HTMLAttributes, ReactNode } from "react";
+import { FC, HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 import { Spinner } from "../spinner";
 
-export interface LoadingProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
-}
+export type LoadingProps = HTMLAttributes<HTMLDivElement>;
 
 export const Loading: FC<LoadingProps> = ({
   className,
@@ -21,6 +19,7 @@ export const Loading: FC<LoadingProps> = ({
   >
     <div className="flex items-center gap-3">
       <Spinner className="text-primary" />
+
       {children && <span className="text-white">{children}</span>}
     </div>
   </div>

@@ -7,13 +7,13 @@ import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/exampl
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
 import { ImagePreviewExample } from "@/registry/new-york/blocks/image-preview/example";
-import LoadingExample from "@/registry/new-york/blocks/loading/example";
+import { LoadingExample } from "@/registry/new-york/blocks/loading/example";
 import { PagerExample } from "@/registry/new-york/blocks/pager/example";
 import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
 import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
 import { ScrollBoundaryExample } from "@/registry/new-york/blocks/scroll-boundary/example";
 import { ScrollListExample } from "@/registry/new-york/blocks/scroll-list/example";
-import SpinnerExample from "@/registry/new-york/blocks/spinner/example";
+import { SpinnerExample } from "@/registry/new-york/blocks/spinner/example";
 
 export default function Home() {
   return (
