@@ -18,11 +18,7 @@ export default function LoadingExample() {
         Click the button to toggle the full-screen loading overlay
       </p>
 
-      {isLoading && (
-        <Loading>
-          <span>Please wait...</span>
-        </Loading>
-      )}
+      {isLoading && <Loading>Please wait...</Loading>}
     </div>
   );
 }
