@@ -4,6 +4,19 @@
   "homepage": "https://mobx-restful-shadcn.idea2.app",
   "items": [
     {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "description": "A loading spinner component with customizable size.",
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/spinner/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/spinner/index.tsx"
+        }
+      ]
+    },
+    {
       "name": "badge-bar",
       "type": "registry:component",
       "title": "Badge Bar",
@@ -38,13 +51,8 @@
       "type": "registry:component",
       "title": "Image Preview",
       "description": "An image preview component with modal viewing and download functionality.",
-      "registryDependencies": ["dialog"],
-      "dependencies": [
-        "lucide-react",
-        "mobx",
-        "mobx-react",
-        "mobx-react-helper"
-      ],
+      "registryDependencies": ["dialog", "@mobx-restful-shadcn/spinner"],
+      "dependencies": ["mobx", "mobx-react", "mobx-react-helper"],
       "files": [
         {
           "type": "registry:component",
@@ -266,7 +274,8 @@
         "@mobx-restful-shadcn/badge-bar",
         "@mobx-restful-shadcn/badge-input",
         "@mobx-restful-shadcn/rest-form-modal",
-        "@mobx-restful-shadcn/scroll-list"
+        "@mobx-restful-shadcn/scroll-list",
+        "@mobx-restful-shadcn/spinner"
       ],
       "dependencies": [
         "lodash.debounce",
@@ -298,7 +307,8 @@
         "@mobx-restful-shadcn/file-preview",
         "@mobx-restful-shadcn/pager",
         "@mobx-restful-shadcn/rest-form",
-        "@mobx-restful-shadcn/rest-form-modal"
+        "@mobx-restful-shadcn/rest-form-modal",
+        "@mobx-restful-shadcn/spinner"
       ],
       "dependencies": [
         "lodash.debounce",

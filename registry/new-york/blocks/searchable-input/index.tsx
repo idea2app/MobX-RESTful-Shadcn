@@ -15,6 +15,7 @@ import { TextInputType } from "../badge-input";
 import { RestFormProps } from "../rest-form";
 import { RestFormModal } from "../rest-form-modal";
 import { ScrollList, ScrollListProps } from "../scroll-list";
+import { Spinner } from "../spinner";
 
 export type OptionData = Record<"label" | "value", string>;
 
@@ -112,7 +113,7 @@ export class SearchableInput<
     ) : (
       this.observedProps.store.downloading > 0 && (
         <div className="text-center my-3">
-          <div className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent" />
+          <Spinner size="sm" />
         </div>
       )
     );
