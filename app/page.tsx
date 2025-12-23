@@ -12,6 +12,7 @@ import { RangeInputExample } from "@/registry/new-york/blocks/range-input/exampl
 import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
 import { ScrollBoundaryExample } from "@/registry/new-york/blocks/scroll-boundary/example";
 import { ScrollListExample } from "@/registry/new-york/blocks/scroll-list/example";
+import SpinnerExample from "@/registry/new-york/blocks/spinner/example";
 
 export default function Home() {
   return (
@@ -25,6 +26,13 @@ export default function Home() {
         </p>
       </header>
       <main className="flex flex-col flex-1 gap-8">
+        <ComponentCard
+          name="spinner"
+          description="A loading spinner component with customizable size."
+        >
+          <SpinnerExample />
+        </ComponentCard>
+
         <ComponentCard
           name="badge-bar"
           description="A component for displaying a list of badges with optional click and delete handlers."
