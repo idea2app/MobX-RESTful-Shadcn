@@ -17,6 +17,20 @@
       ]
     },
     {
+      "name": "loading",
+      "type": "registry:component",
+      "title": "Loading",
+      "description": "A full-screen loading overlay component with spinner and customizable message.",
+      "registryDependencies": ["@mobx-restful-shadcn/spinner"],
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/loading/index.tsx",
+          "target": "components/ui/mobx-restful-shadcn/loading/index.tsx"
+        }
+      ]
+    },
+    {
       "name": "badge-bar",
       "type": "registry:component",
       "title": "Badge Bar",

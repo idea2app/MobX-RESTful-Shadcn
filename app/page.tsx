@@ -7,6 +7,7 @@ import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/exampl
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
 import { ImagePreviewExample } from "@/registry/new-york/blocks/image-preview/example";
+import LoadingExample from "@/registry/new-york/blocks/loading/example";
 import { PagerExample } from "@/registry/new-york/blocks/pager/example";
 import { RangeInputExample } from "@/registry/new-york/blocks/range-input/example";
 import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example";
@@ -31,6 +32,13 @@ export default function Home() {
           description="A loading spinner component with customizable size."
         >
           <SpinnerExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="loading"
+          description="A full-screen loading overlay component with spinner and customizable message."
+        >
+          <LoadingExample />
         </ComponentCard>
 
         <ComponentCard
