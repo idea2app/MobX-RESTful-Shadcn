@@ -1,0 +1,11 @@
+packages:
+  - .
+autoInstallPeers: false
+overrides:
+  "@types/react": "^19.2.7"
+  "@types/react-dom": "^19.2.3"
+allowBuilds:
+  "@biomejs/biome": true
+  "core-js": true
+  msw: true
+  sharp: true
