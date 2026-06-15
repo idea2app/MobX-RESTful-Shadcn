@@ -49,9 +49,11 @@ export const Pager: FC<PagerProps> = ({
         defaultValue={pageSize}
         min={1}
         required
-        onChange={({ currentTarget: input }) =>
-          input.reportValidity() &&
-          onChange?.({ pageSize: +input.value, pageIndex })
+        onChange={
+          onChange &&
+          (({ currentTarget: input }) =>
+            input.reportValidity() &&
+            onChange({ pageSize: +input.value, pageIndex }))
         }
       />
       <span className="text-sm text-muted-foreground">×</span>
@@ -63,9 +65,11 @@ export const Pager: FC<PagerProps> = ({
         min={1}
         max={pageCount}
         required
-        onChange={({ currentTarget: input }) =>
-          input.reportValidity() &&
-          onChange?.({ pageSize, pageIndex: +input.value })
+        onChange={
+          onChange &&
+          (({ currentTarget: input }) =>
+            input.reportValidity() &&
+            onChange({ pageSize, pageIndex: +input.value }))
         }
       />
       <nav className="flex items-center gap-1">

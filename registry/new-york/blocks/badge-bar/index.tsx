@@ -57,7 +57,7 @@ export const BadgeBar: FC<BadgeBarProps> = ({
           <button
             type="button"
             className="cursor-pointer bg-transparent border-0 p-0"
-            onClick={() => onCheck({ text, link }, index)}
+            onClick={onCheck && (() => onCheck({ text, link }, index))}
           >
             {text}
           </button>
@@ -69,7 +69,7 @@ export const BadgeBar: FC<BadgeBarProps> = ({
             type="button"
             className="ml-1 rounded-full hover:bg-background/20"
             aria-label="Remove badge"
-            onClick={() => onDelete({ text, link }, index)}
+            onClick={onDelete && (() => onDelete({ text, link }, index))}
           >
             <X className="h-3 w-3" />
           </button>
