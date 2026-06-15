@@ -32,7 +32,7 @@ export const ColorSelector: FC<ColorSelectorProps> = ({
       className="absolute w-full h-full left-0 top-0 -z-10 rounded-md opacity-0 cursor-pointer"
       type="color"
       value={value}
-      onChange={({ target: { value } }) => onChange?.(value)}
+      onChange={onChange && (({ target: { value } }) => onChange(value))}
     />
     <Button
       type="button"
