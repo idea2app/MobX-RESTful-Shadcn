@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "install-shadcn": "shadcn-helper install",
+    "install": "shadcn-helper install",
     "test": "lint-staged  &&  git add .",
     "registry:build": "shadcn build",
     "dev": "next dev --webpack",
