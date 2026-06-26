@@ -40,6 +40,71 @@ A **Pagination Table** & **Scroll List** component suite for [CRUD operation][1]
 }
 ```
 
+### Tool-chain configuration
+
+#### Parcel 2 with TypeScript (`.parcelrc`)
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
+  }
+}
+```
+
+#### webpack with Babel (`babel.config.js`)
+
+```javascript
+module.exports = {
+  presets: [
+    // https://babeljs.io/docs/babel-preset-react
+    [
+      "@babel/preset-react",
+      {
+        runtime: "automatic",
+        development: process.env.BABEL_ENV === "development",
+      },
+    ],
+  ],
+  plugins: [
+    // https://github.com/babel/babel/issues/16262#issuecomment-1962832499
+    [
+      "@babel/plugin-transform-typescript",
+      {
+        allowDeclareFields: true,
+        allowNamespaces: true,
+        allExtensions: true,
+        isTSX: true,
+      },
+    ],
+    // https://babeljs.io/docs/babel-plugin-proposal-decorators#note-compatibility-with-babelplugin-transform-class-properties
+    ["@babel/plugin-proposal-decorators", { version: "2023-05" }],
+  ],
+};
+```
+
+##### Next.js (`package.json`)
+
+```json
+{
+  "scripts": {
+    "install": "shadcn-helper install",
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start"
+  },
+}
+```
+
+###### Vercel
+
+Build command should be `npm run install && npm run build`.
+
+#### Vite
+
+Ask AI or https://x.com/evanyou, if you're sure that he won't say bad words to niche users.
+
 ### Adding components
 
 ```shell

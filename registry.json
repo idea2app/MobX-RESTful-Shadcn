@@ -12,7 +12,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/spinner/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/spinner/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/spinner/index.tsx"
         }
       ]
     },
@@ -26,7 +26,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/loading/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/loading/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/loading/index.tsx"
         }
       ]
     },
@@ -41,7 +41,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/badge-bar/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/badge-bar/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/badge-bar/index.tsx"
         }
       ]
     },
@@ -56,7 +56,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/pager/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/pager/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/pager/index.tsx"
         }
       ]
     },
@@ -71,7 +71,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/image-preview/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/image-preview/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/image-preview/index.tsx"
         }
       ]
     },
@@ -86,7 +86,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/file-preview/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/file-preview/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/file-preview/index.tsx"
         }
       ]
     },
@@ -99,7 +99,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/scroll-boundary/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/scroll-boundary/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/scroll-boundary/index.tsx"
         }
       ]
     },
@@ -121,7 +121,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/scroll-list/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/scroll-list/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/scroll-list/index.tsx"
         }
       ]
     },
@@ -143,7 +143,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/array-field/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/array-field/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/array-field/index.tsx"
         }
       ]
     },
@@ -158,7 +158,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/badge-input/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/badge-input/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/badge-input/index.tsx"
         }
       ]
     },
@@ -172,7 +172,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/range-input/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/range-input/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/range-input/index.tsx"
         }
       ]
     },
@@ -193,7 +193,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/file-picker/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/file-picker/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/file-picker/index.tsx"
         }
       ]
     },
@@ -208,7 +208,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/form-field/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/form-field/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/form-field/index.tsx"
         }
       ]
     },
@@ -228,7 +228,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/file-uploader/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/file-uploader/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/file-uploader/index.tsx"
         }
       ]
     },
@@ -258,7 +258,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/rest-form/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/rest-form/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/rest-form/index.tsx"
         }
       ]
     },
@@ -273,7 +273,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/rest-form-modal/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/rest-form-modal/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/rest-form-modal/index.tsx"
         }
       ]
     },
@@ -304,7 +304,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/searchable-input/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/searchable-input/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/searchable-input/index.tsx"
         }
       ]
     },
@@ -338,7 +338,7 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/rest-table/index.tsx",
-          "target": "components/ui/mobx-restful-shadcn/rest-table/index.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/rest-table/index.tsx"
         }
       ]
     },
@@ -360,52 +360,52 @@
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/index.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/index.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/index.ts"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/editor.tsx",
-          "target": "components/ui/mobx-restful-shadcn/editor/editor.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/editor/editor.tsx"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tool.tsx",
-          "target": "components/ui/mobx-restful-shadcn/editor/tool.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tool.tsx"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/index.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/index.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/index.ts"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/text.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/text.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/text.ts"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/layout.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/layout.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/layout.ts"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/control.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/control.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/control.ts"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/media.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/media.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/media.ts"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/color.tsx",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/color.tsx"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/color.tsx"
         },
         {
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/extra.ts",
-          "target": "components/ui/mobx-restful-shadcn/editor/tools/extra.ts"
+          "target": "@components/ui/mobx-restful-shadcn/editor/tools/extra.ts"
         }
       ]
     }
