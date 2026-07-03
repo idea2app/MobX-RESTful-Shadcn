@@ -31,6 +31,20 @@
       ]
     },
     {
+      "name": "command-line",
+      "type": "registry:component",
+      "title": "Command Line",
+      "description": "A command line prompt component with typing animation and click-to-copy behavior.",
+      "dependencies": ["mobx", "mobx-react"],
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/command-line/index.tsx",
+          "target": "@components/ui/mobx-restful-shadcn/command-line/index.tsx"
+        }
+      ]
+    },
+    {
       "name": "badge-bar",
       "type": "registry:component",
       "title": "Badge Bar",

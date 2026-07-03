@@ -2,6 +2,7 @@ import { ComponentCard } from "@/components/example/component-card";
 import { ArrayFieldExample } from "@/registry/new-york/blocks/array-field/example";
 import { BadgeBarExample } from "@/registry/new-york/blocks/badge-bar/example";
 import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/example";
+import { CommandLineExample } from "@/registry/new-york/blocks/command-line/example";
 import { EditorExample } from "@/registry/new-york/blocks/editor/example";
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
@@ -32,6 +33,13 @@ export default function Home() {
           description="A loading spinner component with customizable size."
         >
           <SpinnerExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="command-line"
+          description="A command line prompt component with typing animation and click-to-copy behavior."
+        >
+          <CommandLineExample />
         </ComponentCard>
 
         <ComponentCard
