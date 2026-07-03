@@ -65,22 +65,8 @@ export class CommandLine extends Component<CommandLineProps> {
   autoCopy = async () => {
     const { text } = this.props;
 
-    if (!text) return;
-
-    try {
-      if (navigator.clipboard?.writeText)
-        return await navigator.clipboard.writeText(text);
-    } catch {}
-
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    textArea.style.position = "fixed";
-    textArea.style.opacity = "0";
-
-    document.body.append(textArea);
-    textArea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textArea);
+    if (text)
+      await navigator.clipboard.writeText(text);
   };
 
   render() {
