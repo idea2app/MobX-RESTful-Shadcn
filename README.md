@@ -100,7 +100,7 @@ module.exports = {
 }
 ```
 
-[ ] Turbopack may be supported after https://github.com/vercel/next.js/pull/94274 merged
+- [ ] Turbopack may be supported after https://github.com/vercel/next.js/pull/94274 merged
 
 ###### Vercel
 
@@ -335,6 +335,11 @@ This is a custom component registry built with Next.js and compatible with the `
 - [Shadcn UI Documentation](https://ui.shadcn.com/docs)
 - [Component Registry Documentation](https://ui.shadcn.com/docs/registry)
 - [MobX RESTful Documentation][2]
+
+## User cases
+
+1. Next.js page router scaffold: https://github.com/idea2app/Lark-Next-Shadcn-ts
+2. Next.js app router scaffold: https://github.com/idea2app/Next-shadcn-ts
 
 [1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [2]: https://github.com/idea2app/MobX-RESTful
