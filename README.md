@@ -91,7 +91,7 @@ module.exports = {
 {
   "scripts": {
     "install": "shadcn-helper install",
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start"
   },
