@@ -10,24 +10,26 @@ A **Pagination Table** & **Scroll List** component suite for [CRUD operation][1]
 
 1. [Spinner](https://mobx-restful-shadcn.idea2.app/r/spinner.json)
 2. [Loading](https://mobx-restful-shadcn.idea2.app/r/loading.json)
-3. [Command Line](https://mobx-restful-shadcn.idea2.app/r/command-line.json)
-4. [Badge Bar](https://mobx-restful-shadcn.idea2.app/r/badge-bar.json)
-5. [Badge Input](https://mobx-restful-shadcn.idea2.app/r/badge-input.json)
-6. [Image Preview](https://mobx-restful-shadcn.idea2.app/r/image-preview.json)
-7. [File Preview](https://mobx-restful-shadcn.idea2.app/r/file-preview.json)
-8. [File Picker](https://mobx-restful-shadcn.idea2.app/r/file-picker.json)
-9. [File Uploader](https://mobx-restful-shadcn.idea2.app/r/file-uploader.json)
-10. [Form Field](https://mobx-restful-shadcn.idea2.app/r/form-field.json)
-11. [Range Input](https://mobx-restful-shadcn.idea2.app/r/range-input.json)
-12. [Array Field](https://mobx-restful-shadcn.idea2.app/r/array-field.json)
-13. [REST Form](https://mobx-restful-shadcn.idea2.app/r/rest-form.json)
-14. [REST Form Modal](https://mobx-restful-shadcn.idea2.app/r/rest-form-modal.json)
-15. [Pager](https://mobx-restful-shadcn.idea2.app/r/pager.json)
-16. [REST Table](https://mobx-restful-shadcn.idea2.app/r/rest-table.json)
-17. [Scroll Boundary](https://mobx-restful-shadcn.idea2.app/r/scroll-boundary.json)
-18. [Scroll List](https://mobx-restful-shadcn.idea2.app/r/scroll-list.json)
-19. [Searchable Input](https://mobx-restful-shadcn.idea2.app/r/searchable-input.json)
-20. [Editor](https://mobx-restful-shadcn.idea2.app/r/editor.json)
+3. [Type Writer](https://mobx-restful-shadcn.idea2.app/r/type-writer.json)
+4. [Copy Overlay](https://mobx-restful-shadcn.idea2.app/r/copy-overlay.json)
+5. [Command Line](https://mobx-restful-shadcn.idea2.app/r/command-line.json)
+6. [Badge Bar](https://mobx-restful-shadcn.idea2.app/r/badge-bar.json)
+7. [Badge Input](https://mobx-restful-shadcn.idea2.app/r/badge-input.json)
+8. [Image Preview](https://mobx-restful-shadcn.idea2.app/r/image-preview.json)
+9. [File Preview](https://mobx-restful-shadcn.idea2.app/r/file-preview.json)
+10. [File Picker](https://mobx-restful-shadcn.idea2.app/r/file-picker.json)
+11. [File Uploader](https://mobx-restful-shadcn.idea2.app/r/file-uploader.json)
+12. [Form Field](https://mobx-restful-shadcn.idea2.app/r/form-field.json)
+13. [Range Input](https://mobx-restful-shadcn.idea2.app/r/range-input.json)
+14. [Array Field](https://mobx-restful-shadcn.idea2.app/r/array-field.json)
+15. [REST Form](https://mobx-restful-shadcn.idea2.app/r/rest-form.json)
+16. [REST Form Modal](https://mobx-restful-shadcn.idea2.app/r/rest-form-modal.json)
+17. [Pager](https://mobx-restful-shadcn.idea2.app/r/pager.json)
+18. [REST Table](https://mobx-restful-shadcn.idea2.app/r/rest-table.json)
+19. [Scroll Boundary](https://mobx-restful-shadcn.idea2.app/r/scroll-boundary.json)
+20. [Scroll List](https://mobx-restful-shadcn.idea2.app/r/scroll-list.json)
+21. [Searchable Input](https://mobx-restful-shadcn.idea2.app/r/searchable-input.json)
+22. [Editor](https://mobx-restful-shadcn.idea2.app/r/editor.json)
 
 ## Installation
 
@@ -94,9 +96,11 @@ module.exports = {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start"
-  },
+  }
 }
 ```
+
+[ ] Turbopack may be supported after https://github.com/vercel/next.js/pull/94274 merged
 
 ###### Vercel
 

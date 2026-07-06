@@ -31,11 +31,47 @@
       ]
     },
     {
+      "name": "type-writer",
+      "type": "registry:component",
+      "title": "Type Writer",
+      "description": "A Typewriter Text component with Interval-based Character Rendering.",
+      "dependencies": [
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper",
+        "web-utility"
+      ],
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/type-writer/index.tsx",
+          "target": "@components/ui/mobx-restful-shadcn/type-writer/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-overlay",
+      "type": "registry:component",
+      "title": "Copy Overlay",
+      "description": "A Copy-to-Clipboard overlay component that captures click interactions from its parent area.",
+      "dependencies": ["mobx", "mobx-react", "web-utility"],
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/copy-overlay/index.tsx",
+          "target": "@components/ui/mobx-restful-shadcn/copy-overlay/index.tsx"
+        }
+      ]
+    },
+    {
       "name": "command-line",
       "type": "registry:component",
       "title": "Command Line",
-      "description": "A command line prompt component with typing animation and click-to-copy behavior.",
-      "dependencies": ["mobx", "mobx-react"],
+      "description": "A Command Line prompt component with Typing Animation & Click-to-Copy behavior.",
+      "registryDependencies": [
+        "@mobx-restful-shadcn/type-writer",
+        "@mobx-restful-shadcn/copy-overlay"
+      ],
       "files": [
         {
           "type": "registry:component",

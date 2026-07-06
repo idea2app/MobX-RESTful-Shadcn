@@ -20,10 +20,9 @@ export const ComponentCard: FC<ComponentCardProps> = ({
       <h2 className="text-sm text-muted-foreground sm:pl-3">{description}</h2>
       <OpenInV0Button name={name} className="w-fit" />
     </div>
-    <CommandLine
-      text={`npx shadcn-helper add @mobx-restful-shadcn/${name}`}
-      className="w-full"
-    />
+    <CommandLine className="w-full">
+      {`npx shadcn-helper add @mobx-restful-shadcn/${name}`}
+    </CommandLine>
     <div className={`flex items-center justify-center ${minHeight} relative`}>
       {children}
     </div>
