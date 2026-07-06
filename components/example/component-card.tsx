@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 
+import { CommandLine } from "@/registry/new-york/blocks/command-line";
 import { OpenInV0Button } from "./open-in-v0-button";
 
 export type ComponentCardProps = PropsWithChildren<{
@@ -19,6 +20,9 @@ export const ComponentCard: FC<ComponentCardProps> = ({
       <h2 className="text-sm text-muted-foreground sm:pl-3">{description}</h2>
       <OpenInV0Button name={name} className="w-fit" />
     </div>
+    <CommandLine className="w-full">
+      {`npx shadcn-helper add @mobx-restful-shadcn/${name}`}
+    </CommandLine>
     <div className={`flex items-center justify-center ${minHeight} relative`}>
       {children}
     </div>

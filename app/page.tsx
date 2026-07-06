@@ -2,6 +2,8 @@ import { ComponentCard } from "@/components/example/component-card";
 import { ArrayFieldExample } from "@/registry/new-york/blocks/array-field/example";
 import { BadgeBarExample } from "@/registry/new-york/blocks/badge-bar/example";
 import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/example";
+import { CommandLineExample } from "@/registry/new-york/blocks/command-line/example";
+import { CopyOverlayExample } from "@/registry/new-york/blocks/copy-overlay/example";
 import { EditorExample } from "@/registry/new-york/blocks/editor/example";
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
@@ -14,6 +16,7 @@ import { RestTableExample } from "@/registry/new-york/blocks/rest-table/example"
 import { ScrollBoundaryExample } from "@/registry/new-york/blocks/scroll-boundary/example";
 import { ScrollListExample } from "@/registry/new-york/blocks/scroll-list/example";
 import { SpinnerExample } from "@/registry/new-york/blocks/spinner/example";
+import { TypeWriterExample } from "@/registry/new-york/blocks/type-writer/example";
 
 export default function Home() {
   return (
@@ -32,6 +35,27 @@ export default function Home() {
           description="A loading spinner component with customizable size."
         >
           <SpinnerExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="type-writer"
+          description="A Typewriter Text component with Interval-based Character Rendering."
+        >
+          <TypeWriterExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="copy-overlay"
+          description="A Copy-to-Clipboard overlay component that captures click interactions from its parent area."
+        >
+          <CopyOverlayExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="command-line"
+          description="A Command Line prompt component with Typing Animation & Click-to-Copy behavior."
+        >
+          <CommandLineExample />
         </ComponentCard>
 
         <ComponentCard
