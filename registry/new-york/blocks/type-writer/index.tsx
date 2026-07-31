@@ -56,7 +56,7 @@ export class TypeWriter extends ObservedComponent<TypeWriterProps> {
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, intervalSeconds, ...props } = this.props;
 
     return (
       <span ref={this.#box} {...props}>

@@ -22,6 +22,7 @@ export const ArrayFieldExample = () => (
             placeholder={`Task ${index + 1}`}
           />
         )}
+        onChange={(value) => console.log(JSON.stringify(value, null, 2))}
       />
     </div>
   </div>

@@ -41,14 +41,17 @@ export const FormField: FC<FormFieldProps> = ({
   <div
     className={cn("grid w-full gap-1.5", className)}
     style={style}
-    onBlur={(event) => {
-      if ((event.target as HTMLInputElement).checkValidity()) {
-        event.target.classList.remove("border-destructive");
-      } else {
-        event.target.classList.add("border-destructive");
-      }
-      onBlur?.(event as unknown as FocusEvent<HTMLInputElement>);
-    }}
+    onBlur={
+      onBlur &&
+      ((event) => {
+        if ((event.target as HTMLInputElement).checkValidity()) {
+          event.target.classList.remove("border-destructive");
+        } else {
+          event.target.classList.add("border-destructive");
+        }
+        onBlur(event as unknown as FocusEvent<HTMLInputElement>);
+      })
+    }
   >
     {label && <Label htmlFor={id}>{label}</Label>}
     {options ? (

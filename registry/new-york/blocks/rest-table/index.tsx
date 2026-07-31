@@ -361,11 +361,13 @@ export class RestTable<
       className = "overflow-auto flex flex-col gap-3",
       editable,
       deletable,
+      filter,
       filterFields,
       store,
       translator,
       onSubmit,
       onReset,
+      onCheck,
       ...props
     } = this.props;
 
