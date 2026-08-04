@@ -5,9 +5,11 @@ overrides:
   "@types/react": "^19.2.17"
   "@types/react-dom": "^19.2.3"
 patchedDependencies:
-  next@16.2.12: patches/next@16.2.12.patch
+  next@16.3.0: patches/next@16.3.0.patch
 allowBuilds:
   "@biomejs/biome": true
   "core-js": true
+  esbuild: true
   msw: true
   sharp: true
+  workerd: true

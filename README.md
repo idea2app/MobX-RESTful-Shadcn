@@ -106,6 +106,28 @@ module.exports = {
 
 Build command should be `npm run install && npm run build`.
 
+###### CloudFlare
+
+Follow CloudFlare's official manual setup guide for Next.js:
+
+https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/#manual-configuration
+
+This project is already configured with:
+
+1. `@opennextjs/cloudflare` dependency
+2. `wrangler` dev dependency
+3. `wrangler.jsonc`
+4. `open-next.config.ts`
+5. scripts in `package.json`
+
+Use the following commands:
+
+```bash
+pnpm dev
+pnpm preview
+pnpm run deploy
+```
+
 #### Vite
 
 Ask AI or https://x.com/evanyou, if you're sure that he won't say bad words to niche users.
