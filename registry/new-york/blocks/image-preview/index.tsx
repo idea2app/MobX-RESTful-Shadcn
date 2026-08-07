@@ -14,9 +14,8 @@ import {
 import { cn } from "@/lib/utils";
 import { Spinner } from "../spinner";
 
-export interface ImagePreviewProps extends ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-}
+export type ImagePreviewProps = ImgHTMLAttributes<HTMLImageElement> &
+  Partial<Pick<HTMLMediaElement, "srcObject">>;
 
 @observer
 export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
@@ -31,13 +30,29 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
   @observable
   accessor viewing = false;
 
-  @reaction(({ observedProps }) => observedProps.src)
+  objectURL = "";
+
+  @reaction(({ observedProps }) => observedProps.src + observedProps.srcObject)
   componentDidMount() {
-    const { src } = this.observedProps;
+    const { src, srcObject } = this.observedProps;
+
+    if (this.objectURL) {
+      URL.revokeObjectURL(this.objectURL);
+      this.objectURL = "";
+    }
 
     this.loadedPath = "";
 
-    if (src) this.load(src);
+    if (srcObject instanceof Blob || srcObject instanceof MediaSource) {
+      this.objectURL = URL.createObjectURL(srcObject);
+      this.load(this.objectURL);
+    } else if (src) {
+      this.load(src);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.objectURL) URL.revokeObjectURL(this.objectURL);
   }
 
   async load(path: string) {

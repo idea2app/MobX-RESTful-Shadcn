@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { Eye, X } from "lucide-react";
 import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
 import { FormComponent, FormComponentProps, reaction } from "mobx-react-helper";
@@ -8,9 +8,11 @@ import { blobOf } from "web-utility";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { FilePreview } from "../file-preview";
+import { FilePreview, FilePreviewProps } from "../file-preview";
 
-export type FilePickerProps = FormComponentProps<string | File>;
+export interface FilePickerProps extends FormComponentProps<string | File> {
+  onView?: (data: Pick<FilePreviewProps, "path" | "file">) => void;
+}
 
 const blobCache = new WeakMap<File, string>();
 
@@ -105,12 +107,12 @@ export class FilePicker extends FormComponent<FilePickerProps> {
   }
 
   render() {
-    const { filePath, fileType } = this,
-      { className = "", style } = this.props;
+    const { file, filePath, fileType } = this,
+      { className = "", style, onView } = this.props;
 
     return (
       <div
-        className={cn("inline-block border rounded-md relative", className)}
+        className={cn("inline-block border rounded-md relative isolate", className)}
         style={{ width: "10rem", height: "10rem", ...style }}
       >
         {filePath ? (
@@ -118,6 +120,7 @@ export class FilePicker extends FormComponent<FilePickerProps> {
             className="w-full h-full"
             type={fileType}
             path={filePath}
+            file={file}
           />
         ) : (
           <div className="w-full h-full flex justify-center items-center text-6xl text-muted-foreground">
@@ -125,17 +128,30 @@ export class FilePicker extends FormComponent<FilePickerProps> {
           </div>
         )}
         {this.renderInput()}
-        {filePath && (
-          <Button
-            type="button"
-            size="icon"
-            variant="ghost"
-            className="absolute top-0 right-0 h-6 w-6"
-            onClick={() => this.#changeFile()}
-          >
-            <X className="h-3 w-3" />
-          </Button>
-        )}
+        <div className="absolute top-0 right-0 flex gap-1 p-1 mix-blend-difference">
+          {onView && (
+            <Button
+              type="button"
+              size="icon"
+              variant="ghost"
+              className="h-6 w-6"
+              onClick={() => onView({ path: filePath, file })}
+            >
+              <Eye className="h-3 w-3" />
+            </Button>
+          )}
+          {filePath && (
+            <Button
+              type="button"
+              size="icon"
+              variant="ghost"
+              className="h-6 w-6"
+              onClick={() => this.#changeFile()}
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          )}
+        </div>
       </div>
     );
   }
