@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { FilePreview, FilePreviewProps } from "../file-preview";
 
 export interface FilePickerProps extends FormComponentProps<string | File> {
-  onView?: (data: Pick<FilePreviewProps, "path" | "file">) => void;
+  onView?: (data: Pick<FilePreviewProps, "path" | "file">) => unknown;
 }
 
 const blobCache = new WeakMap<File, string>();
@@ -112,7 +112,10 @@ export class FilePicker extends FormComponent<FilePickerProps> {
 
     return (
       <div
-        className={cn("inline-block border rounded-md relative isolate", className)}
+        className={cn(
+          "inline-block border rounded-md relative isolate",
+          className,
+        )}
         style={{ width: "10rem", height: "10rem", ...style }}
       >
         {filePath ? (
@@ -132,9 +135,9 @@ export class FilePicker extends FormComponent<FilePickerProps> {
           {onView && (
             <Button
               type="button"
-              size="icon"
-              variant="ghost"
               className="h-6 w-6"
+              variant="ghost"
+              size="icon"
               onClick={() => onView({ path: filePath, file })}
             >
               <Eye className="h-3 w-3" />

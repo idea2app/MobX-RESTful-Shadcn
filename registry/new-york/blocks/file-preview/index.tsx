@@ -56,9 +56,9 @@ export const FilePreview: FC<FilePreviewProps> = ({
     fileName =
       file instanceof File
         ? file.name
-        : decodeURI(
-            new URL(path || "", "http://localhost").pathname.split("/").at(-1) ||
-              "",
+        : path &&
+          decodeURI(
+            new URL(path, "http://localhost").pathname.split("/").at(-1) || "",
           );
   const extension =
     FileTypeMap[kind.at(-1) || ""] ||
@@ -74,14 +74,18 @@ export const FilePreview: FC<FilePreviewProps> = ({
       {...props}
     >
       {category === "image" ? (
-        <ImagePreview className="h-full" src={path} srcObject={file} {...props} />
+        <ImagePreview
+          className="h-full"
+          src={file instanceof Blob ? file : path}
+          {...props}
+        />
       ) : category === "audio" ? (
         <audio
           className="max-w-full"
           controls
           src={path}
           ref={(node) => {
-            if (node) node.srcObject = file;
+            if (node && file) node.srcObject = file;
           }}
           {...props}
         />
@@ -91,7 +95,7 @@ export const FilePreview: FC<FilePreviewProps> = ({
           src={path}
           className="max-w-full max-h-[400px]"
           ref={(node) => {
-            if (node) node.srcObject = file;
+            if (node && file) node.srcObject = file;
           }}
           onMouseEnter={({ currentTarget }) => currentTarget.play()}
           onMouseLeave={({ currentTarget }) => currentTarget.pause()}
