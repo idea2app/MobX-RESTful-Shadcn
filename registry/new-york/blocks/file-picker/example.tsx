@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 
+import { FilePreview, FilePreviewProps } from "../file-preview";
 import { FilePicker } from "./index";
 
 export const FilePickerExample = () => {
   const [imageFile, setImageFile] = useState<string | File>("");
   const [documentFile, setDocumentFile] = useState<string | File>("");
+  const [viewingFile, setViewingFile] = useState<
+    Pick<FilePreviewProps, "path" | "file">
+  >({});
 
   return (
     <div className="w-full space-y-8">
@@ -32,6 +36,25 @@ export const FilePickerExample = () => {
         <p className="text-sm text-muted-foreground mt-2">
           Click to upload a document
         </p>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Preview Callback</h3>
+        <FilePicker
+          value={imageFile}
+          onChange={setImageFile}
+          accept="image/*"
+          onView={setViewingFile}
+        />
+        {viewingFile.path && (
+          <div className="mt-4 max-w-xs rounded-md border p-2">
+            <FilePreview
+              type={viewingFile.file?.type || "image/*"}
+              path={viewingFile.path}
+              file={viewingFile.file}
+            />
+          </div>
+        )}
       </div>
 
       <div>
