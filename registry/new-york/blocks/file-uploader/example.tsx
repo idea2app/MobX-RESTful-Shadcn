@@ -1,8 +1,29 @@
 "use client";
 
+import { blobOf } from "web-utility";
 import { FileModel, FileUploader } from "./index";
 
-class MyFileModel extends FileModel {}
+type UploadResponse = Record<"originalname" | "filename" | "location", string>;
+
+class MyFileModel extends FileModel {
+  async upload(file: string | Blob): Promise<string> {
+    const uploadFile = typeof file === "string" ? await blobOf(file) : file;
+
+    const body = new FormData();
+    body.append("file", uploadFile);
+
+    const response = await fetch(
+      "https://api.escuelajs.co/api/v1/files/upload",
+      {
+        method: "POST",
+        body,
+      },
+    );
+    const { location } = (await response.json()) as UploadResponse;
+
+    return super.upload(location);
+  }
+}
 
 const store = new MyFileModel();
 

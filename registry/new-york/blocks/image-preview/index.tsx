@@ -14,9 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Spinner } from "../spinner";
 
-export interface ImagePreviewProps extends ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-}
+export type ImagePreviewProps = ImgHTMLAttributes<HTMLImageElement>;
 
 @observer
 export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
@@ -31,13 +29,28 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
   @observable
   accessor viewing = false;
 
+  objectURL = "";
+
   @reaction(({ observedProps }) => observedProps.src)
   componentDidMount() {
     const { src } = this.observedProps;
 
+    if (this.objectURL) {
+      URL.revokeObjectURL(this.objectURL);
+      this.objectURL = "";
+    }
     this.loadedPath = "";
 
-    if (src) this.load(src);
+    if (src instanceof Blob) {
+      this.objectURL = URL.createObjectURL(src);
+      this.load(this.objectURL);
+    } else if (src) {
+      this.load(src);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.objectURL) URL.revokeObjectURL(this.objectURL);
   }
 
   async load(path: string) {

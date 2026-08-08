@@ -16,7 +16,8 @@ export type FilePreviewProps = ImgHTMLAttributes<HTMLImageElement> &
   HTMLAttributes<HTMLVideoElement> &
   HTMLAttributes<HTMLAnchorElement> & {
     type?: InputHTMLAttributes<HTMLInputElement>["accept"];
-    path: string;
+    path?: string;
+    file?: HTMLMediaElement["srcObject"];
   };
 
 export const FileTypeMap: Record<string, string> = {
@@ -48,12 +49,17 @@ export const FilePreview: FC<FilePreviewProps> = ({
   hidden,
   type,
   path,
+  file,
   ...props
 }) => {
   const [category, ...kind] = type?.split(/\W+/) || [],
-    fileName = decodeURI(
-      new URL(path, "http://localhost").pathname.split("/").at(-1) || "",
-    );
+    fileName =
+      file instanceof File
+        ? file.name
+        : path &&
+          decodeURI(
+            new URL(path, "http://localhost").pathname.split("/").at(-1) || "",
+          );
   const extension =
     FileTypeMap[kind.at(-1) || ""] ||
     (fileName?.includes(".") ? fileName.split(".").at(-1) : kind.at(-1));
@@ -68,14 +74,29 @@ export const FilePreview: FC<FilePreviewProps> = ({
       {...props}
     >
       {category === "image" ? (
-        <ImagePreview className="h-full" {...props} src={path} />
+        <ImagePreview
+          className="h-full"
+          src={file instanceof Blob ? file : path}
+          {...props}
+        />
       ) : category === "audio" ? (
-        <audio className="max-w-full" {...props} controls src={path} />
+        <audio
+          className="max-w-full"
+          controls
+          src={path}
+          ref={(node) => {
+            if (node && file) node.srcObject = file;
+          }}
+          {...props}
+        />
       ) : category === "video" ? (
         <video
           muted
           src={path}
           className="max-w-full max-h-[400px]"
+          ref={(node) => {
+            if (node && file) node.srcObject = file;
+          }}
           onMouseEnter={({ currentTarget }) => currentTarget.play()}
           onMouseLeave={({ currentTarget }) => currentTarget.pause()}
           {...props}
