@@ -131,19 +131,20 @@ export class FilePicker extends FormComponent<FilePickerProps> {
           </div>
         )}
         {this.renderInput()}
-        <div className="absolute top-0 right-0 flex gap-1 p-1 mix-blend-difference">
-          {onView && (
-            <Button
-              type="button"
-              className="h-6 w-6"
-              variant="ghost"
-              size="icon"
-              onClick={() => onView({ path: filePath, file })}
-            >
-              <Eye className="h-3 w-3" />
-            </Button>
-          )}
-          {filePath && (
+
+        {filePath && (
+          <div className="absolute top-0 right-0 flex gap-1 p-1 mix-blend-difference">
+            {onView && (
+              <Button
+                type="button"
+                className="h-6 w-6"
+                variant="ghost"
+                size="icon"
+                onClick={() => onView({ path: filePath, file })}
+              >
+                <Eye className="h-3 w-3" />
+              </Button>
+            )}
             <Button
               type="button"
               size="icon"
@@ -153,8 +154,8 @@ export class FilePicker extends FormComponent<FilePickerProps> {
             >
               <X className="h-3 w-3" />
             </Button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
