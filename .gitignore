@@ -13,10 +13,10 @@
 # testing
 /coverage
 
-# Next.js
+# ViNext
 /.next/
-/out/
-/.open-next/
+/dist/
+.vinext/
 
 # production
 /build
@@ -33,13 +33,6 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*.local
-
-# Vercel
-.vercel
-
-# CloudFlare
-cloudflare-env.d.ts
-.wrangler
 
 # TypeScript
 *.tsbuildinfo

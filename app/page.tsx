@@ -5,6 +5,8 @@ import { BadgeInputExample } from "@/registry/new-york/blocks/badge-input/exampl
 import { CommandLineExample } from "@/registry/new-york/blocks/command-line/example";
 import { CopyOverlayExample } from "@/registry/new-york/blocks/copy-overlay/example";
 import { EditorExample } from "@/registry/new-york/blocks/editor/example";
+import { EditorHTMLExample } from "@/registry/new-york/blocks/editor-html/example";
+import { EditorJSExample } from "@/registry/new-york/blocks/editor-js/example";
 import { FilePickerExample } from "@/registry/new-york/blocks/file-picker/example";
 import { FilePreviewExample } from "@/registry/new-york/blocks/file-preview/example";
 import { FormFieldExample } from "@/registry/new-york/blocks/form-field/example";
@@ -156,6 +158,21 @@ export default function Home() {
           minHeight="min-h-[400px]"
         >
           <EditorExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="editor-js"
+          description="A block-style rich text editor based on Editor.js that submits its data as JSON in forms."
+          minHeight="min-h-[400px]"
+        >
+          <EditorJSExample />
+        </ComponentCard>
+
+        <ComponentCard
+          name="editor-html"
+          description="A component that renders Editor.js output data as HTML."
+        >
+          <EditorHTMLExample />
         </ComponentCard>
       </main>
     </div>

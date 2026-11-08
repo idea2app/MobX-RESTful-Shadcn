@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 import { computed, observable } from "mobx";
 import { TranslationModel } from "mobx-i18n";
 import { observer } from "mobx-react";
-import { ObservedComponent } from "mobx-react-helper";
+import { ObservedComponent, reaction } from "mobx-react-helper";
 import { DataObject, Filter, IDType } from "mobx-restful";
 import { HTMLAttributes, ReactNode } from "react";
 import { isEmpty } from "web-utility";
@@ -62,6 +62,12 @@ export class RestTable<
   static readonly displayName = "RestTable";
 
   componentDidMount() {
+    super.componentDidMount();
+    this.init();
+  }
+
+  @reaction(({ observedProps: { filter } }) => filter)
+  init() {
     const { store, filter } = this.props;
 
     store?.clear();
@@ -118,7 +124,10 @@ export class RestTable<
         <Checkbox
           checked={
             !!currentPage[0] &&
-            currentPage.every(({ [indexKey]: ID }) => checkedKeys.includes(ID))
+            (currentPage.every(({ [indexKey]: ID }) =>
+              checkedKeys.includes(ID),
+            ) ||
+              (!!checkedKeys.length && "indeterminate"))
           }
           onCheckedChange={toggleCheckAll}
           aria-label="Select all"
@@ -359,6 +368,8 @@ export class RestTable<
   render() {
     const {
       className = "overflow-auto flex flex-col gap-3",
+      size: _size,
+      columns: _columns,
       editable,
       deletable,
       filter,

@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { FC } from "react";
+import { ComponentPropsWithRef, FC } from "react";
 import { sum } from "web-utility";
 
 import { Badge } from "@/components/ui/badge";
@@ -24,7 +24,7 @@ export interface BadgeItem {
   link?: string;
 }
 
-export interface BadgeBarProps extends React.HTMLAttributes<HTMLUListElement> {
+export interface BadgeBarProps extends ComponentPropsWithRef<"ul"> {
   list: BadgeItem[];
   bgResolver?: (text: string) => BadgeVariant;
   onCheck?: (item: BadgeItem, index: number) => void;

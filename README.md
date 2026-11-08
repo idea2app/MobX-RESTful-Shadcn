@@ -87,50 +87,36 @@ module.exports = {
 };
 ```
 
-##### Next.js (`package.json`)
+#### ViNext (`package.json`)
 
 ```json
 {
   "scripts": {
     "install": "shadcn-helper install",
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "start": "next start"
+    "registry:build": "shadcn build",
+    "dev": "vite dev",
+    "build": "npm run registry:build && vite build",
+    "start": "vite preview"
   }
 }
 ```
 
-- [ ] Turbopack may be supported after https://github.com/vercel/next.js/pull/94274 merged
+The Vite config uses SWC's 2022-03 decorators transform for MobX classes. The
+`next.config.ts` file sets `output: "export"` so ViNext generates static files.
+Deploy the `dist/client/` directory to a static host.
 
-###### Vercel
+##### Cloudflare Pages
 
-Build command should be `npm run install && npm run build`.
+Set the build command to `pnpm build` and the build output directory to
+`dist/client`. No custom deployment workflow or Cloudflare Worker is required.
 
-###### CloudFlare
-
-Follow CloudFlare's official manual setup guide for Next.js:
-
-https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/#manual-configuration
-
-This project is already configured with:
-
-1. `@opennextjs/cloudflare` dependency
-2. `wrangler` dev dependency
-3. `wrangler.jsonc`
-4. `open-next.config.ts`
-5. scripts in `package.json`
-
-Use the following commands:
+Use the following commands for local development and preview:
 
 ```bash
 pnpm dev
-pnpm preview
-pnpm run deploy
+pnpm build
+pnpm start
 ```
-
-#### Vite
-
-Ask AI or https://x.com/evanyou, if you're sure that he won't say bad words to niche users.
 
 ### Adding components
 
@@ -335,7 +321,7 @@ export const EditorPage = () => (
 
 ## Development
 
-This is a custom component registry built with Next.js and compatible with the `shadcn` CLI.
+This is a custom component registry built with Vite and ViNext, and compatible with the `shadcn` CLI.
 
 ### Getting Started
 

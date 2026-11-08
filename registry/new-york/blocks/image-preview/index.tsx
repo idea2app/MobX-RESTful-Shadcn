@@ -4,6 +4,7 @@ import { observable } from "mobx";
 import { observer } from "mobx-react";
 import { ObservedComponent, reaction } from "mobx-react-helper";
 import { ImgHTMLAttributes } from "react";
+import { fileNameOf } from "web-utility";
 
 import {
   Dialog,
@@ -31,8 +32,13 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
 
   objectURL = "";
 
-  @reaction(({ observedProps }) => observedProps.src)
   componentDidMount() {
+    super.componentDidMount();
+    this.init();
+  }
+
+  @reaction(({ observedProps: { src } }) => src)
+  init() {
     const { src } = this.observedProps;
 
     if (this.objectURL) {
@@ -50,6 +56,7 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
   }
 
   componentWillUnmount() {
+    super.componentWillUnmount();
     if (this.objectURL) URL.revokeObjectURL(this.objectURL);
   }
 
@@ -76,9 +83,7 @@ export class ImagePreview extends ObservedComponent<ImagePreviewProps> {
     const { downloading, loadedPath, viewing } = this;
     const { className, src, ...props } = this.props;
 
-    const fileName = loadedPath
-      ? decodeURI(loadedPath.split("/").pop() || "image")
-      : "image";
+    const fileName = (loadedPath && fileNameOf(loadedPath)) || "image";
 
     return (
       <div
