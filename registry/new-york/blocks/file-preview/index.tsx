@@ -1,35 +1,20 @@
 "use client";
 
 import { FileArchive, FileSpreadsheet, FileText } from "lucide-react";
-import {
-  FC,
-  HTMLAttributes,
-  ImgHTMLAttributes,
-  InputHTMLAttributes,
-} from "react";
+import { ComponentPropsWithRef, FC } from "react";
+import { fileMetaOf } from "web-utility";
 
 import { cn } from "@/lib/utils";
 import { ImagePreview } from "../image-preview";
 
-export type FilePreviewProps = ImgHTMLAttributes<HTMLImageElement> &
-  HTMLAttributes<HTMLAudioElement> &
-  HTMLAttributes<HTMLVideoElement> &
-  HTMLAttributes<HTMLAnchorElement> & {
-    type?: InputHTMLAttributes<HTMLInputElement>["accept"];
+export type FilePreviewProps = Omit<ComponentPropsWithRef<"img">, "ref"> &
+  Omit<ComponentPropsWithRef<"audio">, "ref"> &
+  Omit<ComponentPropsWithRef<"video">, "ref"> &
+  Omit<ComponentPropsWithRef<"a">, "ref"> & {
+    type?: ComponentPropsWithRef<"input">["accept"];
     path?: string;
     file?: HTMLMediaElement["srcObject"];
   };
-
-export const FileTypeMap: Record<string, string> = {
-  stream: "binary",
-  compressed: "zip",
-  msword: "doc",
-  document: "docx",
-  powerpoint: "ppt",
-  presentation: "pptx",
-  excel: "xls",
-  sheet: "xlsx",
-};
 
 const getFileIcon = (extension?: string) => {
   if (!extension) return FileText;
@@ -52,17 +37,13 @@ export const FilePreview: FC<FilePreviewProps> = ({
   file,
   ...props
 }) => {
-  const [category, ...kind] = type?.split(/\W+/) || [],
-    fileName =
-      file instanceof File
-        ? file.name
-        : path &&
-          decodeURI(
-            new URL(path, "http://localhost").pathname.split("/").at(-1) || "",
-          );
-  const extension =
-    FileTypeMap[kind.at(-1) || ""] ||
-    (fileName?.includes(".") ? fileName.split(".").at(-1) : kind.at(-1));
+  if (!file && !path) throw new URIError("No file or path provided");
+
+  const meta =
+      file instanceof EventTarget ? undefined : fileMetaOf(file || path || ""),
+    name = meta?.name,
+    category = meta?.category || type?.split("/")[0],
+    extension = meta?.extension || undefined;
 
   const FileIcon = getFileIcon(extension);
 
@@ -108,12 +89,12 @@ export const FilePreview: FC<FilePreviewProps> = ({
             href={path}
             target="_blank"
             rel="noopener noreferrer"
-            download={fileName}
+            download={name}
           >
             <FileIcon className="h-12 w-12 text-muted-foreground" />
           </a>
           <figcaption className="max-w-full truncate text-sm text-muted-foreground mt-2">
-            {fileName}
+            {name}
           </figcaption>
         </>
       )}

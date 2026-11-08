@@ -116,7 +116,12 @@
       "title": "Image Preview",
       "description": "An image preview component with modal viewing and download functionality.",
       "registryDependencies": ["dialog", "@mobx-restful-shadcn/spinner"],
-      "dependencies": ["mobx", "mobx-react", "mobx-react-helper"],
+      "dependencies": [
+        "mobx",
+        "mobx-react",
+        "mobx-react-helper",
+        "web-utility"
+      ],
       "files": [
         {
           "type": "registry:component",
@@ -131,7 +136,7 @@
       "title": "File Preview",
       "description": "A file preview component supporting images, audio, video, and documents.",
       "registryDependencies": ["@mobx-restful-shadcn/image-preview"],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["lucide-react", "web-utility"],
       "files": [
         {
           "type": "registry:component",
@@ -456,6 +461,40 @@
           "type": "registry:component",
           "path": "registry/new-york/blocks/editor/tools/extra.ts",
           "target": "@components/ui/mobx-restful-shadcn/editor/tools/extra.ts"
+        }
+      ]
+    },
+    {
+      "name": "editor-js",
+      "type": "registry:component",
+      "title": "Editor.js",
+      "description": "A block-style rich text editor based on Editor.js that submits its data as JSON in forms.",
+      "dependencies": [
+        "@editorjs/editorjs",
+        "@react-editor-js/core",
+        "react-editor-js",
+        "mobx",
+        "mobx-react"
+      ],
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/editor-js/index.tsx",
+          "target": "@components/ui/mobx-restful-shadcn/editor-js/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "editor-html",
+      "type": "registry:component",
+      "title": "Editor HTML",
+      "description": "A component that renders Editor.js output data as HTML.",
+      "dependencies": ["@editorjs/editorjs", "editorjs-html"],
+      "files": [
+        {
+          "type": "registry:component",
+          "path": "registry/new-york/blocks/editor-html/index.tsx",
+          "target": "@components/ui/mobx-restful-shadcn/editor-html/index.tsx"
         }
       ]
     }

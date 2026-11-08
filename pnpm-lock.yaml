@@ -15,18 +15,24 @@ importers:
 
   .:
     dependencies:
+      '@editorjs/editorjs':
+        specifier: ^2.31.7
+        version: 2.31.7
       '@opennextjs/cloudflare':
-        specifier: ^1.20.2
+        specifier: ^1.20.6
         version: 1.20.6(next@16.3.4(patch_hash=23d19f8ba5bf3b58e1798403951540f8aa187bfa99bec0ece548094e920bff74)(@babel/core@7.29.7(supports-color@10.2.2))(@types/node@24.13.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@10.2.2)(wrangler@4.131.0(@types/node@24.13.4))
+      '@react-editor-js/core':
+        specifier: ^2.1.0
+        version: 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      cn:
-        specifier: ^0.2.6
-        version: 0.2.6
+      editorjs-html:
+        specifier: ^4.0.5
+        version: 4.0.5
       edkit:
         specifier: ^1.3.2
         version: 1.3.2(marked@18.0.12)(typescript@6.0.3)
@@ -34,19 +40,19 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8
       lucide-react:
-        specifier: ^1.31.0
+        specifier: ^1.44.0
         version: 1.44.0(react@19.3.0)
       marked:
-        specifier: ^18.0.9
+        specifier: ^18.0.12
         version: 18.0.12
       mobx:
-        specifier: ^7.0.0
+        specifier: ^7.0.3
         version: 7.0.3
       mobx-i18n:
-        specifier: ^0.7.6
+        specifier: ^0.7.9
         version: 0.7.9(mobx@7.0.3)(typescript@6.0.3)
       mobx-react:
-        specifier: ^10.0.0
+        specifier: ^10.0.2
         version: 10.0.2(mobx@7.0.3)(react@19.3.0)
       mobx-react-helper:
         specifier: ^0.5.4
@@ -61,11 +67,14 @@ importers:
         specifier: ^1.6.7
         version: 1.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react:
-        specifier: ^19.2.8
+        specifier: ^19.3.0
         version: 19.3.0
       react-dom:
-        specifier: ^19.2.8
+        specifier: ^19.3.0
         version: 19.3.0(react@19.3.0)
+      react-editor-js:
+        specifier: ^2.1.0
+        version: 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
       tailwind-merge:
         specifier: ^3.6.0
         version: 3.6.0
@@ -73,11 +82,11 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       web-utility:
-        specifier: ^4.7.2
-        version: 4.7.2(typescript@6.0.3)
+        specifier: ^4.8.1
+        version: 4.8.1(typescript@6.0.3)
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.5.8
+        specifier: ^2.5.13
         version: 2.5.13
       '@octokit/openapi-types':
         specifier: ^29.0.1
@@ -89,7 +98,7 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9
       '@types/node':
-        specifier: ^24.13.3
+        specifier: ^24.13.4
         version: 24.13.4
       '@types/react':
         specifier: ^19.2.18
@@ -101,13 +110,13 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       lint-staged:
-        specifier: ^17.3.0
+        specifier: ^17.5.1
         version: 17.5.1
       mobx-github:
         specifier: ^0.7.1
         version: 0.7.1(mobx@7.0.3)(typescript@6.0.3)
       shadcn:
-        specifier: ^4.18.0
+        specifier: ^4.21.0
         version: 4.21.0(supports-color@10.2.2)(typescript@6.0.3)
       shadcn-helper:
         specifier: ^0.5.9
@@ -119,7 +128,7 @@ importers:
         specifier: ~6.0.3
         version: 6.0.3
       wrangler:
-        specifier: ^4.123.0
+        specifier: ^4.131.0
         version: 4.131.0(@types/node@24.13.4)
 
 packages:
@@ -618,6 +627,18 @@ packages:
     engines: {bun: '>=1', deno: '>=2.7.10', node: '>=16'}
     peerDependencies:
       '@noble/ciphers': ^1.0.0
+
+  '@editorjs/caret@1.1.0':
+    resolution: {integrity: sha512-dzUjrPV7mtqM0HR/7IwT1/1PfyMxUfe5MRXo9joFmBRDIcrQ5ikbqVxSL9+Hy5tQ+BUWBwqLUgX1UKTJylWW9Q==}
+
+  '@editorjs/dom@1.2.0':
+    resolution: {integrity: sha512-0b7kyM6bKBNqr90JruQCghwoR7zFfXJp1Ysuj2CG8Df1lGBq2/aKGzPnJteXgFHmViykdebAVTICvQsUk9ocHQ==}
+
+  '@editorjs/editorjs@2.31.7':
+    resolution: {integrity: sha512-te4wI1heK3B8s0pz1asyRPEmOglfkb9ex5nvvCN5OUVDLSnohTszI+yyLI73qOIuUWxenIvJYkOuGHzh/a47Hw==}
+
+  '@editorjs/helpers@1.2.3':
+    resolution: {integrity: sha512-8NnWyZhVqfkaDSRTOpayd8oaGkppw00XvOvUIxPB6SZFd9LKgQo31o9v6eDK4XFsbTed8LQt2xmvZFFK9wNTSg==}
 
   '@emnapi/runtime@1.11.3':
     resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
@@ -1145,6 +1166,7 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
+      zod: ^3.25 || ^4.0
     peerDependenciesMeta:
       '@cfworker/json-schema':
         optional: true
@@ -1962,6 +1984,26 @@ packages:
   '@radix-ui/rect@1.1.3':
     resolution: {integrity: sha512-JtyZR+mqgBibTo8xea3B6ZRmzZiM/YeVBtUkas6zMuXjAlfIFIW2FgqeM9eLyvEaYX66vr6DJMK+4U6LV0KhNw==}
 
+  '@react-editor-js/client@2.1.0':
+    resolution: {integrity: sha512-X/OwqY2KKUUVIy24zvubHTI4qhiVIWMxGlU/Bc6tkf9gcsWgQjPvn75DwrQ5SIGBOYpSBcHY01JX0RRtJHRumw==}
+    peerDependencies:
+      '@editorjs/editorjs': '*'
+      '@editorjs/paragraph': '*'
+      react: '*'
+
+  '@react-editor-js/core@2.1.0':
+    resolution: {integrity: sha512-6h98D5g2RatdCDQRW/+N+eiMtjoq0n1n02m8oA7FrlEzEaOUyV+J+rmtmRS8OexLVOiNeWaSPDpVJ3MNiVLq8Q==}
+    peerDependencies:
+      '@editorjs/editorjs': '*'
+      react: '*'
+
+  '@react-editor-js/server@2.1.0':
+    resolution: {integrity: sha512-RnTbCmzCHbjcjPNKhr9FaehItHgAZyd47Lq+iIGynFqWSsrwGy46LgOXSvb50DYbwDyT0GtxaXBIk6aiFki1Dg==}
+    peerDependencies:
+      '@editorjs/editorjs': '*'
+      '@editorjs/paragraph': '*'
+      react: '*'
+
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
 
@@ -2448,6 +2490,12 @@ packages:
   code-block-writer@13.0.3:
     resolution: {integrity: sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==}
 
+  codex-notifier@1.1.2:
+    resolution: {integrity: sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg==}
+
+  codex-tooltip@1.1.0:
+    resolution: {integrity: sha512-4AHzIapwZ979nzOPR9YYd8GU+xRAxrc5i5vV6+A6OZRRarLW2ToJZv63E/sYONeJSxUQ1Dyn+PtnVGA3OuoKhA==}
+
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -2608,6 +2656,9 @@ packages:
   eciesjs@0.4.18:
     resolution: {integrity: sha512-wG99Zcfcys9fZux7Cft8BAX/YrOJLJSZ3jyYPfhZHqN2E+Ffx+QXBDsv3gubEgPtV6dTzJMSQUwk1H98/t/0wQ==}
     engines: {bun: '>=1', deno: '>=2', node: '>=16'}
+
+  editorjs-html@4.0.5:
+    resolution: {integrity: sha512-ImQYxB3fNCJcd+nJ+Vbne/6PxidO1cYByNpu9nBDStVabfjVrMW65BuR+IEZfOii8VKYH+CW/lYDb2GDlzZtDg==}
 
   edkit@1.3.2:
     resolution: {integrity: sha512-P6vpm1LNI1tmXUz5MB8Si9/wj9jIo4m+ljRJ1283tVuwVCFCY4hj6UCy/eWnc559b7lYbpkKaNUq9SIR6Hcf5g==}
@@ -3241,6 +3292,11 @@ packages:
     engines: {node: '>=10.0.0'}
     hasBin: true
 
+  mime@4.1.2:
+    resolution: {integrity: sha512-ikRzZ2RwbUVDyL9SsU0f2Phcmav4yq5r8faH5ZZKHtOZrMBLnrQOrj0uvqZ5R1uQnj+RO7Wcklw/lAf81mP9LQ==}
+    engines: {node: '>=16'}
+    hasBin: true
+
   mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
@@ -3575,6 +3631,9 @@ packages:
     resolution: {integrity: sha512-JDk8dgif51OjFoDE70+OT9ICyYr+69HlmihNwp1+Nsfbna3t5sIiCa9ZJktDmQ4/1b/rn26hIAR2uYXDMr5r0Q==}
     peerDependencies:
       react: ^19.3.0
+
+  react-editor-js@2.1.0:
+    resolution: {integrity: sha512-unI9D2pTH/2gBenc6LgCXJm8iqnrzB71CHgfjQmaB+lGR0Njx+ZXydgUQm1VofMmvF6vcCNVDE1Eb47zQbm14g==}
 
   react-remove-scroll-bar@2.3.8:
     resolution: {integrity: sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==}
@@ -3972,8 +4031,8 @@ packages:
     resolution: {integrity: sha512-/Gnggvj9oSrEvJbDyyPtAnxBt5fGQM2iWOKQNu7ie1OxDgK40iZpyV3TKaRiEzVj1oA1UxKnEy9XPXh6PW3eVw==}
     engines: {node: '>= 8'}
 
-  web-utility@4.7.2:
-    resolution: {integrity: sha512-yGT8E4HOI/kYgkOYIz7dKxkMMqhDfV85QH8EvaWThLeSStnLtjVyd83JDDqGiYkrD/zVDMhaWOiIR077NuEDpw==}
+  web-utility@4.8.1:
+    resolution: {integrity: sha512-t4Xylnh7wQyh4alossmu7XvLwoknJa5iTwYdZRDL50hxorusWv/bRiX9jxFvs0hFoDg5J1FjnVQ8lZei4w6L6Q==}
     peerDependencies:
       element-internals-polyfill: '>=1'
       typescript: '>=4.1'
@@ -4938,6 +4997,24 @@ snapshots:
   '@ecies/ciphers@0.2.6(@noble/ciphers@1.3.0)':
     dependencies:
       '@noble/ciphers': 1.3.0
+
+  '@editorjs/caret@1.1.0':
+    dependencies:
+      '@editorjs/dom': 1.2.0
+
+  '@editorjs/dom@1.2.0':
+    dependencies:
+      '@editorjs/helpers': 1.2.3
+
+  '@editorjs/editorjs@2.31.7':
+    dependencies:
+      '@editorjs/caret': 1.1.0
+      codex-notifier: 1.1.2
+      codex-tooltip: 1.1.0
+
+  '@editorjs/helpers@1.2.3':
+    dependencies:
+      codex-tooltip: 1.1.0
 
   '@emnapi/runtime@1.11.3':
     dependencies:
@@ -6144,6 +6221,23 @@ snapshots:
 
   '@radix-ui/rect@1.1.3': {}
 
+  '@react-editor-js/client@2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)':
+    dependencies:
+      '@editorjs/editorjs': 2.31.7
+      '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
+      react: 19.3.0
+
+  '@react-editor-js/core@2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)':
+    dependencies:
+      '@editorjs/editorjs': 2.31.7
+      react: 19.3.0
+
+  '@react-editor-js/server@2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)':
+    dependencies:
+      '@editorjs/editorjs': 2.31.7
+      '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
+      react: 19.3.0
+
   '@sec-ant/readable-stream@0.4.1': {}
 
   '@sindresorhus/is@7.2.0': {}
@@ -6639,6 +6733,10 @@ snapshots:
 
   code-block-writer@13.0.3: {}
 
+  codex-notifier@1.1.2: {}
+
+  codex-tooltip@1.1.0: {}
+
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -6647,7 +6745,7 @@ snapshots:
     dependencies:
       '@tech_query/node-toolkit': 2.0.0-beta.3
       tslib: 2.8.1
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - element-internals-polyfill
       - typescript
@@ -6772,6 +6870,8 @@ snapshots:
       '@noble/curves': 1.9.7
       '@noble/hashes': 1.8.0
 
+  editorjs-html@4.0.5: {}
+
   edkit@1.3.2(marked@18.0.12)(typescript@6.0.3):
     dependencies:
       '@swc/helpers': 0.5.23
@@ -6781,7 +6881,7 @@ snapshots:
       regenerator-runtime: 0.14.1
       turndown: 7.2.4
       turndown-plugin-gfm: 1.0.2
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - element-internals-polyfill
       - typescript
@@ -7265,7 +7365,7 @@ snapshots:
       '@swc/helpers': 0.5.23
       regenerator-runtime: 0.14.1
       web-streams-polyfill: 4.3.0
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - element-internals-polyfill
       - typescript
@@ -7392,6 +7492,8 @@ snapshots:
 
   mime@3.0.0: {}
 
+  mime@4.1.2: {}
+
   mimic-fn@2.1.0: {}
 
   mimic-fn@3.1.0: {}
@@ -7440,7 +7542,7 @@ snapshots:
       lodash: 4.18.1
       mobx: 7.0.3
       mobx-restful: 2.1.5(mobx@7.0.3)(typescript@6.0.3)
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - core-js
       - element-internals-polyfill
@@ -7453,7 +7555,7 @@ snapshots:
       '@types/node': 24.13.4
       mobx: 7.0.3
       regenerator-runtime: 0.14.1
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - element-internals-polyfill
       - typescript
@@ -7464,7 +7566,7 @@ snapshots:
       lodash.isequalwith: 4.4.0
       mobx: 7.0.3
       react: 19.3.0
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - element-internals-polyfill
       - typescript
@@ -7487,7 +7589,7 @@ snapshots:
       koajax: 3.3.1(typescript@6.0.3)
       mobx: 7.0.3
       regenerator-runtime: 0.14.1
-      web-utility: 4.7.2(typescript@6.0.3)
+      web-utility: 4.8.1(typescript@6.0.3)
     transitivePeerDependencies:
       - core-js
       - element-internals-polyfill
@@ -7782,6 +7884,16 @@ snapshots:
     dependencies:
       react: 19.3.0
       scheduler: 0.28.0
+
+  react-editor-js@2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0):
+    dependencies:
+      '@react-editor-js/client': 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
+      '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
+      '@react-editor-js/server': 2.1.0(@editorjs/editorjs@2.31.7)(react@19.3.0)
+    transitivePeerDependencies:
+      - '@editorjs/editorjs'
+      - '@editorjs/paragraph'
+      - react
 
   react-remove-scroll-bar@2.3.8(@types/react@19.3.0)(react@19.3.0):
     dependencies:
@@ -8208,9 +8320,10 @@ snapshots:
 
   web-streams-polyfill@4.3.0: {}
 
-  web-utility@4.7.2(typescript@6.0.3):
+  web-utility@4.8.1(typescript@6.0.3):
     dependencies:
       '@swc/helpers': 0.5.23
+      mime: 4.1.2
       regenerator-runtime: 0.14.1
       typescript: 6.0.3
 

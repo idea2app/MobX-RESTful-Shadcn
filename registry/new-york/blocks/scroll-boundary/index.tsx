@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, HTMLAttributes, ReactNode } from "react";
+import { ComponentPropsWithRef, FC, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -9,7 +9,7 @@ export type EdgePosition = "top" | "bottom" | "left" | "right";
 export type TouchHandler = (edge: EdgePosition) => void;
 
 export interface ScrollBoundaryProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends ComponentPropsWithRef<"div">,
     Partial<Record<EdgePosition, ReactNode>> {
   onTouch: TouchHandler;
 }

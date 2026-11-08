@@ -3,7 +3,7 @@
 import { computed, observable } from "mobx";
 import { TranslationModel } from "mobx-i18n";
 import { observer } from "mobx-react";
-import { ObservedComponent } from "mobx-react-helper";
+import { ObservedComponent, reaction } from "mobx-react-helper";
 import { DataObject, Filter, IDType, ListModel } from "mobx-restful";
 import {
   FormEvent,
@@ -101,7 +101,7 @@ export class RestForm<
     ...props
   }: FieldBoxProps<D>) => (
     <div className={cn("grid w-full gap-1.5", className)} {...props}>
-      <Label>
+      <Label htmlFor={name?.toString()}>
         {typeof renderLabel === "function"
           ? name
             ? renderLabel(name)
@@ -122,9 +122,15 @@ export class RestForm<
   accessor validated = false;
 
   componentDidMount() {
+    super.componentDidMount();
+    this.init();
+  }
+
+  @reaction(({ observedProps: { id } }) => id)
+  init() {
     const { id, store } = this.props;
 
-    if (id) store?.getOne(id);
+    if (id) return store?.getOne(id);
   }
 
   handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -236,8 +242,9 @@ export class RestForm<
                   type={type as "radio" | "checkbox"}
                   name={key?.toString()}
                   value={value}
+                  disabled={meta.disabled}
+                  required={meta.required}
                   defaultChecked={data[key!]?.includes(value)}
-                  {...meta}
                 />
                 <Label
                   htmlFor={[key, value] + ""}
@@ -314,7 +321,15 @@ export class RestForm<
 
   render() {
     const { fields, readOnly, customValidation } = this,
-      { id, className, size, store, translator, ...props } = this.props;
+      {
+        id,
+        className,
+        size,
+        store,
+        translator,
+        fields: _fields,
+        ...props
+      } = this.props;
     const { downloading, uploading, currentOne = {} as D } = store || {},
       { t } = translator;
     const loading = downloading! > 0 || uploading! > 0;

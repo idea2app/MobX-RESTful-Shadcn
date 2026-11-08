@@ -4,14 +4,14 @@ import { Minus, Plus } from "lucide-react";
 import { observer } from "mobx-react";
 import { FormComponent, FormComponentProps } from "mobx-react-helper";
 import { DataObject } from "mobx-restful";
-import { ChangeEvent, HTMLAttributes, ReactNode } from "react";
+import { ChangeEvent, ComponentPropsWithRef, ReactNode } from "react";
 import { formToJSON, isEmpty, uniqueID } from "web-utility";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export type ArrayFieldProps<T extends DataObject = DataObject> = Pick<
-  HTMLAttributes<HTMLFieldSetElement>,
+  ComponentPropsWithRef<"fieldset">,
   "className" | "style"
 > &
   FormComponentProps<T[]> & {
@@ -98,18 +98,20 @@ export class ArrayField<
                 type="button"
                 size="sm"
                 variant="outline"
+                aria-label="Add row"
                 onClick={() => this.insert(index + 1)}
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button
                 type="button"
                 size="sm"
                 variant="destructive"
+                aria-label="Remove row"
                 disabled={length < 2}
                 onClick={() => this.remove(index)}
               >
-                <Minus className="h-4 w-4" />
+                <Minus className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
           </fieldset>

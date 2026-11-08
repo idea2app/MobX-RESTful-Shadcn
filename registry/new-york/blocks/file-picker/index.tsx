@@ -4,7 +4,7 @@ import { Eye, X } from "lucide-react";
 import { computed, observable } from "mobx";
 import { observer } from "mobx-react";
 import { FormComponent, FormComponentProps, reaction } from "mobx-react-helper";
-import { blobOf } from "web-utility";
+import { blobOf, fileMetaOf, fileNameOf } from "web-utility";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -26,9 +26,9 @@ export class FilePicker extends FormComponent<FilePickerProps> {
   @computed
   get fileType() {
     const { accept } = this.observedProps,
-      { file } = this;
+      { file, filePath } = this;
 
-    return file?.type || file?.name.match(/\.\w+$/)?.[0] || accept;
+    return fileMetaOf(file || filePath || "").type || accept;
   }
 
   @computed
@@ -43,8 +43,8 @@ export class FilePicker extends FormComponent<FilePickerProps> {
     if (typeof data === "string")
       try {
         const blob = await blobOf(data),
-          name = data.split("/").at(-1);
-        const file = new File([blob], name!, { type: blob.type });
+          name = fileNameOf(data);
+        const file = new File([blob], name, { type: blob.type });
 
         blobCache.set(file, data);
 
