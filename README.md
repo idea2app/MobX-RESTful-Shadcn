@@ -87,7 +87,7 @@ module.exports = {
 };
 ```
 
-#### Vite with vinext (`package.json`)
+#### ViNext (`package.json`)
 
 ```json
 {
@@ -102,7 +102,7 @@ module.exports = {
 ```
 
 The Vite config uses SWC's 2022-03 decorators transform for MobX classes. The
-`next.config.ts` file sets `output: "export"` so vinext generates static files.
+`next.config.ts` file sets `output: "export"` so ViNext generates static files.
 Deploy the `dist/client/` directory to a static host.
 
 ##### Cloudflare Pages
@@ -321,7 +321,7 @@ export const EditorPage = () => (
 
 ## Development
 
-This is a custom component registry built with Vite and vinext, and compatible with the `shadcn` CLI.
+This is a custom component registry built with Vite and ViNext, and compatible with the `shadcn` CLI.
 
 ### Getting Started
 
